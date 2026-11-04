@@ -2,86 +2,85 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { MessageCircle, MapPin, CheckCircle } from "lucide-react";
-import { SERVICE_AREAS } from "@/lib/data";
 import { getWhatsAppUrl } from "@/lib/utils";
 
 const LOCATION_DATA = {
   bandung: {
     slug: "bandung",
     cityName: "Bandung",
-    title: "Aquarium Custom & Arwana Super Red Bandung",
+    title: "Aquarium Custom & Arwana Super Red Bandung — ASEVA AQUATICS",
     h1: "Jasa Aquarium Custom & Arwana Super Red di Bandung",
     description:
       "Spesialis aquarium custom premium dan arwana super red bersertifikat di Bandung Raya. Tim inti ASEVA berbasis di Bandung, siap survei dan instalasi 1–2 hari kerja.",
     zone: "Zona 1 — Prioritas Utama",
     intro:
-      "Bandung adalah rumah bagi tim inti ASEVA AQUATICS. Sebagai prioritas utama kami, proyek di Bandung Raya mendapat penanganan tercepat dengan respons tim yang paling responsif.",
+      "Bandung adalah basis atelier utama tim perancang dan workshop fabrikasi ASEVA AQUATICS. Sebagai prioritas utama kami, proyek di Bandung Raya mendapat penanganan tercepat dengan survei bebas biaya komitmen.",
     localContext: [
-      "Kawasan Dago, Setiabudi, dan Kota Baru Parahyangan dikenal dengan arsitektur rumah bergaya modern-tropis yang sangat cocok dengan aquarium built-in sebagai focal point ruang tamu.",
-      "Suhu udara Bandung yang lebih dingin (18–22°C terutama malam hari) memengaruhi suhu air aquarium. Tim kami selalu merekomendasikan sistem pemanas presisi untuk aquarium arwana di Bandung.",
-      "Kontur tanah di kawasan Bandung Utara yang berbukit memerlukan perhatian khusus pada struktur bangunan, terutama untuk aquarium bervolume besar.",
+      "Kawasan Dago Pakar, Setiabudi, dan Kota Baru Parahyangan didominasi arsitektur hunian modern-tropis bertingkat yang menuntut perhitungan beban gravitasi lantai sipil secara cermat.",
+      "Suhu udara Bandung Utara yang sejuk (18–22°C di malam hari) memerlukan instalasi titanium heater digital berpresisi tinggi demi menjaga kestabilan metabolisme satwa arwana super red.",
+      "Kontur perbukitan dan jalur logistik hunian privat dikalkulasikan secara khusus dalam pemindahan kaca monolitik masif.",
     ],
-    coverage: ["Bandung Kota", "Cimahi", "Kabupaten Bandung", "Bandung Barat", "Sumedang", "Lembang"],
+    coverage: ["Dago & Bandung Utara", "Setiabudi & Cidadap", "Kota Baru Parahyangan", "Mekarwangi & Singgasana", "Buah Batu & Bandung Timur", "Cimahi & Lembang"],
     keywords: ["aquarium custom bandung", "jasa pembuatan aquarium bandung", "arwana super red bandung"],
     faqs: [
       {
-        q: "Berapa lama pengerjaan aquarium custom di Bandung?",
-        a: "Untuk aquarium residensial berukuran standar, proses dari desain hingga instalasi memakan waktu 3–6 minggu. Proyek komersial skala besar bisa 6–12 minggu tergantung kompleksitas.",
+        q: "Berapa lama estimasi pengerjaan akuarium custom di Bandung?",
+        a: "Untuk akuarium residensial built-in ukuran 1,5 hingga 2 meter, proses rancang bangun hingga commissioning hidrolika memakan waktu 3–5 minggu. Proyek skala besar dapat disesuaikan dengan kurva S pembangunan rumah Anda.",
       },
       {
-        q: "Apakah ada biaya survei lokasi di Bandung?",
-        a: "Survei lokasi di Bandung Raya sepenuhnya gratis. Kami percaya bahwa survei yang baik adalah fondasi desain yang tepat.",
+        q: "Apakah ada biaya untuk survei lokasi hunian di Bandung?",
+        a: "Survei teknis dimensi ruang dan jalur plumbing di seluruh area Bandung Raya sepenuhnya bebas biaya komitmen.",
       },
     ],
   },
   "jakarta-jabodetabek": {
     slug: "jakarta-jabodetabek",
     cityName: "Jakarta & Jabodetabek",
-    title: "Aquarium Custom & Arwana Super Red Jakarta, Jabodetabek",
+    title: "Aquarium Custom & Arwana Super Red Jakarta, Jabodetabek — ASEVA AQUATICS",
     h1: "Jasa Aquarium Custom Premium di Jakarta & Jabodetabek",
     description:
       "Spesialis aquarium custom mewah dan arwana super red bersertifikat untuk Jakarta Selatan, Jakarta Barat, PIK, BSD, Pondok Indah, dan seluruh Jabodetabek. Survei terjadwal dari Bandung.",
-    zone: "Zona 2 — Terjangkau",
+    zone: "Zona 2 — Metropolitan Prioritas",
     intro:
-      "Jakarta dan Jabodetabek adalah pasar Zona 2 kami. Tim ASEVA rutin melakukan kunjungan terjadwal ke Jakarta dan sekitarnya untuk survei, instalasi, dan perawatan.",
+      "Jakarta dan Jabodetabek adalah pasar metropolitan utama kami. Tim ASEVA rutin melakukan kunjungan terjadwal mingguan untuk koordinasi arsitektur, instalasi teknis, dan pengantaran satwa berlisensi CITES.",
     localContext: [
-      "Rumah mewah di kawasan Jakarta Selatan, PIK, dan BSD umumnya memiliki ketinggian langit-langit dan ruang yang ideal untuk aquarium dinding skala besar.",
-      "Gedung perkantoran premium di CBD Jakarta (SCBD, Sudirman, Kuningan) banyak yang menggunakan aquarium lobi sebagai statement piece yang berkesan.",
-      "Pengiriman arwana dari Bandung ke Jakarta dilakukan dengan standar transport beroksigen khusus melalui jalur tol Cipularang dengan waktu tempuh terkontrol.",
+      "Hunian eksklusif di Jakarta Selatan (Pondok Indah, Senopati), PIK 1 & 2, serta BSD City memiliki ketinggian void ruang tamu yang ideal untuk akuarium kristal dinding masif.",
+      "Gedung perkantoran CBD Jakarta (SCBD, Sudirman, Mega Kuningan) mengadopsi akuarium lobi built-in kedap suara sebagai statement kemewahan.",
+      "Pengantaran ikan arwana dari Bandung ke Jakarta dilakukan melalui jalur Tol Cipularang dengan kendaraan berpendingin dan pasokan oksigen medis murni.",
     ],
-    coverage: ["Jakarta Selatan", "Jakarta Barat", "Jakarta Pusat", "Jakarta Utara (PIK)", "Tangerang (BSD, Serpong)", "Bekasi", "Depok", "Bogor"],
+    coverage: ["Jakarta Selatan (Pondok Indah, Senopati)", "Pantai Indah Kapuk (PIK 1 & 2)", "BSD City & Alam Sutera", "Menteng & Kuningan", "Sentul City & Bogor", "Bekasi & Depok"],
     keywords: ["aquarium custom jakarta", "jasa pembuatan aquarium jakarta", "arwana super red jakarta", "aquarium mewah jabodetabek"],
     faqs: [
       {
-        q: "Berapa biaya tambahan untuk proyek di Jakarta dari Bandung?",
-        a: "Untuk proyek di Jabodetabek, terdapat biaya transportasi dan logistik tim yang transparan dan akan dicantumkan dalam penawaran awal. Biaya ini umumnya 5–10% dari total proyek.",
+        q: "Bagaimana skema biaya logistik instalasi akuarium di Jakarta dari Bandung?",
+        a: "Biaya logistik pengiriman kaca, rangka baja, dan akomodasi teknisi dicantumkan secara transparan dan terukur di dalam proposal awal sebelum persetujuan proyek.",
       },
       {
-        q: "Bagaimana proses pengiriman arwana dari Bandung ke Jakarta?",
-        a: "Pengiriman dilakukan dengan wadah beroksigen khusus melalui jalur darat. Seluruh proses ditangani oleh tim terlatih dengan waktu transit yang diminimalkan untuk keselamatan ikan.",
+        q: "Bagaimana jaminan keselamatan satwa saat pengiriman ke Jakarta?",
+        a: "Seluruh pengiriman arwana super red dilindungi protokol garansi hidup selamat (DOA) 100% dengan wadah terisolasi suhu dan tabung oksigen bertekanan.",
       },
     ],
   },
   "jawa-barat": {
     slug: "jawa-barat",
     cityName: "Jawa Barat",
-    title: "Aquarium Custom & Arwana Super Red Jawa Barat",
+    title: "Aquarium Custom & Arwana Super Red Jawa Barat — ASEVA AQUATICS",
     h1: "Jasa Aquarium Custom & Arwana Super Red di Jawa Barat",
     description:
       "Layanan aquarium custom dan arwana super red bersertifikat untuk kota-kota besar di Jawa Barat: Cirebon, Karawang, Sukabumi, Tasikmalaya, Garut, dan Subang.",
-    zone: "Zona 2 — Terjangkau",
+    zone: "Zona 2 — Jawa Barat Regional",
     intro:
-      "ASEVA AQUATICS melayani seluruh Jawa Barat sebagai Zona 2 kami. Survei dan instalasi dilakukan dengan penjadwalan terlebih dahulu untuk memastikan tim kami dapat hadir dengan optimal.",
+      "ASEVA AQUATICS melayani pemilik hunian residensial dan properti komersial di seluruh kota strategis Jawa Barat dengan jadwal survei terkoordinasi dan pengantaran satwa berlisensi resmi.",
     localContext: [
-      "Kota-kota di pesisir Jawa Barat seperti Cirebon memiliki kelembaban dan suhu yang berbeda dari Bandung, yang memengaruhi pemilihan sistem filtrasi dan pengaturan suhu air.",
-      "Potensi pasar aquarium komersial di kota-kota berkembang seperti Karawang dan Purwakarta sangat besar seiring pesatnya pertumbuhan kawasan industri dan hunian premium.",
+      "Kawasan pesisir seperti Cirebon dan Indramayu memiliki suhu lingkungan hangat yang memerlukan kalibrasi siklus evaporasi dan kontrol chiller yang berbeda dari dataran tinggi.",
+      "Pertumbuhan hunian premium di Karawang, Purwakarta, dan Sukabumi semakin menuntut kehadiran instalasi akuarium custom berkejernihan tinggi.",
     ],
-    coverage: ["Cirebon", "Karawang", "Sukabumi", "Tasikmalaya", "Garut", "Subang", "Purwakarta", "Cianjur"],
+    coverage: ["Cirebon & Indramayu", "Karawang & Purwakarta", "Sukabumi & Cianjur", "Tasikmalaya & Garut", "Subang & Sumedang"],
     keywords: ["aquarium custom jawa barat", "jasa pembuatan aquarium cirebon", "arwana super red jawa barat"],
     faqs: [
       {
-        q: "Apakah ASEVA melayani kota-kota di Jawa Barat selain Bandung?",
-        a: "Ya. Kami melayani seluruh kota besar di Jawa Barat dengan penjadwalan survei dan instalasi. Hubungi kami untuk mendiskusikan jadwal dan biaya logistik yang transparan.",
+        q: "Apakah tim teknisi ASEVA melayani survei ke kota-kota Jawa Barat selain Bandung?",
+        a: "Ya, kami menjadwalkan kunjungan survei teknis ke seluruh kota besar di Jawa Barat. Diskusikan rencana proyek Anda melalui formulir konsultasi kami.",
       },
     ],
   },
@@ -111,7 +110,7 @@ export default async function AreaLayananPage({ params }: Props) {
   if (!data) notFound();
 
   return (
-    <>
+    <div className="bg-black text-white min-h-screen">
       {/* JSON-LD LocalBusiness + Service Schema */}
       <script
         type="application/ld+json"
@@ -135,28 +134,28 @@ export default async function AreaLayananPage({ params }: Props) {
       />
 
       {/* Header */}
-      <section className="pt-32 pb-16 bg-navy border-b border-white/5">
+      <section className="pt-36 pb-20 bg-black border-b border-white/[0.08]">
         <div className="section-container">
-          <nav className="flex items-center gap-2 font-sans text-xs text-ivory-dim mb-8">
-            <Link href="/" className="hover:text-gold">Beranda</Link>
+          <nav className="flex items-center gap-2 font-sans text-xs text-neutral-400 mb-8">
+            <Link href="/" className="hover:text-white transition-colors">Beranda</Link>
             <span>/</span>
-            <Link href="/area-layanan" className="hover:text-gold">Area Layanan</Link>
+            <Link href="/area-layanan" className="hover:text-white transition-colors">Area Layanan</Link>
             <span>/</span>
-            <span className="text-ivory">{data.cityName}</span>
+            <span className="text-white">{data.cityName}</span>
           </nav>
           <div className="flex items-center gap-3 mb-4">
-            <MapPin size={14} className="text-gold" />
+            <MapPin size={16} className="text-champagne" />
             <span className="section-label">{data.zone}</span>
           </div>
-          <h1 className="font-serif text-ivory max-w-2xl mb-6 leading-tight">
+          <h1 className="font-serif text-white max-w-3xl mb-6 leading-tight font-light text-3xl sm:text-5xl lg:text-6xl">
             {data.h1}
           </h1>
-          <p className="font-sans text-sm md:text-base text-ivory-muted leading-relaxed max-w-xl mb-10">
+          <p className="font-sans text-sm md:text-base text-neutral-400 leading-relaxed max-w-2xl mb-10 font-light">
             {data.intro}
           </p>
-          <div className="flex flex-col xs:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-4">
             <Link href="/konsultasi" className="btn-primary">
-              Konsultasi Gratis
+              Konsultasi Ruang Gratis
             </Link>
             <a
               href={getWhatsAppUrl()}
@@ -165,25 +164,25 @@ export default async function AreaLayananPage({ params }: Props) {
               className="btn-whatsapp inline-flex items-center gap-3"
             >
               <MessageCircle size={16} />
-              Chat WhatsApp
+              Chat WhatsApp Langsung
             </a>
           </div>
         </div>
       </section>
 
       {/* Coverage Area */}
-      <section className="py-16 bg-navy border-b border-white/5">
+      <section className="section-padding bg-black border-b border-white/[0.08]">
         <div className="section-container">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-16">
             <div>
-              <h2 className="font-serif text-2xl text-ivory mb-6">
-                Cakupan <em className="text-gold">Area Layanan</em>
+              <h2 className="font-serif text-2xl md:text-3xl text-white mb-6 font-light">
+                Cakupan Titik <em className="italic text-champagne">Layanan Utama</em>
               </h2>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2.5">
                 {data.coverage.map((city) => (
                   <span
                     key={city}
-                    className="font-sans text-xs text-ivory-muted border border-white/10 px-4 py-2"
+                    className="font-sans text-xs text-neutral-300 rounded-full border border-white/10 px-4 py-2 bg-[#0A0A0A]"
                   >
                     {city}
                   </span>
@@ -191,14 +190,14 @@ export default async function AreaLayananPage({ params }: Props) {
               </div>
             </div>
             <div>
-              <h2 className="font-serif text-2xl text-ivory mb-6">
-                Konteks <em className="text-gold">Lokal</em>
+              <h2 className="font-serif text-2xl md:text-3xl text-white mb-6 font-light">
+                Karakteristik & <em className="italic text-champagne">Konteks Wilayah</em>
               </h2>
               <div className="space-y-4">
                 {data.localContext.map((ctx, i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <CheckCircle size={14} className="text-gold mt-1 flex-shrink-0" />
-                    <p className="font-sans text-sm text-ivory-muted leading-relaxed">{ctx}</p>
+                  <div key={i} className="flex items-start gap-3 p-5 rounded-2xl bg-[#0A0A0A] border border-white/[0.08]">
+                    <CheckCircle size={16} className="text-champagne mt-0.5 flex-shrink-0" />
+                    <p className="font-sans text-xs md:text-sm text-neutral-400 leading-relaxed font-light">{ctx}</p>
                   </div>
                 ))}
               </div>
@@ -208,37 +207,21 @@ export default async function AreaLayananPage({ params }: Props) {
       </section>
 
       {/* FAQ */}
-      <section className="section-padding bg-navy-secondary">
-        <div className="section-container">
-          <h2 className="font-serif text-2xl text-ivory mb-10">
-            FAQ <em className="text-gold">{data.cityName}</em>
+      <section className="section-padding bg-[#050505]">
+        <div className="section-container max-w-4xl">
+          <h2 className="font-serif text-2xl md:text-3xl text-white mb-10 font-light">
+            Pertanyaan Umum <em className="italic text-champagne">{data.cityName}</em>
           </h2>
-          {/* FAQ Schema */}
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "FAQPage",
-                mainEntity: data.faqs.map((faq) => ({
-                  "@type": "Question",
-                  name: faq.q,
-                  acceptedAnswer: { "@type": "Answer", text: faq.a },
-                })),
-              }),
-            }}
-          />
-          <div className="space-y-6 max-w-2xl">
+          <div className="space-y-4">
             {data.faqs.map((faq, i) => (
-              <div key={i} className="border border-white/5 p-6 bg-navy">
-                <h3 className="font-sans text-sm font-medium text-ivory mb-3">{faq.q}</h3>
-                <p className="font-sans text-sm text-ivory-muted leading-relaxed">{faq.a}</p>
+              <div key={i} className="p-6 md:p-8 rounded-2xl border border-white/[0.08] bg-[#0A0A0A]">
+                <h3 className="font-serif text-lg text-white mb-3 font-light">{faq.q}</h3>
+                <p className="font-sans text-xs md:text-sm text-neutral-400 leading-relaxed font-light">{faq.a}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }
-

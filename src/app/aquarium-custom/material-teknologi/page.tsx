@@ -9,100 +9,100 @@ export const metadata: Metadata = {
 
 const MATERIALS = [
   {
-    category: "Kaca",
-    title: "Low-Iron Ultra-Clear Glass",
-    specs: ["Transmisi cahaya 92%+", "Tanpa distorsi warna kehijauan", "Ketebalan 12mm–25mm sesuai volume", "Tersedia hingga 3m × 1,5m per lembar"],
-    description: "Kaca standar mengandung besi yang memberi warna kehijauan pada tampilan air. Kaca low-iron (ultra-clear) menghilangkan besi ini, menghasilkan kejernihan absolut yang sepadan dengan tampilannya.",
-    whyItMatters: "Warna merah arwana dan kecantikan karang hanya dapat tampil sempurna di balik kaca ultra-clear.",
+    category: "Optik Kaca",
+    title: "Low-Iron Ultra-Clear Crystal Glass",
+    specs: ["Transmisi cahaya hingga 99.2%", "Tanpa distorsi rona kehijauan", "Ketebalan 12mm–25mm terhitung hidrolika", "Ukuran masif monolitik tanpa sambungan tengah"],
+    description: "Kaca float standar mengandung besi oksida yang memberikan warna kehijauan kusam pada tampilan air. Kaca low-iron optik kristal menghilangkan molekul besi ini, menghadirkan kejernihan absolut setara lensa optik kamera profesional.",
+    whyItMatters: "Kemewahan sisik merah arwana dan kejernihan air akuarium hanya dapat terpancar maksimal di balik kaca low-iron kristal murni.",
   },
   {
-    category: "Sambungan",
-    title: "Silikon Marine-Grade",
-    specs: ["GE Sanitary atau Dow Corning 795", "Non-toxic, aman untuk ikan dan biota", "Elastisitas tinggi, tahan bocor 10+ tahun", "Tidak kuning atau rapuh dalam air"],
-    description: "Silikon standar bangunan mengandung bahan anti-jamur yang beracun bagi ikan. Kami menggunakan silikon marine-grade yang diformulasikan khusus untuk lingkungan akuatik.",
-    whyItMatters: "Sambungan yang tepat adalah perbedaan antara aquarium yang bocor dalam 2 tahun dan yang bertahan 15 tahun.",
+    category: "Struktural Bonding",
+    title: "Silikon Marine-Grade Kedap Tekanan",
+    specs: ["Wacker / Dow Corning 795 kelas akuatik internasional", "Formula non-toxic bebas bahan kimia anti-jamur beracun", "Elastisitas tensil tinggi, daya tahan kebocoran 15+ tahun", "Garis sambungan bevel minim tanpa gelembung"],
+    description: "Silikon konstruksi bangunan umum mengandung racun anti-jamur yang mematikan ikan. Kami hanya mengaplikasikan silikon marine-grade khusus habitat air dengan kekuatan ikatan struktural elastis terhadap tekanan berton-ton.",
+    whyItMatters: "Kualitas bonding silikon adalah penentu mutlak antara akuarium yang bocor merusak interior rumah dan yang berdiri kokoh puluhan tahun.",
   },
   {
-    category: "Filtrasi",
-    title: "Sistem Sump Tank Tersembunyi",
-    specs: ["Kapasitas sump 15–30% volume utama", "Media filter: wool, bio-ball, ceramic ring", "Pompa balik silent (<30dB)", "Protein skimmer untuk aquarium laut"],
-    description: "Sistem sump memindahkan seluruh peralatan filtrasi ke dalam kabinet tersembunyi, menghasilkan tampilan aquarium yang bersih tanpa kabel atau selang yang terlihat.",
-    whyItMatters: "Inilah mengapa aquarium mewah tidak pernah terlihat kabelnya — semua tersembunyi di dalam kabinet yang dirancang khusus.",
+    category: "Life Support",
+    title: "Sistem Sump Biologis Kedap Suara",
+    specs: ["Kapasitas reservoir 20–35% total volume akuarium", "Multi-chamber media biologis keramik berpori mikro", "Pompa sirkulasi DC berisolasi getaran (< 28 dB)", "Dry-wet over-flow pipa tersembunyi total"],
+    description: "Sistem filtrasi terpadu memindahkan seluruh siklus mekanis, kimiawi, dan biologis ke dalam kabinet kedap suara di bawah akuarium. Tidak ada kabel, selang, atau peralatan pompa yang merusak estetika interior ruang.",
+    whyItMatters: "Inilah rahasia akuarium kelas dunia: air senantiasa sebenar kristal dengan kesunyian total di ruang hunian Anda.",
   },
   {
-    category: "Pencahayaan",
-    title: "LED Spektrum Khusus",
-    specs: ["Warna: 14.000K–20.000K untuk aquarium air tawar", "Spektrum khusus tanning untuk arwana", "Timer otomatis siang-malam", "Intensitas dapat diatur (dimmer)"],
-    description: "Pencahayaan yang tepat bukan hanya tentang estetika — ini tentang kesehatan ikan dan perkembangan warna arwana. Spektrum yang salah dapat menghambat perkembangan warna merah.",
-    whyItMatters: "Cahaya yang tepat adalah rahasia warna merah darah arwana yang memukau.",
+    category: "Fotometri",
+    title: "Pencahayaan Spektrum Terprogram",
+    specs: ["Spektrum 14.000K–20.000K penetrasi kedalaman air", "Modul LED khusus tanning kromofor sisik arwana", "Siklus matahari otomatis: fajar, siang, senja, malam", "Peredam panas pasif aluminium penerbangan"],
+    description: "Pencahayaan presisi bukan hanya soal keindahan visual — ini merupakan stimulasi biologis terhadap perkembangan pigmen merah pekat arwana super red. Spektrum yang tepat merangsang sel warna tanpa menyebabkan stres.",
+    whyItMatters: "Cahaya terkalibrasi memancarkan pantulan pendaran emas dan merah darah arwana secara alami dan dramatis.",
   },
 ];
 
 export default function MaterialPage() {
   return (
-    <>
+    <div className="bg-black text-white min-h-screen">
       {/* Header */}
-      <section className="pt-32 pb-16 bg-navy border-b border-white/5">
+      <section className="pt-36 pb-20 bg-black border-b border-white/[0.08]">
         <div className="section-container">
-          <nav className="flex items-center gap-2 font-sans text-xs text-ivory-dim mb-8">
-            <Link href="/" className="hover:text-gold">Beranda</Link>
+          <nav className="flex items-center gap-2 font-sans text-xs text-neutral-400 mb-8">
+            <Link href="/" className="hover:text-white transition-colors">Beranda</Link>
             <span>/</span>
-            <Link href="/aquarium-custom" className="hover:text-gold">Aquarium Custom</Link>
+            <Link href="/aquarium-custom" className="hover:text-white transition-colors">Aquarium Custom</Link>
             <span>/</span>
-            <span className="text-ivory">Material & Teknologi</span>
+            <span className="text-white">Material & Teknologi</span>
           </nav>
           <div className="max-w-2xl">
-            <span className="section-label block mb-4">Spesifikasi Teknis</span>
-            <h1 className="font-serif text-ivory mb-6">
-              Material & Teknologi
-              <br />
-              <em className="text-gold">yang Menjustifikasi Harga</em>
+            <span className="section-label block mb-4">SPESIFIKASI ARSITEKTUR</span>
+            <h1 className="font-serif text-white mb-6 font-light">
+              Material & Rekayasa
+              <span className="block font-serif italic text-transparent bg-clip-text bg-gradient-to-r from-white via-champagne to-champagne-dim">
+                Tanpa Kompromi Kualitas
+              </span>
             </h1>
-            <p className="font-sans text-sm md:text-base text-ivory-muted leading-relaxed">
-              Mengapa aquarium premium lebih mahal? Bukan karena mereknya — tapi karena materialnya. 
-              Halaman ini menjelaskan secara teknis apa yang ada di dalam setiap aquarium ASEVA.
+            <p className="font-sans text-sm md:text-base text-neutral-400 leading-relaxed font-light">
+              Mengapa standar ASEVA berada di kelas tersendiri? Nilai sebuah akuarium mewah ditentukan oleh integritas kaca optik, silikon struktural, dan akustik hidrolika yang dirancang bertahan lintas generasi.
             </p>
           </div>
         </div>
       </section>
 
       {/* Materials */}
-      <section className="section-padding bg-navy">
+      <section className="section-padding bg-black">
         <div className="section-container">
-          <div className="space-y-0">
-            {MATERIALS.map((mat, index) => (
+          <div className="space-y-10">
+            {MATERIALS.map((mat) => (
               <div
                 key={mat.title}
-                className="grid grid-cols-1 lg:grid-cols-2 gap-0 border-b border-white/5 last:border-b-0"
+                className="grid grid-cols-1 lg:grid-cols-12 gap-8 bg-[#0A0A0A] p-8 lg:p-12 rounded-3xl border border-white/[0.08] shadow-[0_20px_50px_rgba(0,0,0,0.6)]"
               >
                 {/* Left */}
-                <div className={`p-8 lg:p-12 border-b lg:border-b-0 ${index % 2 === 0 ? "lg:border-r" : "lg:order-2"} border-white/5`}>
-                  <span className="section-label block mb-4">{mat.category}</span>
-                  <h2 className="font-serif text-2xl md:text-3xl text-ivory mb-6">
+                <div className="lg:col-span-7">
+                  <span className="section-label block mb-3 font-medium">{mat.category}</span>
+                  <h2 className="font-serif text-2xl md:text-3xl text-white mb-5 font-light">
                     {mat.title}
                   </h2>
-                  <p className="font-sans text-sm text-ivory-muted leading-relaxed mb-6">
+                  <p className="font-sans text-sm text-neutral-400 leading-relaxed mb-6 font-light">
                     {mat.description}
                   </p>
-                  <div className="p-5 border border-gold/20 bg-gold/5">
-                    <p className="font-sans text-xs text-gold font-medium mb-2 tracking-widest uppercase">
-                      Mengapa Ini Penting
+                  <div className="p-5 rounded-2xl border border-white/[0.08] bg-[#111111]">
+                    <p className="font-mono text-[10px] text-champagne font-medium mb-1 tracking-widest uppercase">
+                      DAMPAK TERHADAP RUANG & SATWA
                     </p>
-                    <p className="font-sans text-sm text-ivory-muted italic leading-relaxed">
+                    <p className="font-sans text-sm text-neutral-300 italic leading-relaxed font-light">
                       &ldquo;{mat.whyItMatters}&rdquo;
                     </p>
                   </div>
                 </div>
                 {/* Right — Specs */}
-                <div className={`p-8 lg:p-12 bg-navy-secondary ${index % 2 === 1 ? "lg:order-1" : ""}`}>
-                  <p className="font-sans text-xs text-gold tracking-widest uppercase mb-6">
-                    Spesifikasi
+                <div className="lg:col-span-5 bg-[#111111] p-8 rounded-2xl border border-white/[0.08] flex flex-col justify-center">
+                  <p className="font-mono text-[10px] text-champagne tracking-widest uppercase mb-5 font-medium">
+                    PARAMETER SPESIFIKASI
                   </p>
-                  <ul className="space-y-4">
+                  <ul className="space-y-3.5">
                     {mat.specs.map((spec) => (
                       <li key={spec} className="flex items-start gap-3">
-                        <span className="text-gold text-xs mt-0.5 flex-shrink-0">✦</span>
-                        <p className="font-sans text-sm text-ivory-muted leading-relaxed">
+                        <span className="text-champagne text-xs mt-0.5 flex-shrink-0">✦</span>
+                        <p className="font-sans text-xs sm:text-sm text-neutral-400 leading-relaxed font-light">
                           {spec}
                         </p>
                       </li>
@@ -116,14 +116,14 @@ export default function MaterialPage() {
       </section>
 
       {/* CTA for architects */}
-      <section className="py-20 bg-navy-secondary border-t border-white/5">
-        <div className="section-container text-center">
-          <span className="section-label block mb-4">Untuk Arsitek & Desainer Interior</span>
-          <h2 className="font-serif text-ivory mb-4">
-            Butuh Spesifikasi Teknis <em className="text-gold">Lebih Detail?</em>
+      <section className="py-24 bg-[#050505] border-t border-white/[0.08]">
+        <div className="section-container text-center max-w-2xl mx-auto">
+          <span className="section-label block mb-4">KOLABORASI PROFESIONAL</span>
+          <h2 className="font-serif text-white mb-4 font-light text-3xl sm:text-5xl">
+            Butuh Berkas Spesifikasi <em className="italic text-champagne">Teknis MEP?</em>
           </h2>
-          <p className="font-sans text-sm text-ivory-muted max-w-lg mx-auto mb-10">
-            Kami menyediakan dokumen teknis lengkap untuk kebutuhan perencanaan struktur dan koordinasi MEP. Hubungi kami langsung.
+          <p className="font-sans text-sm text-neutral-400 max-w-lg mx-auto mb-10 font-light">
+            Kami menyediakan lembar spesifikasi teknis lengkap, kalkulasi titik beban lantai, dan jalur pipa untuk perencanaan arsitektur Anda.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/konsultasi" className="btn-primary">
@@ -135,7 +135,6 @@ export default function MaterialPage() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }
-

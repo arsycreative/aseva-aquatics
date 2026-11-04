@@ -84,7 +84,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport = {
-  themeColor: "#0A0F14",
+  themeColor: "#000000",
   width: "device-width",
   initialScale: 1,
 };
@@ -95,7 +95,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="id">
+    <html lang="id" className="bg-black text-white">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -141,7 +141,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-navy text-ivory antialiased">
+      <body className="bg-black text-white antialiased selection:bg-white/20 selection:text-white">
         <Navbar />
         <main id="main-content">{children}</main>
         <Footer />

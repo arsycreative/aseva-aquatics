@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { MessageCircle, Shield, Cpu, ArrowLeft } from "lucide-react";
-import { FISH_COLLECTION, SITE_CONFIG } from "@/lib/data";
+import { FISH_COLLECTION } from "@/lib/data";
 import { STATUS_CLASSES, STATUS_LABELS, getWhatsAppUrl } from "@/lib/utils";
 
 interface Props {
@@ -37,7 +37,7 @@ export default async function FishDetailPage({ params }: Props) {
   ).slice(0, 3);
 
   return (
-    <>
+    <div className="bg-black text-white min-h-screen">
       {/* JSON-LD Product Schema */}
       <script
         type="application/ld+json"
@@ -64,25 +64,25 @@ export default async function FishDetailPage({ params }: Props) {
       />
 
       {/* Breadcrumb */}
-      <div className="pt-28 pb-0 bg-navy border-b border-white/5">
+      <div className="pt-32 pb-0 bg-black border-b border-white/[0.08]">
         <div className="section-container py-4">
-          <nav className="flex items-center gap-2 font-sans text-xs text-ivory-dim">
-            <Link href="/" className="hover:text-gold transition-colors">Beranda</Link>
+          <nav className="flex items-center gap-2 font-sans text-xs text-neutral-400">
+            <Link href="/" className="hover:text-white transition-colors">Beranda</Link>
             <span>/</span>
-            <Link href="/arwana" className="hover:text-gold transition-colors">Arwana</Link>
+            <Link href="/arwana" className="hover:text-white transition-colors">Arwana</Link>
             <span>/</span>
-            <span className="text-ivory">{fish.name}</span>
+            <span className="text-white">{fish.name}</span>
           </nav>
         </div>
       </div>
 
       {/* Main Content */}
-      <article className="section-padding bg-navy">
+      <article className="section-padding bg-black">
         <div className="section-container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-20">
             {/* Left — Images */}
             <div>
-              <div className="relative aspect-fish overflow-hidden border border-white/5">
+              <div className="relative aspect-fish rounded-3xl overflow-hidden border border-white/[0.08] shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
                 <Image
                   src={fish.coverImage}
                   alt={`${fish.name} — Arwana Super Red ${fish.id} dari ASEVA AQUATICS`}
@@ -93,18 +93,20 @@ export default async function FishDetailPage({ params }: Props) {
                   quality={90}
                 />
                 {fish.status === "sold" && (
-                  <div className="absolute inset-0 bg-navy/50 flex items-center justify-center">
-                    <span className="badge-sold text-base px-6 py-3">Terjual · Arsip Koleksi</span>
+                  <div className="absolute inset-0 bg-black/75 backdrop-blur-[2px] flex items-center justify-center">
+                    <span className="font-serif text-sm tracking-[0.2em] text-neutral-300 uppercase border border-white/20 px-6 py-2.5 rounded-full">
+                      Terjual · Arsip Koleksi
+                    </span>
                   </div>
                 )}
               </div>
 
               {/* Certification badge */}
-              <div className="mt-4 flex items-center gap-3 p-4 border border-gold/20 bg-gold/5">
-                <Shield size={16} className="text-gold flex-shrink-0" />
-                <p className="font-sans text-xs text-ivory-muted">
-                  <span className="text-gold font-medium">Terverifikasi & Bersertifikat.</span>{" "}
-                  Setiap ikan dilengkapi dokumen legal lengkap dari BKSDA.
+              <div className="mt-5 flex items-center gap-3.5 p-4 rounded-2xl border border-white/[0.08] bg-[#0A0A0A]">
+                <Shield size={16} className="text-champagne flex-shrink-0" />
+                <p className="font-sans text-xs text-neutral-400 font-light">
+                  <span className="text-white font-medium">Terverifikasi & Bersertifikat.</span>{" "}
+                  Setiap ikan dilengkapi dokumen legal lengkap CITES & BKSDA resmi.
                 </p>
               </div>
             </div>
@@ -114,15 +116,15 @@ export default async function FishDetailPage({ params }: Props) {
               {/* Header */}
               <div className="mb-8">
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="font-sans text-xs text-gold tracking-widest">{fish.id}</span>
+                  <span className="font-mono text-xs text-neutral-400 tracking-widest">{fish.id}</span>
                   <span className={STATUS_CLASSES[fish.status]}>{STATUS_LABELS[fish.status]}</span>
                 </div>
-                <h1 className="font-serif text-ivory mb-3 leading-tight">{fish.name}</h1>
-                <p className="font-sans text-sm text-ivory-muted italic">{fish.species}</p>
+                <h1 className="font-serif text-white font-light mb-3 leading-tight text-3xl sm:text-5xl">{fish.name}</h1>
+                <p className="font-sans text-sm text-neutral-400 italic font-light">{fish.species}</p>
               </div>
 
               {/* Specs Grid */}
-              <div className="grid grid-cols-2 gap-px bg-white/5 mb-8">
+              <div className="grid grid-cols-2 gap-px bg-white/[0.08] rounded-2xl overflow-hidden mb-8 border border-white/[0.08]">
                 {[
                   { label: "Ukuran", value: `${fish.size} cm` },
                   { label: "Usia", value: fish.age },
@@ -133,75 +135,75 @@ export default async function FishDetailPage({ params }: Props) {
                   { label: "Bentuk Kepala", value: fish.headShape },
                   { label: "Penangkar", value: fish.breeder },
                 ].map((spec) => (
-                  <div key={spec.label} className="bg-navy-secondary p-4">
-                    <p className="font-sans text-xs text-ivory-dim tracking-widest uppercase mb-1">
+                  <div key={spec.label} className="bg-[#0A0A0A] p-4">
+                    <p className="font-sans text-[10px] text-neutral-500 tracking-widest uppercase mb-1">
                       {spec.label}
                     </p>
-                    <p className="font-sans text-sm text-ivory font-medium">{spec.value}</p>
+                    <p className="font-sans text-sm text-white font-light">{spec.value}</p>
                   </div>
                 ))}
               </div>
 
               {/* Microchip & Certificate */}
               <div className="mb-8 space-y-3">
-                <div className="flex items-start gap-3 p-4 bg-navy-secondary border border-white/5">
-                  <Cpu size={14} className="text-gold mt-0.5 flex-shrink-0" />
+                <div className="flex items-start gap-3.5 p-4 rounded-xl bg-[#0A0A0A] border border-white/[0.08]">
+                  <Cpu size={14} className="text-champagne mt-0.5 flex-shrink-0" />
                   <div>
-                    <p className="font-sans text-xs text-ivory-dim tracking-widest uppercase mb-1">
-                      Nomor Microchip
+                    <p className="font-sans text-[10px] text-neutral-500 tracking-widest uppercase mb-1">
+                      Nomor Microchip RFID
                     </p>
-                    <p className="font-mono text-sm text-ivory">{fish.microchip}</p>
+                    <p className="font-mono text-sm text-white">{fish.microchip}</p>
                   </div>
                 </div>
-                <div className="flex items-start gap-3 p-4 bg-navy-secondary border border-white/5">
-                  <Shield size={14} className="text-gold mt-0.5 flex-shrink-0" />
+                <div className="flex items-start gap-3.5 p-4 rounded-xl bg-[#0A0A0A] border border-white/[0.08]">
+                  <Shield size={14} className="text-champagne mt-0.5 flex-shrink-0" />
                   <div>
-                    <p className="font-sans text-xs text-ivory-dim tracking-widest uppercase mb-1">
-                      Nomor Sertifikat
+                    <p className="font-sans text-[10px] text-neutral-500 tracking-widest uppercase mb-1">
+                      Nomor Sertifikat CITES / BKSDA
                     </p>
-                    <p className="font-mono text-sm text-ivory">{fish.certificate}</p>
+                    <p className="font-mono text-sm text-white">{fish.certificate}</p>
                   </div>
                 </div>
               </div>
 
               {/* Notes */}
-              <div className="mb-8 p-5 border border-white/5 bg-navy-secondary">
-                <p className="font-sans text-xs text-ivory-dim tracking-widest uppercase mb-3">
-                  Catatan Kurator
+              <div className="mb-8 p-5 rounded-2xl border border-white/[0.08] bg-[#0A0A0A]">
+                <p className="font-sans text-[10px] text-neutral-500 tracking-widest uppercase mb-2">
+                  Catatan Kurator Atelier
                 </p>
-                <p className="font-sans text-sm text-ivory-muted leading-relaxed">{fish.notes}</p>
+                <p className="font-sans text-sm text-neutral-400 leading-relaxed font-light">{fish.notes}</p>
               </div>
 
               {/* Price & CTA */}
               <div className="mb-6">
-                <p className="font-sans text-xs text-ivory-dim mb-1 tracking-widest uppercase">
-                  Investasi
+                <p className="font-sans text-[10px] text-neutral-500 mb-1 tracking-widest uppercase">
+                  Investasi Kurasi
                 </p>
-                <p className="font-serif text-2xl text-gold mb-6">{fish.priceNote}</p>
+                <p className="font-serif text-2xl text-transparent bg-clip-text bg-gradient-to-r from-white via-champagne to-champagne-dim mb-6 font-light">{fish.priceNote}</p>
 
                 {fish.status !== "sold" ? (
-                  <div className="flex flex-col gap-3">
+                  <div className="flex flex-col sm:flex-row gap-3">
                     <a
                       href={getWhatsAppUrl("arwana", fish.id)}
                       target="_blank"
                       rel="noopener noreferrer"
                       id="fish-detail-whatsapp-btn"
-                      className="btn-whatsapp justify-center"
+                      className="btn-whatsapp justify-center flex-1"
                     >
                       <MessageCircle size={16} />
-                      Tanya via WhatsApp — {fish.id}
+                      Inquiry WhatsApp — {fish.id}
                     </a>
-                    <Link href="/konsultasi" className="btn-outline justify-center text-xs">
-                      Jadwalkan Konsultasi Tatap Muka
+                    <Link href="/konsultasi" className="btn-outline justify-center text-xs flex-1">
+                      Janji Temu Viewing
                     </Link>
                   </div>
                 ) : (
                   <div>
-                    <p className="font-sans text-sm text-ivory-muted mb-4">
-                      Ikan ini sudah terjual. Lihat koleksi yang masih tersedia:
+                    <p className="font-sans text-sm text-neutral-400 mb-4 font-light">
+                      Spesimen ini telah diadopsi oleh kolektor. Silakan jelajahi koleksi lain yang masih tersedia:
                     </p>
                     <Link href="/arwana" className="btn-outline text-xs">
-                      ← Kembali ke Koleksi
+                      ← Kembali ke Arsip Koleksi
                     </Link>
                   </div>
                 )}
@@ -211,16 +213,16 @@ export default async function FishDetailPage({ params }: Props) {
 
           {/* Related Fish */}
           {related.length > 0 && fish.status === "sold" && (
-            <div className="mt-20 pt-16 border-t border-white/5">
-              <h2 className="font-serif text-2xl text-ivory mb-10">
-                Koleksi yang Masih <em className="text-gold">Tersedia</em>
+            <div className="mt-20 pt-16 border-t border-white/[0.08]">
+              <h2 className="font-serif text-2xl text-white mb-10 font-light">
+                Koleksi yang Masih <em className="italic text-champagne">Tersedia</em>
               </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-white/5">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                 {related.map((r) => (
                   <Link
                     key={r.id}
                     href={`/arwana/${r.slug}`}
-                    className="card-fish bg-navy group p-0"
+                    className="card-fish bg-[#0A0A0A] group p-0 rounded-2xl overflow-hidden border border-white/[0.08]"
                   >
                     <div className="relative aspect-fish overflow-hidden">
                       <Image
@@ -232,11 +234,11 @@ export default async function FishDetailPage({ params }: Props) {
                       />
                     </div>
                     <div className="p-5">
-                      <p className="font-sans text-xs text-gold mb-1">{r.id}</p>
-                      <h3 className="font-serif text-lg text-ivory group-hover:text-gold transition-colors">
+                      <p className="font-mono text-[10px] text-neutral-400 mb-1">{r.id}</p>
+                      <h3 className="font-serif text-lg text-white group-hover:text-champagne transition-colors font-light">
                         {r.name}
                       </h3>
-                      <p className="font-sans text-xs text-ivory-muted mt-1">
+                      <p className="font-sans text-xs text-neutral-400 mt-1 font-light">
                         {r.size} cm · {r.color}
                       </p>
                     </div>
@@ -247,7 +249,6 @@ export default async function FishDetailPage({ params }: Props) {
           )}
         </div>
       </article>
-    </>
+    </div>
   );
 }
-

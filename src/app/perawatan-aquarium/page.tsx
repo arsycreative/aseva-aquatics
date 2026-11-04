@@ -44,24 +44,25 @@ export default function PerawatanAquariumPage() {
   };
 
   return (
-    <>
+    <div className="bg-black text-white min-h-screen">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
       {/* Header */}
-      <section className="pt-32 pb-16 bg-navy border-b border-white/5">
+      <section className="pt-36 pb-20 bg-black border-b border-white/[0.08]">
         <div className="section-container">
           <div className="max-w-2xl">
-            <span className="section-label block mb-4">Layanan Berkelanjutan</span>
-            <h1 className="font-serif text-ivory mb-6">
-              Jasa Perawatan &
-              <br />
-              <em className="text-gold">Maintenance Aquarium</em>
+            <span className="section-label block mb-4">LAYANAN BERKELANJUTAN</span>
+            <h1 className="font-serif text-white mb-6 font-light">
+              Perawatan & Maintenance
+              <span className="block font-serif italic text-transparent bg-clip-text bg-gradient-to-r from-white via-champagne to-champagne-dim">
+                Aquarium Eksklusif
+              </span>
             </h1>
-            <p className="font-sans text-sm md:text-base text-ivory-muted leading-relaxed mb-10">
-              Aquarium yang indah pada hari pertama hanya bisa dipertahankan dengan perawatan yang konsisten dan tepat. 
-              Tim ASEVA hadir untuk memastikan aquarium Anda selalu dalam kondisi prima.
+            <p className="font-sans text-sm md:text-base text-neutral-400 leading-relaxed mb-10 font-light">
+              Keindahan akuarium pada hari pertama serah terima hanya dapat bertahan abadi dengan kedisiplinan pemeliharaan yang terukur. 
+              Tim teknisi ASEVA memastikan ekosistem akuarium Anda selalu jernih, steril, dan bebas kekhawatiran.
             </p>
             <a
               href={getWhatsAppUrl("maintenance")}
@@ -77,45 +78,45 @@ export default function PerawatanAquariumPage() {
       </section>
 
       {/* Services */}
-      <section className="section-padding bg-navy">
+      <section className="section-padding bg-black">
         <div className="section-container">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                icon: <Wrench size={20} className="text-gold" />,
-                title: "Pembersihan Filter Berkala",
-                desc: "Pembersihan media filter (wool, bio-ball, ceramic), siphoning substrat, dan pembersihan kaca dari alga.",
+                icon: <Wrench size={22} className="text-champagne" />,
+                title: "Pembersihan Filter & Sump",
+                desc: "Pembersihan media filter mekanis dan biologis, siphoning kotoran dasar substrat, dan pembersihan kerak alga secara teliti.",
               },
               {
-                icon: <Award size={20} className="text-gold" />,
-                title: "Monitoring Parameter Air",
-                desc: "Pengujian pH, amonia, nitrit, nitrat, GH, KH, dan suhu. Penyesuaian parameter sesuai kebutuhan ikan.",
+                icon: <Award size={22} className="text-champagne" />,
+                title: "Monitoring Parameter Air Digital",
+                desc: "Pengujian laboratorium mini untuk pH, amonia, nitrit, nitrat, TDS, dan kestabilan suhu dengan sensor terkalibrasi.",
               },
               {
-                icon: <Calendar size={20} className="text-gold" />,
-                title: "Pergantian Air Terjadwal",
-                desc: "Pergantian air parsial 20–30% secara berkala untuk menjaga kualitas air dan menurunkan kadar nitrat.",
+                icon: <Calendar size={22} className="text-champagne" />,
+                title: "Water Change Terkondisi",
+                desc: "Pergantian air berkala 20–30% menggunakan air yang telah diendapkan dan bebas klorin untuk meminimalkan fluktuasi osmotik.",
               },
               {
-                icon: <Wrench size={20} className="text-gold" />,
-                title: "Penggantian Media Habis Pakai",
-                desc: "Filter wool, karbon aktif, dan media kimia lainnya diganti sesuai jadwal dan kondisi.",
+                icon: <Wrench size={22} className="text-champagne" />,
+                title: "Penggantian Media Berkala",
+                desc: "Penggantian filter wool, karbon aktif, dan media kimia secara terjadwal untuk menjaga daya serap racun maksimal.",
               },
               {
-                icon: <Award size={20} className="text-gold" />,
-                title: "Perawatan Kaca & Kabinet",
-                desc: "Pembersihan eksterior kaca, kabinet, dan area sekitar aquarium agar selalu tampil bersih dan representatif.",
+                icon: <Award size={22} className="text-champagne" />,
+                title: "Detailing Kaca Kristal",
+                desc: "Pembersihan eksterior kaca kristal low-iron tanpa gores, poles kabinet interior, dan pengecekan kerapian kabel.",
               },
               {
-                icon: <MessageCircle size={20} className="text-gold" />,
-                title: "Konsultasi Teknis Berkelanjutan",
-                desc: "Akses ke tim ahli kami via WhatsApp untuk pertanyaan teknis di antara jadwal kunjungan rutin.",
+                icon: <MessageCircle size={22} className="text-champagne" />,
+                title: "Akses Darurat Concierge",
+                desc: "Dukungan konsultasi teknis via WhatsApp prioritas jika terjadi perubahan perilaku ikan atau kendala pompa di luar jadwal.",
               },
             ].map((item) => (
-              <div key={item.title} className="bg-navy-secondary p-8 md:p-10">
-                <div className="mb-5">{item.icon}</div>
-                <h3 className="font-serif text-xl text-ivory mb-3">{item.title}</h3>
-                <p className="font-sans text-sm text-ivory-muted leading-relaxed">{item.desc}</p>
+              <div key={item.title} className="bg-[#0A0A0A] p-8 md:p-10 rounded-3xl border border-white/[0.08] shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
+                <div className="mb-6">{item.icon}</div>
+                <h3 className="font-serif text-xl text-white mb-3 font-light">{item.title}</h3>
+                <p className="font-sans text-sm text-neutral-400 leading-relaxed font-light">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -123,14 +124,13 @@ export default function PerawatanAquariumPage() {
       </section>
 
       {/* Package CTA */}
-      <section className="py-20 bg-navy-secondary border-t border-white/5 text-center">
-        <div className="section-container">
-          <h2 className="font-serif text-ivory mb-4">
-            Diskusikan Paket <em className="text-gold">yang Tepat untuk Anda</em>
+      <section className="py-24 bg-[#050505] border-t border-white/[0.08] text-center">
+        <div className="section-container max-w-2xl mx-auto">
+          <h2 className="font-serif text-white mb-4 font-light text-3xl sm:text-5xl">
+            Diskusikan Paket <em className="italic text-champagne">yang Tepat untuk Anda</em>
           </h2>
-          <p className="font-sans text-sm text-ivory-muted max-w-md mx-auto mb-10 leading-relaxed">
-            Harga paket perawatan bergantung pada volume aquarium, jenis ikan, dan frekuensi kunjungan. 
-            Hubungi kami untuk mendapatkan penawaran yang sesuai.
+          <p className="font-sans text-sm text-neutral-400 max-w-md mx-auto mb-10 leading-relaxed font-light">
+            Biaya paket perawatan disesuaikan dengan volume akuarium, jenis biota, dan frekuensi kunjungan (mingguan, dwi-mingguan, atau bulanan).
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/konsultasi" className="btn-primary">
@@ -148,6 +148,6 @@ export default function PerawatanAquariumPage() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

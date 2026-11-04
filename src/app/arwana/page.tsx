@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
-import { MessageCircle, Filter } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 import { FISH_COLLECTION } from "@/lib/data";
-import { STATUS_CLASSES, STATUS_LABELS, getWhatsAppUrl } from "@/lib/utils";
+import { getWhatsAppUrl } from "@/lib/utils";
 import FishFilterClient from "@/components/FishFilterClient";
 
 export const metadata: Metadata = {
@@ -30,24 +29,26 @@ export const metadata: Metadata = {
 
 export default function ArwanaPage() {
   return (
-    <>
+    <div className="bg-black text-white min-h-screen">
       {/* Page Header */}
-      <section className="pt-32 pb-16 bg-navy border-b border-white/5">
+      <section className="pt-36 pb-20 bg-black border-b border-white/[0.08]">
         <div className="section-container">
           <div className="max-w-3xl">
             <div className="flex items-center gap-3 mb-4">
+              <span className="w-8 h-px bg-champagne-dim" />
               <span className="section-label">Koleksi Eksklusif</span>
               <span className="text-white/20">|</span>
-              <Link href="/panduan-arwana-super-red" className="text-xs text-gold hover:underline font-sans">
-                Baca Panduan Anatomi & Kriteria Kontes →
+              <Link href="/panduan-arwana-super-red" className="text-xs text-neutral-400 hover:text-white font-sans transition-colors">
+                Panduan Anatomi & Kriteria Kontes →
               </Link>
             </div>
-            <h1 className="font-serif text-ivory mb-6">
+            <h1 className="font-serif text-white font-light mb-6">
               Arwana Super Red
-              <br />
-              <em className="text-gold">Bersertifikat & Terkurasi</em>
+              <span className="block font-serif italic text-transparent bg-clip-text bg-gradient-to-r from-white via-champagne to-champagne-dim">
+                Bersertifikat & Terkurasi
+              </span>
             </h1>
-            <p className="font-sans text-sm md:text-base text-ivory-muted leading-relaxed max-w-xl">
+            <p className="font-sans text-sm md:text-base text-neutral-400 leading-relaxed max-w-xl font-light">
               Setiap arwana dalam koleksi kami berasal dari penangkar berizin, dilengkapi sertifikat 
               captive-bred, nomor microchip unik, dan dokumentasi riwayat perawatan. Tidak ada kompromi 
               dalam standar keaslian kami.
@@ -57,29 +58,29 @@ export default function ArwanaPage() {
       </section>
 
       {/* Filter & Grid */}
-      <section className="section-padding bg-navy">
+      <section className="section-padding bg-black">
         <div className="section-container">
           <FishFilterClient fish={FISH_COLLECTION} />
         </div>
       </section>
 
       {/* Bottom CTA */}
-      <section className="py-16 bg-navy-secondary border-t border-white/5">
-        <div className="section-container text-center">
-          <p className="font-sans text-sm text-ivory-muted mb-6">
-            Tidak menemukan yang Anda cari? Hubungi kami — koleksi terbaru belum tentu selalu ada di website.
+      <section className="py-20 bg-[#080808] border-t border-white/[0.08]">
+        <div className="section-container text-center max-w-2xl mx-auto">
+          <p className="font-sans text-sm text-neutral-400 mb-8 font-light">
+            Tidak menemukan yang Anda cari? Hubungi kami — koleksi terbaru spesimen khusus belum tentu selalu terpajang di etalase web publik.
           </p>
           <a
             href={getWhatsAppUrl("arwana")}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-whatsapp inline-flex"
+            className="btn-whatsapp inline-flex items-center gap-2"
           >
             <MessageCircle size={16} />
-            Tanyakan Stok Terkini
+            <span>Tanyakan Stok Terkini via Concierge</span>
           </a>
         </div>
       </section>
-    </>
+    </div>
   );
 }

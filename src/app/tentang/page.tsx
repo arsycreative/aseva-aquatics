@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { STATS, SITE_CONFIG } from "@/lib/data";
+import { STATS } from "@/lib/data";
 import { Shield, Award, MapPin } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -19,68 +19,65 @@ export const metadata: Metadata = {
 
 export default function TentangPage() {
   return (
-    <>
+    <div className="bg-black text-white min-h-screen">
       {/* Header */}
-      <section className="pt-32 pb-20 bg-navy border-b border-white/5">
+      <section className="pt-36 pb-20 bg-black border-b border-white/[0.08]">
         <div className="section-container">
-          <div className="max-w-2xl">
-            <span className="section-label block mb-4">Tentang Kami</span>
-            <h1 className="font-serif text-ivory mb-6">
+          <div className="max-w-3xl">
+            <span className="section-label block mb-4">REPUTASI & IDENTITAS</span>
+            <h1 className="font-serif text-white mb-6 font-light">
               ASEVA AQUATICS:
-              <br />
-              <em className="text-gold">Cerita di Balik Karya</em>
+              <span className="block font-serif italic text-transparent bg-clip-text bg-gradient-to-r from-white via-champagne to-champagne-dim">
+                Cerita di Balik Mahakarya
+              </span>
             </h1>
           </div>
         </div>
       </section>
 
       {/* Story */}
-      <section className="section-padding bg-navy">
+      <section className="section-padding bg-black">
         <div className="section-container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <div>
-              <span className="section-label block mb-6">Asal Mula</span>
-              <h2 className="font-serif text-3xl text-ivory mb-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 xl:gap-20 items-center">
+            <div className="lg:col-span-7">
+              <span className="section-label block mb-4">ASAL MULA</span>
+              <h2 className="font-serif text-3xl md:text-5xl text-white mb-8 font-light">
                 Lahir dari Kecintaan
-                <br />
-                <em className="text-gold">yang Mendalam</em>
+                <span className="block font-serif italic text-transparent bg-clip-text bg-gradient-to-r from-white via-champagne to-champagne-dim">
+                  terhadap Presisi Air & Satwa
+                </span>
               </h2>
-              <div className="space-y-5 text-ivory-muted font-sans text-sm leading-relaxed">
+              <div className="space-y-6 text-neutral-400 font-sans text-sm md:text-base leading-relaxed font-light">
                 <p>
-                  ASEVA AQUATICS lahir dari keyakinan yang sederhana namun kuat: sebuah aquarium yang dirancang 
-                  dengan benar tidak memerlukan pembenaran. Ia berbicara sendiri — melalui ketenangan airnya, 
-                  kilau warna ikannya, dan cara ia mengubah energi seluruh ruangan.
+                  ASEVA AQUATICS lahir dari keyakinan yang sederhana namun tak tergoyahkan: sebuah akuarium mewah yang dirancang dengan presisi sejati tidak memerlukan pembenaran kata-kata. Ia berbicara secara mandiri — melalui ketenangan hening airnya, pendaran merah sisik arwana, dan bagaimana ia mengubah energi sakral seluruh ruang hunian.
                 </p>
                 <p>
-                  Selama lebih dari 12 tahun, kami telah mendampingi kolektor arwana serius, pemilik rumah 
-                  premium, dan pengusaha hospitality dalam mewujudkan visi mereka. Setiap proyek mengajarkan 
-                  kami sesuatu yang baru — tentang air, tentang ikan, dan tentang bagaimana manusia berinteraksi 
-                  dengan ekosistem yang hidup di dalam rumah mereka.
+                  Selama lebih dari 12 tahun, kami mendampingi kolektor arwana bergengsi, pemilik hunian privat, dan desainer interior kelas atas dalam merealisasikan visi akuarium yang abadi. Setiap instalasi menuntut keahlian multidisiplin: perhitungan beban gravitasi teknik sipil, dinamika hidrolika hening, dan mikrobiologi air yang terjaga seimbang.
                 </p>
                 <p>
-                  Berbasis di Bandung, kami melayani seluruh Jawa Barat, Jabodetabek, dan seluruh Indonesia 
-                  untuk pengiriman arwana bersertifikat.
+                  Berbasis di Bandung, kami melayani proyek akuarium custom di Bandung Raya, Jabodetabek, dan pengiriman spesimen arwana bersertifikat CITES ke seluruh Indonesia dengan garansi hidup 100%.
                 </p>
               </div>
             </div>
-            <div className="space-y-6">
-              {/* Stats */}
-              <div className="grid grid-cols-2 gap-px bg-white/5">
+
+            <div className="lg:col-span-5 space-y-6">
+              {/* Stats Grid */}
+              <div className="grid grid-cols-2 gap-4">
                 {STATS.map((stat) => (
-                  <div key={stat.label} className="bg-navy-secondary p-8 text-center">
-                    <div className="font-serif text-4xl text-gold mb-2">{stat.value}</div>
-                    <div className="font-sans text-xs text-ivory-muted tracking-widest uppercase">{stat.label}</div>
+                  <div key={stat.label} className="bg-[#0A0A0A] p-8 rounded-2xl border border-white/[0.08] text-center shadow-[0_15px_40px_rgba(0,0,0,0.6)]">
+                    <div className="font-serif text-3xl sm:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-white via-champagne to-champagne-dim mb-2 font-light">{stat.value}</div>
+                    <div className="font-sans text-[10px] text-neutral-400 tracking-widest uppercase">{stat.label}</div>
                   </div>
                 ))}
               </div>
-              <div className="p-6 bg-navy-secondary border border-gold/20">
+
+              <div className="p-8 rounded-3xl bg-[#0A0A0A] border border-white/[0.08] shadow-[0_15px_40px_rgba(0,0,0,0.6)]">
                 <div className="flex items-center gap-3 mb-3">
-                  <MapPin size={14} className="text-gold" />
-                  <span className="font-sans text-xs text-gold tracking-widest uppercase">Berbasis di Bandung</span>
+                  <MapPin size={16} className="text-champagne" />
+                  <span className="font-mono text-[10px] text-champagne tracking-widest uppercase font-medium">ATELIER BANDUNG</span>
                 </div>
-                <p className="font-sans text-sm text-ivory-muted leading-relaxed">
-                  Studio dan workshop kami berada di Bandung. Kunjungan hanya dengan janji temu. 
-                  Kami melayani Bandung Raya (Zona 1) dan Jabodetabek & Jawa Barat (Zona 2).
+                <p className="font-sans text-sm text-neutral-400 leading-relaxed font-light">
+                  Studio dan workshop fabrikasi kaca kami berlokasi di Bandung. Akses viewing fisik hanya dibuka dengan sistem private appointment demi ketenangan biota air.
                 </p>
               </div>
             </div>
@@ -91,64 +88,63 @@ export default function TentangPage() {
       {/* Legality Section */}
       <section
         id="legalitas"
-        className="section-padding bg-navy-secondary border-t border-white/5"
+        className="section-padding bg-[#050505] border-t border-white/[0.08]"
       >
         <div className="section-container">
-          <div className="text-center mb-16">
-            <span className="section-label block mb-4">Standar Legalitas</span>
-            <h2 className="font-serif text-ivory">
-              Setiap Ikan Kami
-              <br />
-              <em className="text-gold">Punya Dokumennya</em>
+          <div className="text-center mb-16 md:mb-20 max-w-2xl mx-auto">
+            <div className="inline-flex items-center gap-3 mb-4">
+              <span className="w-8 h-px bg-champagne-dim" />
+              <span className="section-label">KEPATUHAN SATWA NASIONAL</span>
+              <span className="w-8 h-px bg-champagne-dim" />
+            </div>
+            <h2 className="font-serif text-white font-light text-3xl md:text-5xl">
+              Legalitas Penuh <em className="italic text-champagne">CITES & BKSDA</em>
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/5">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                icon: <Shield size={24} className="text-gold" />,
+                icon: <Shield size={24} className="text-champagne" />,
                 title: "Sertifikat Captive-Bred",
-                desc: "Seluruh arwana berasal dari penangkar berizin resmi BKSDA. Sertifikat captive-bred dikeluarkan dan dapat diverifikasi langsung ke BKSDA setempat.",
+                desc: "Seluruh spesimen arwana berasal dari penangkar resmi berizin BKSDA. Sertifikat silsilah captive-bred sah dan dapat diverifikasi langsung ke basis data pemerintah.",
               },
               {
-                icon: <Award size={24} className="text-gold" />,
-                title: "Microchip & CITES",
-                desc: "Setiap ikan dilengkapi microchip unik yang dapat dibaca dengan alat scanner standar internasional. Pengiriman lintas provinsi dilengkapi dokumen angkut resmi.",
+                icon: <Award size={24} className="text-champagne" />,
+                title: "Microchip RFID 15-Digit",
+                desc: "Setiap ikan ditanam transponder microchip steril di bawah sisik yang dapat dipindai pemindai RFID standar CITES. Pengiriman antar-provinsi disertai Surat Angkut Satwa Resmi (SATS-DN).",
               },
               {
-                icon: <Shield size={24} className="text-gold" />,
-                title: "Rekam Jejak Penangkar",
-                desc: "Kami hanya bermitra dengan penangkar yang dapat menunjukkan riwayat induk (broodstock) minimal 2 generasi ke belakang, memastikan keaslian genetik.",
+                icon: <Shield size={24} className="text-champagne" />,
+                title: "Silsilah Murni Terverifikasi",
+                desc: "Kami menyeleksi spesimen langsung dari peternakan Kapuas Hulu dengan rekam jejak indukan (broodstock) minimal 2 generasi untuk menjamin kemurnian genetik Super Red.",
               },
             ].map((item) => (
-              <div key={item.title} className="bg-navy p-8 md:p-10">
-                <div className="mb-5">{item.icon}</div>
-                <h3 className="font-serif text-xl text-ivory mb-4">{item.title}</h3>
-                <p className="font-sans text-sm text-ivory-muted leading-relaxed">{item.desc}</p>
+              <div key={item.title} className="bg-[#0A0A0A] p-8 md:p-10 rounded-3xl border border-white/[0.08] shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
+                <div className="mb-6">{item.icon}</div>
+                <h3 className="font-serif text-xl text-white mb-4 font-light">{item.title}</h3>
+                <p className="font-sans text-sm text-neutral-400 leading-relaxed font-light">{item.desc}</p>
               </div>
             ))}
           </div>
-          <div className="mt-8 p-6 border border-arwana/20 bg-arwana/5">
-            <p className="font-sans text-xs text-ivory-muted leading-relaxed">
-              <strong className="text-arwana-light">⚠ Catatan Hukum:</strong> Arwana (Scleropages formosus) 
-              adalah satwa yang dilindungi dan diatur perdagangannya (CITES Appendix I). Perdagangan yang sah 
-              di Indonesia hanya untuk hasil penangkaran dari penangkar berizin BKSDA. Mohon verifikasi 
-              persyaratan terkini langsung dengan BKSDA dan penangkar mitra Anda.
+          <div className="mt-10 p-6 rounded-2xl border border-white/[0.08] bg-[#0A0A0A]">
+            <p className="font-sans text-xs text-neutral-400 leading-relaxed font-light">
+              <strong className="text-white font-medium">Catatan Hukum Satwa:</strong> Arwana Asia (<em>Scleropages formosus</em>) merupakan satwa yang dilindungi undang-undang Indonesia dan konvensi internasional CITES Appendix I. Perdagangan legal hanya diperbolehkan untuk spesimen hasil penangkaran resmi generasi kedua (F2) ke atas. ASEVA beroperasi secara patuh penuh terhadap seluruh regulasi konservasi hayati.
             </p>
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-navy border-t border-white/5 text-center">
-        <div className="section-container">
-          <h2 className="font-serif text-ivory mb-6">
-            Ingin Mengenal Kami <em className="text-gold">Lebih Dekat?</em>
+      <section className="py-24 bg-black border-t border-white/[0.08] text-center">
+        <div className="section-container max-w-2xl mx-auto">
+          <h2 className="font-serif text-white mb-6 font-light text-3xl sm:text-5xl">
+            Ingin Berdiskusi <em className="italic text-champagne">dengan Tim Kurator?</em>
           </h2>
           <Link href="/konsultasi" className="btn-primary">
-            Jadwalkan Pertemuan
+            Jadwalkan Janji Temu Privat
           </Link>
         </div>
       </section>
-    </>
+    </div>
   );
 }

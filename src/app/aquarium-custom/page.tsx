@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, CheckCircle, MessageCircle } from "lucide-react";
+import { ArrowRight, MessageCircle } from "lucide-react";
 import { getWhatsAppUrl } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -21,27 +21,27 @@ export const metadata: Metadata = {
 
 const SERVICES = [
   {
-    title: "Desain & Konsultasi",
+    title: "Desain & Konsultasi Ruang",
     description:
-      "Kolaborasi dengan arsitek dan desainer interior Anda. Kami menghasilkan gambar teknis 3D, simulasi pencahayaan, dan spesifikasi material sebelum satu sekrup pun dipasang.",
+      "Kolaborasi dengan arsitek dan desainer interior Anda. Kami menghasilkan gambar teknis 3D, simulasi beban struktural, dan spesifikasi material sebelum satu baut pun dipasang.",
     icon: "✦",
   },
   {
-    title: "Pembuatan & Fabrikasi",
+    title: "Pembuatan & Fabrikasi Presisi",
     description:
-      "Seluruh aquarium dibuat di workshop ASEVA menggunakan kaca low-iron ultra-clear, sambungan silikon kelas marine-grade, dan kabinet custom sesuai desain interior.",
+      "Seluruh aquarium dibuat di workshop ASEVA menggunakan kaca low-iron kristal ultra-clear, sambungan silikon kelas marine-grade, dan rangka baja/kabinet custom bernilai seni.",
     icon: "◈",
   },
   {
     title: "Instalasi & Commissioning",
     description:
-      "Tim instalasi berpengalaman memasang, mengisi, dan menjalankan uji kebocoran menyeluruh selama 72 jam sebelum serah terima resmi.",
+      "Tim instalasi berpengalaman memasang, mengisi hidrolika, dan menjalankan uji kebocoran menyeluruh selama 72 jam sebelum serah terima resmi.",
     icon: "⬡",
   },
   {
     title: "Maintenance & Perawatan",
     description:
-      "Paket perawatan berkala untuk menjaga aquarium selalu dalam kondisi prima. Kunjungan rutin, penggantian filter, dan konsultasi teknis terus-menerus.",
+      "Paket perawatan berkala untuk menjaga aquarium selalu dalam kondisi jernih dan prima. Kunjungan rutin, penggantian media biologi, dan konsultasi teknis berkesinambungan.",
     icon: "◎",
   },
 ];
@@ -49,22 +49,22 @@ const SERVICES = [
 const AQUARIUM_TYPES = [
   {
     title: "Aquarium Dinding (Built-In)",
-    description: "Focal point ruang tamu atau kantor. Terintegrasi sempurna ke dalam struktur dinding.",
+    description: "Focal point ruang keluarga atau eksekutif suite. Terintegrasi rata dinding arsitektural tanpa kabel atau pipa terlihat.",
     image: "/images/aquarium-interior.jpg",
   },
   {
-    title: "Partisi Ruangan Dua Sisi",
-    description: "Memisahkan dua ruang sekaligus memperindah keduanya. Dapat dinikmati dari dua arah.",
+    title: "Partisi Ruang Dua Sisi",
+    description: "Membagi dua zona interior megah sekaligus menghidupkan keduanya. Dapat dinikmati dari dua sudut pandang berbeda.",
     image: "/images/aquarium-interior.jpg",
   },
   {
-    title: "Aquarium Pilar/Kolom",
-    description: "Memanfaatkan kolom struktural menjadi elemen artistik yang dramatis.",
+    title: "Aquarium Kolom Struktural",
+    description: "Memanfaatkan kolom atau tiang struktural menjadi instalasi artistik silinder atau kubus yang dramatis.",
     image: "/images/aquarium-interior.jpg",
   },
   {
     title: "Ikon Lobi Komersial",
-    description: "Instalasi skala besar untuk hotel, restoran, kantor, dan pusat perbelanjaan.",
+    description: "Instalasi skala besar bernilai magnetis untuk lobi hotel bintang lima, galeri seni, restoran fine-dining, dan kantor pusat.",
     image: "/images/aquarium-interior.jpg",
   },
 ];
@@ -90,7 +90,7 @@ export default function AquariumCustomPage() {
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Tipe Aquarium Custom",
-      itemListElement: AQUARIUM_TYPES.map((type, idx) => ({
+      itemListElement: AQUARIUM_TYPES.map((type) => ({
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
@@ -102,44 +102,45 @@ export default function AquariumCustomPage() {
   };
 
   return (
-    <>
+    <div className="bg-black text-white min-h-screen">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
       {/* Hero */}
-      <section className="relative pt-32 pb-0 bg-navy min-h-[70vh] flex items-end overflow-hidden">
+      <section className="relative pt-36 pb-20 bg-black min-h-[72vh] flex items-end overflow-hidden border-b border-white/[0.08]">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/aquarium-interior.jpg"
             alt="Aquarium custom premium di hunian mewah"
             fill
-            className="object-cover"
+            className="object-cover scale-105"
             priority
             sizes="100vw"
-            quality={85}
+            quality={90}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-navy/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/75 to-black/35" />
         </div>
-        <div className="relative z-10 section-container pb-20">
+        <div className="relative z-10 section-container pb-12 w-full">
           <div className="max-w-2xl">
-            <span className="section-label block mb-4">Jasa Utama</span>
-            <h1 className="font-serif text-ivory mb-6 leading-tight">
+            <span className="section-label block mb-4">REKAYASA ARSITEKTUR AIR</span>
+            <h1 className="font-serif text-white mb-6 leading-tight font-light">
               Desain & Pembuatan
               <br />
               Aquarium Custom
-              <br />
-              <em className="text-gold">Kelas Atas</em>
+              <span className="block font-serif italic text-transparent bg-clip-text bg-gradient-to-r from-white via-champagne to-champagne-dim">
+                Kelas Atas
+              </span>
             </h1>
-            <p className="font-sans text-sm md:text-base text-ivory-muted leading-relaxed max-w-xl mb-10">
-              Dari selembar sketsa hingga aquarium yang mengalirkan kehidupan di ruang Anda. Kami menangani semuanya — desain, fabrikasi, instalasi, hingga perawatan berkelanjutan.
+            <p className="font-sans text-sm md:text-base text-neutral-300 leading-relaxed max-w-xl mb-10 font-light">
+              Dari selembar denah arsitektur hingga akuarium yang mengalirkan keheningan hidup di ruang Anda. Kami merancang desain, fabrikasi kaca kristal, instalasi filtrasi hening, hingga perawatan berstandar tinggi.
             </p>
-            <div className="flex flex-col xs:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/konsultasi" className="btn-primary">
-                Konsultasi Gratis
+                Konsultasi Ruang
               </Link>
               <Link href="/aquarium-custom/proses" className="btn-outline text-xs">
-                Lihat Proses Kerja
+                Lihat Metodologi 4 Tahap
               </Link>
             </div>
           </div>
@@ -147,20 +148,24 @@ export default function AquariumCustomPage() {
       </section>
 
       {/* Services */}
-      <section className="section-padding bg-navy border-t border-white/5">
+      <section className="section-padding bg-black border-t border-white/[0.08]">
         <div className="section-container">
-          <div className="text-center mb-16">
-            <span className="section-label block mb-4">Yang Kami Kerjakan</span>
-            <h2 className="font-serif text-ivory">
-              Layanan <em className="text-gold">End-to-End</em>
+          <div className="text-center mb-16 md:mb-20">
+            <div className="inline-flex items-center gap-3 mb-4">
+              <span className="w-8 h-px bg-champagne-dim" />
+              <span className="section-label">RUANG LINGKUP ATELIER</span>
+              <span className="w-8 h-px bg-champagne-dim" />
+            </div>
+            <h2 className="font-serif text-white font-light text-3xl md:text-5xl">
+              Layanan <em className="italic text-champagne">End-to-End</em>
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
             {SERVICES.map((service) => (
-              <div key={service.title} className="bg-navy-secondary p-10 md:p-12">
-                <div className="text-gold text-2xl mb-6 font-serif">{service.icon}</div>
-                <h3 className="font-serif text-2xl text-ivory mb-4">{service.title}</h3>
-                <p className="font-sans text-sm text-ivory-muted leading-relaxed">
+              <div key={service.title} className="bg-[#0A0A0A] p-10 md:p-12 rounded-3xl border border-white/[0.08] shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
+                <div className="text-champagne text-2xl mb-6 font-serif">{service.icon}</div>
+                <h3 className="font-serif text-2xl text-white mb-4 font-light">{service.title}</h3>
+                <p className="font-sans text-sm text-neutral-400 leading-relaxed font-light">
                   {service.description}
                 </p>
               </div>
@@ -170,18 +175,22 @@ export default function AquariumCustomPage() {
       </section>
 
       {/* Aquarium Types */}
-      <section className="section-padding bg-navy">
+      <section className="section-padding bg-[#050505] border-t border-white/[0.08]">
         <div className="section-container">
-          <div className="text-center mb-16">
-            <span className="section-label block mb-4">Jenis Proyek</span>
-            <h2 className="font-serif text-ivory">
-              Tiap Ruang, <em className="text-gold">Tiap Solusi</em>
+          <div className="text-center mb-16 md:mb-20">
+            <div className="inline-flex items-center gap-3 mb-4">
+              <span className="w-8 h-px bg-champagne-dim" />
+              <span className="section-label">TIPOLOGI RUANG</span>
+              <span className="w-8 h-px bg-champagne-dim" />
+            </div>
+            <h2 className="font-serif text-white font-light text-3xl md:text-5xl">
+              Tiap Ruang, <em className="italic text-champagne">Tiap Karakter</em>
             </h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7">
             {AQUARIUM_TYPES.map((type) => (
-              <div key={type.title} className="bg-navy-secondary group overflow-hidden">
-                <div className="relative h-48 overflow-hidden">
+              <div key={type.title} className="bg-[#0A0A0A] rounded-2xl border border-white/[0.08] group overflow-hidden shadow-[0_15px_40px_rgba(0,0,0,0.6)]">
+                <div className="relative h-48 overflow-hidden bg-black">
                   <Image
                     src={type.image}
                     alt={type.title}
@@ -191,8 +200,8 @@ export default function AquariumCustomPage() {
                   />
                 </div>
                 <div className="p-6">
-                  <h3 className="font-serif text-lg text-ivory mb-3 leading-tight">{type.title}</h3>
-                  <p className="font-sans text-xs text-ivory-muted leading-relaxed">{type.description}</p>
+                  <h3 className="font-serif text-lg text-white mb-3 leading-tight font-light">{type.title}</h3>
+                  <p className="font-sans text-xs text-neutral-400 leading-relaxed font-light">{type.description}</p>
                 </div>
               </div>
             ))}
@@ -201,18 +210,18 @@ export default function AquariumCustomPage() {
       </section>
 
       {/* Guarantee */}
-      <section className="py-16 bg-navy-secondary border-t border-b border-white/5">
+      <section className="py-20 bg-black border-t border-b border-white/[0.08]">
         <div className="section-container">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             {[
-              { title: "Garansi Kebocoran", desc: "12 bulan garansi struktural sejak serah terima", icon: "🛡" },
-              { title: "Kaca Ultra-Clear", desc: "Low-iron glass untuk kejernihan optimal tanpa distorsi warna", icon: "✨" },
-              { title: "Tim Berpengalaman", desc: "Lebih dari 12 tahun pengalaman di industri aquarium premium", icon: "⚙" },
+              { title: "Garansi Struktur 3 Tahun", desc: "Perlindungan struktural dan kebocoran silikon menyeluruh sejak serah terima", icon: "🛡" },
+              { title: "Kaca Low-Iron Kristal", desc: "Optik kristal ultra-clear 99.2% kejernihan tanpa distorsi kehijauan", icon: "✨" },
+              { title: "Akustik Tersembunyi", desc: "Pompa isolasi getaran senyap di bawah 28 dB, pipa dry-wet tak kasat mata", icon: "⚙" },
             ].map((item) => (
-              <div key={item.title} className="flex flex-col items-center gap-4 p-8">
-                <span className="text-4xl">{item.icon}</span>
-                <h3 className="font-serif text-xl text-ivory">{item.title}</h3>
-                <p className="font-sans text-sm text-ivory-muted leading-relaxed">{item.desc}</p>
+              <div key={item.title} className="flex flex-col items-center gap-4 p-8 rounded-2xl bg-[#0A0A0A] border border-white/[0.08]">
+                <span className="text-3xl">{item.icon}</span>
+                <h3 className="font-serif text-xl text-white font-light">{item.title}</h3>
+                <p className="font-sans text-sm text-neutral-400 leading-relaxed font-light">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -220,25 +229,25 @@ export default function AquariumCustomPage() {
       </section>
 
       {/* Sub-pages */}
-      <section className="section-padding bg-navy">
+      <section className="section-padding bg-black">
         <div className="section-container">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/5">
-            <Link href="/aquarium-custom/proses" className="bg-navy-secondary p-10 group hover:bg-navy-light transition-colors duration-300">
-              <span className="section-label block mb-4">Transparansi Penuh</span>
-              <h3 className="font-serif text-2xl text-ivory mb-4 group-hover:text-gold transition-colors">
-                Proses Kerja 4 Langkah →
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <Link href="/aquarium-custom/proses" className="bg-[#0A0A0A] rounded-3xl border border-white/[0.08] p-10 group hover:border-white/25 transition-all duration-300">
+              <span className="section-label block mb-4">TRANSPARANSI PROSES</span>
+              <h3 className="font-serif text-2xl text-white mb-4 group-hover:text-champagne transition-colors font-light">
+                Metodologi 4 Tahap Menuju Mahakarya →
               </h3>
-              <p className="font-sans text-sm text-ivory-muted leading-relaxed">
-                Dari visi pertama hingga serah terima, kami menjaga komunikasi terbuka di setiap tahap.
+              <p className="font-sans text-sm text-neutral-400 leading-relaxed font-light">
+                Dari orientasi visi ruang pertama hingga commissioning hidrolika dan serah terima, kami mendokumentasikan setiap tahap secara presisi.
               </p>
             </Link>
-            <Link href="/aquarium-custom/material-teknologi" className="bg-navy-secondary p-10 group hover:bg-navy-light transition-colors duration-300">
-              <span className="section-label block mb-4">Spesifikasi Teknis</span>
-              <h3 className="font-serif text-2xl text-ivory mb-4 group-hover:text-gold transition-colors">
-                Material & Teknologi →
+            <Link href="/aquarium-custom/material-teknologi" className="bg-[#0A0A0A] rounded-3xl border border-white/[0.08] p-10 group hover:border-white/25 transition-all duration-300">
+              <span className="section-label block mb-4">SPESIFIKASI TEKNIK</span>
+              <h3 className="font-serif text-2xl text-white mb-4 group-hover:text-champagne transition-colors font-light">
+                Material Kristal & Teknologi Filtrasi →
               </h3>
-              <p className="font-sans text-sm text-ivory-muted leading-relaxed">
-                Kaca low-iron, silikon marine-grade, sistem filtrasi tersembunyi — ini mengapa harga kami premium.
+              <p className="font-sans text-sm text-neutral-400 leading-relaxed font-light">
+                Kaca low-iron optik kristal, silikon marine-grade Wacker, pencahayaan spektrum terprogram, dan sistem sump biologis tersembunyi.
               </p>
             </Link>
           </div>
@@ -246,13 +255,13 @@ export default function AquariumCustomPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-navy-secondary border-t border-white/5 text-center">
-        <div className="section-container">
-          <h2 className="font-serif text-ivory mb-4">
-            Mulai Percakapan <em className="text-gold">Hari Ini</em>
+      <section className="py-24 bg-[#050505] border-t border-white/[0.08] text-center">
+        <div className="section-container max-w-2xl mx-auto">
+          <h2 className="font-serif text-white mb-4 font-light text-3xl sm:text-5xl">
+            Mulai Percakapan <em className="italic text-champagne">Hari Ini</em>
           </h2>
-          <p className="font-sans text-sm text-ivory-muted max-w-md mx-auto mb-10">
-            Konsultasi awal 100% gratis. Ceritakan dimensi ruang dan konsep yang Anda inginkan.
+          <p className="font-sans text-sm text-neutral-400 max-w-md mx-auto mb-10 font-light">
+            Konsultasi awal dan studi kelayakan ruang bersama kurator kami. Diskusikan dimensi ruang dan konsep interior hunian Anda.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/konsultasi" className="btn-primary">
@@ -265,11 +274,11 @@ export default function AquariumCustomPage() {
               className="btn-whatsapp inline-flex items-center gap-3"
             >
               <MessageCircle size={16} />
-              Chat WhatsApp
+              Chat WhatsApp Langsung
             </a>
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

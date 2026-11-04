@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { Shield, Award, CheckCircle, ArrowRight, MessageCircle, BookOpen, Sparkles, HelpCircle } from "lucide-react";
+import { Shield, Award, CheckCircle, ArrowRight, MessageCircle, Sparkles, HelpCircle } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/data";
 import { getWhatsAppUrl } from "@/lib/utils";
 
@@ -120,7 +120,7 @@ export default function GuideArwanaPage() {
   };
 
   return (
-    <>
+    <div className="bg-black text-white min-h-screen">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
@@ -132,20 +132,20 @@ export default function GuideArwanaPage() {
 
       <article className="min-h-screen pt-28 pb-24">
         {/* Hero Section */}
-        <header className="relative border-b border-white/5 py-16 md:py-24 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-navy-secondary via-navy to-navy opacity-90 -z-10" />
+        <header className="relative border-b border-white/[0.08] py-20 md:py-28 overflow-hidden bg-black">
           <div className="section-container relative">
             <div className="max-w-3xl">
               <div className="flex items-center gap-2 mb-4">
+                <span className="w-8 h-px bg-champagne-dim" />
                 <span className="section-label">Pillar Guide · Otoritas Kurasi</span>
                 <span className="text-white/20">|</span>
-                <span className="text-xs font-sans text-ivory-muted tracking-wider">Spesies: Scleropages formosus</span>
+                <span className="text-xs font-sans text-neutral-400 tracking-wider">Spesies: Scleropages formosus</span>
               </div>
-              <h1 className="font-serif text-3xl md:text-5xl lg:text-6xl text-ivory leading-tight font-normal mb-6">
+              <h1 className="font-serif text-3xl md:text-5xl lg:text-6xl text-white leading-tight font-light mb-6">
                 Panduan Komprehensif
-                <span className="text-gradient-gold block italic font-light">Arwana Super Red Kelas Kolektor</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-champagne to-champagne-dim block italic">Arwana Super Red Kelas Kolektor</span>
               </h1>
-              <p className="font-sans text-base md:text-lg text-ivory-muted leading-relaxed mb-8">
+              <p className="font-sans text-base md:text-lg text-neutral-400 leading-relaxed mb-8 font-light">
                 Memahami standar genetika Kapuas Hulu, anatomi sendok, verifikasi nomor microchip CITES resmi,
                 hingga tata kelola lingkungan air untuk menghadirkan sang naga air di hunian Anda.
               </p>
@@ -168,7 +168,7 @@ export default function GuideArwanaPage() {
 
         {/* Featured Guide Banner Image */}
         <section className="section-container py-12">
-          <div className="relative h-[340px] md:h-[480px] border border-white/10 overflow-hidden shadow-2xl">
+          <div className="relative h-[340px] md:h-[480px] rounded-3xl border border-white/[0.08] overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.8)]">
             <Image
               src="/images/journal/anatomi-arwana.jpg"
               alt="Anatomi Arwana Super Red Scleropages formosus kualitas kontes"
@@ -176,45 +176,49 @@ export default function GuideArwanaPage() {
               className="object-cover"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-navy via-transparent to-transparent opacity-80" />
-            <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between text-xs text-ivory-muted font-sans border-t border-white/10 pt-4">
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
+            <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between text-xs text-neutral-400 font-sans border-t border-white/[0.08] pt-4">
               <span>Kurasi: ASEVA AQUATICS Heritage Collection</span>
-              <span className="text-gold">Standar Kontes Internasional</span>
+              <span className="text-champagne font-medium">Standar Kontes Internasional</span>
             </div>
           </div>
         </section>
 
         {/* 4 Pillars of Anatomy */}
         <section className="section-container py-16">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="section-label">Kriteria Fisik</span>
-            <h2 className="font-serif text-3xl md:text-4xl text-ivory mt-2 mb-4">
-              4 Pilar Penilaian Arwana Kelas Kontes
+          <div className="text-center max-w-2xl mx-auto mb-16 md:mb-20">
+            <div className="inline-flex items-center gap-3 mb-4">
+              <span className="w-8 h-px bg-champagne-dim" />
+              <span className="section-label">KRITERIA ANATOMI</span>
+              <span className="w-8 h-px bg-champagne-dim" />
+            </div>
+            <h2 className="font-serif text-3xl md:text-5xl text-white font-light mt-2 mb-4">
+              4 Pilar Penilaian Kelas Kontes
             </h2>
-            <p className="text-sm font-sans text-ivory-muted leading-relaxed">
+            <p className="text-sm font-sans text-neutral-400 leading-relaxed font-light">
               Di mata kolektor serius dan juri kontes dunia, keindahan arwana diukur dari presisi anatomi yang tidak dapat dimanipulasi.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {ANATOMY_CRITERIA.map((crit, idx) => (
-              <div key={idx} className="card-glass p-8 relative flex flex-col justify-between">
+              <div key={idx} className="bg-[#0A0A0A] p-8 md:p-10 rounded-3xl border border-white/[0.08] relative flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-[10px] uppercase font-sans tracking-ultra-wide px-3 py-1 bg-gold/10 text-gold border border-gold/20">
+                    <span className="text-[10px] uppercase font-mono tracking-widest px-3.5 py-1 rounded-full bg-white/[0.04] text-neutral-300 border border-white/10">
                       {crit.badge}
                     </span>
-                    <span className="text-2xl font-serif text-white/20">0{idx + 1}</span>
+                    <span className="text-3xl font-serif text-neutral-700 font-light">0{idx + 1}</span>
                   </div>
-                  <h3 className="font-serif text-xl text-ivory mb-3">{crit.title}</h3>
-                  <p className="font-sans text-xs md:text-sm text-ivory-muted leading-relaxed mb-6">
+                  <h3 className="font-serif text-2xl text-white mb-3 font-light">{crit.title}</h3>
+                  <p className="font-sans text-xs md:text-sm text-neutral-400 leading-relaxed mb-6 font-light">
                     {crit.description}
                   </p>
                 </div>
-                <ul className="space-y-2 border-t border-white/5 pt-4">
+                <ul className="space-y-2.5 border-t border-white/[0.06] pt-4">
                   {crit.points.map((pt, pIdx) => (
-                    <li key={pIdx} className="flex items-start gap-2 text-xs font-sans text-ivory/80">
-                      <CheckCircle size={13} className="text-gold flex-shrink-0 mt-0.5" />
+                    <li key={pIdx} className="flex items-start gap-2.5 text-xs font-sans text-neutral-300 font-light">
+                      <CheckCircle size={13} className="text-champagne flex-shrink-0 mt-0.5" />
                       <span>{pt}</span>
                     </li>
                   ))}
@@ -225,33 +229,33 @@ export default function GuideArwanaPage() {
         </section>
 
         {/* Legal & CITES Appendix I Section */}
-        <section className="bg-navy-secondary border-y border-white/5 py-20">
+        <section className="bg-[#050505] border-y border-white/[0.08] py-20 md:py-28">
           <div className="section-container">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
               <div className="lg:col-span-7">
                 <span className="section-label">Kepastian Hukum & Konservasi</span>
-                <h2 className="font-serif text-3xl md:text-4xl text-ivory mt-2 mb-6 leading-tight">
+                <h2 className="font-serif text-3xl md:text-5xl text-white mt-2 mb-6 leading-tight font-light">
                   Legalitas Satwa Resmi: Microchip 15 Digit & Sertifikat CITES
                 </h2>
-                <p className="font-sans text-sm text-ivory-muted leading-relaxed mb-4">
-                  Arwana Super Red (*Scleropages formosus*) terdaftar dalam <strong>CITES Appendix I</strong> sebagai
+                <p className="font-sans text-sm text-neutral-400 leading-relaxed mb-4 font-light">
+                  Arwana Super Red (<em>Scleropages formosus</em>) terdaftar dalam <strong className="text-white font-normal">CITES Appendix I</strong> sebagai
                   satwa yang dilindungi ketat. Di Indonesia, perdagangan yang sah hanya diperbolehkan untuk spesimen hasil
                   penangkaran resmi generasi kedua (F2) ke atas dari penangkar bersertifikat BKSDA.
                 </p>
-                <p className="font-sans text-sm text-ivory-muted leading-relaxed mb-8">
+                <p className="font-sans text-sm text-neutral-400 leading-relaxed mb-8 font-light">
                   Setiap ekor arwana yang dikurasi oleh ASEVA AQUATICS dilengkapi:
                 </p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                  <div className="p-4 bg-navy-light/60 border border-white/5">
-                    <Shield className="text-gold mb-2" size={20} />
-                    <h4 className="font-serif text-base text-ivory mb-1">Microchip Pasif 15 Digit</h4>
-                    <p className="text-xs text-ivory-muted">Identitas permanen tak dapat dipalsukan, dapat dipindai langsung dengan RFID reader.</p>
+                  <div className="p-5 rounded-2xl bg-[#0A0A0A] border border-white/[0.08]">
+                    <Shield className="text-champagne mb-2" size={20} />
+                    <h4 className="font-serif text-base text-white mb-1 font-light">Microchip Pasif 15 Digit</h4>
+                    <p className="text-xs text-neutral-400 font-light">Identitas permanen tak dapat dipalsukan, dapat dipindai langsung dengan RFID reader.</p>
                   </div>
-                  <div className="p-4 bg-navy-light/60 border border-white/5">
-                    <Award className="text-gold mb-2" size={20} />
-                    <h4 className="font-serif text-base text-ivory mb-1">Sertifikat Captive-Bred</h4>
-                    <p className="text-xs text-ivory-muted">Dokumen resmi silsilah penangkar berizin lengkap dengan cap dan nomor registrasi.</p>
+                  <div className="p-5 rounded-2xl bg-[#0A0A0A] border border-white/[0.08]">
+                    <Award className="text-champagne mb-2" size={20} />
+                    <h4 className="font-serif text-base text-white mb-1 font-light">Sertifikat Captive-Bred</h4>
+                    <p className="text-xs text-neutral-400 font-light">Dokumen resmi silsilah penangkar berizin lengkap dengan cap dan nomor registrasi.</p>
                   </div>
                 </div>
 
@@ -263,17 +267,17 @@ export default function GuideArwanaPage() {
               </div>
 
               <div className="lg:col-span-5">
-                <div className="p-8 border border-gold/20 bg-navy/80 relative">
-                  <div className="text-center pb-6 border-b border-white/10">
-                    <Sparkles className="text-gold mx-auto mb-2" size={28} />
-                    <span className="font-serif text-xl text-ivory block">Garansi Hidup Selamat (DOA)</span>
-                    <span className="text-[10px] text-gold tracking-widest uppercase">Dead on Arrival Guarantee</span>
+                <div className="p-8 md:p-10 rounded-3xl border border-white/[0.08] bg-[#0A0A0A] relative shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
+                  <div className="text-center pb-6 border-b border-white/[0.08]">
+                    <Sparkles className="text-champagne mx-auto mb-2" size={28} />
+                    <span className="font-serif text-xl text-white block font-light">Garansi Hidup Selamat (DOA)</span>
+                    <span className="text-[10px] text-neutral-400 tracking-widest uppercase font-mono">Dead on Arrival Guarantee</span>
                   </div>
-                  <p className="text-xs font-sans text-ivory-muted leading-relaxed py-6">
+                  <p className="text-xs font-sans text-neutral-400 leading-relaxed py-6 font-light">
                     ASEVA AQUATICS memberlakukan protokol pengiriman beroksigen medis dengan pemantauan suhu real-time untuk seluruh area Bandung Raya, Jabodetabek, dan kota besar Jawa Barat. Kami menjamin ikan tiba dalam kondisi hidup, sehat, dan bugar di akuarium Anda.
                   </p>
                   <div className="text-center pt-2">
-                    <Link href="/legal" className="text-xs text-gold hover:underline">
+                    <Link href="/legal" className="text-xs text-white hover:underline">
                       Baca Kebijakan Garansi DOA & Privasi →
                     </Link>
                   </div>
@@ -287,58 +291,58 @@ export default function GuideArwanaPage() {
         <section className="section-container py-20">
           <div className="max-w-3xl mx-auto">
             <span className="section-label text-center block mb-2">Manajemen Lingkungan Hidup</span>
-            <h2 className="font-serif text-3xl md:text-4xl text-ivory text-center mb-8">
+            <h2 className="font-serif text-3xl md:text-5xl text-white text-center mb-8 font-light">
               Parameter Air Ideal di Iklim Dataran Tinggi & Tropis
             </h2>
-            <div className="space-y-6 font-sans text-sm text-ivory-muted leading-relaxed">
+            <div className="space-y-6 font-sans text-sm text-neutral-400 leading-relaxed font-light">
               <p>
-                Di wilayah seperti Bandung Utara yang sejuk, suhu air sering turun di bawah 25°C pada malam hari. Suhu dingin dapat memperlambat metabolisme arwana, menurunkan nafsu makan, dan memicu stres sisik. Oleh karena itu, sistem pemanas otomatis (*titanium heater*) dengan kontroler digital adalah kebutuhan mutlak.
+                Di wilayah seperti Bandung Utara yang sejuk, suhu air sering turun di bawah 25°C pada malam hari. Suhu dingin dapat memperlambat metabolisme arwana, menurunkan nafsu makan, dan memicu stres sisik. Oleh karena itu, sistem pemanas otomatis (<em>titanium heater</em>) dengan kontroler digital adalah kebutuhan mutlak.
               </p>
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 my-8">
-                <div className="p-4 bg-navy-secondary border border-white/5 text-center">
-                  <span className="text-gold font-serif text-2xl block mb-1">28–30°C</span>
-                  <span className="text-[10px] uppercase tracking-wider text-ivory/60">Suhu Stabil</span>
+                <div className="p-5 rounded-2xl bg-[#0A0A0A] border border-white/[0.08] text-center">
+                  <span className="text-white font-serif text-2xl block mb-1 font-light">28–30°C</span>
+                  <span className="text-[10px] uppercase tracking-wider text-neutral-500 font-mono">Suhu Stabil</span>
                 </div>
-                <div className="p-4 bg-navy-secondary border border-white/5 text-center">
-                  <span className="text-gold font-serif text-2xl block mb-1">6.5–7.0</span>
-                  <span className="text-[10px] uppercase tracking-wider text-ivory/60">pH Air Seimbang</span>
+                <div className="p-5 rounded-2xl bg-[#0A0A0A] border border-white/[0.08] text-center">
+                  <span className="text-white font-serif text-2xl block mb-1 font-light">6.5–7.0</span>
+                  <span className="text-[10px] uppercase tracking-wider text-neutral-500 font-mono">pH Air Seimbang</span>
                 </div>
-                <div className="p-4 bg-navy-secondary border border-white/5 text-center">
-                  <span className="text-gold font-serif text-2xl block mb-1">&lt; 150</span>
-                  <span className="text-[10px] uppercase tracking-wider text-ivory/60">TDS (PPM)</span>
+                <div className="p-5 rounded-2xl bg-[#0A0A0A] border border-white/[0.08] text-center">
+                  <span className="text-white font-serif text-2xl block mb-1 font-light">&lt; 150</span>
+                  <span className="text-[10px] uppercase tracking-wider text-neutral-500 font-mono">TDS (PPM)</span>
                 </div>
-                <div className="p-4 bg-navy-secondary border border-white/5 text-center">
-                  <span className="text-gold font-serif text-2xl block mb-1">0 ppm</span>
-                  <span className="text-[10px] uppercase tracking-wider text-ivory/60">Amonia & Nitrit</span>
+                <div className="p-5 rounded-2xl bg-[#0A0A0A] border border-white/[0.08] text-center">
+                  <span className="text-white font-serif text-2xl block mb-1 font-light">0 ppm</span>
+                  <span className="text-[10px] uppercase tracking-wider text-neutral-500 font-mono">Amonia & Nitrit</span>
                 </div>
               </div>
 
               <p>
-                Sistem filtrasi biologis multi-chamber (sump tank) dengan media biomedium berpori tinggi memastikan amonia hasil sisa pakan langsung diurai sebelum mencemari ekosistem. Inilah alasan mengapa desain akuarium custom ASEVA selalu dirancang menyatu dengan sistem pendukung kehidupan (*life-support*) tanpa kompromi.
+                Sistem filtrasi biologis multi-chamber (sump tank) dengan media biomedium berpori tinggi memastikan amonia hasil sisa pakan langsung diurai sebelum mencemari ekosistem. Inilah alasan mengapa desain akuarium custom ASEVA selalu dirancang menyatu dengan sistem pendukung kehidupan (<em>life-support</em>) tanpa kompromi.
               </p>
             </div>
           </div>
         </section>
 
         {/* FAQ Accordion Section */}
-        <section className="bg-navy-secondary/60 border-t border-white/5 py-20">
+        <section className="bg-[#050505] border-t border-white/[0.08] py-20">
           <div className="section-container max-w-4xl">
             <div className="text-center mb-12">
               <span className="section-label">Tanya Jawab</span>
-              <h2 className="font-serif text-3xl md:text-4xl text-ivory mt-2">
+              <h2 className="font-serif text-3xl md:text-5xl text-white mt-2 font-light">
                 Pertanyaan Seputar Arwana Super Red
               </h2>
             </div>
 
             <div className="space-y-4">
               {FAQS.map((faq, idx) => (
-                <div key={idx} className="p-6 bg-navy border border-white/5">
-                  <h3 className="font-serif text-lg text-ivory mb-2 flex items-start gap-3">
-                    <HelpCircle size={18} className="text-gold flex-shrink-0 mt-0.5" />
+                <div key={idx} className="p-6 rounded-2xl bg-[#0A0A0A] border border-white/[0.08]">
+                  <h3 className="font-serif text-lg text-white mb-2 flex items-start gap-3 font-light">
+                    <HelpCircle size={18} className="text-champagne flex-shrink-0 mt-0.5" />
                     {faq.q}
                   </h3>
-                  <p className="font-sans text-xs md:text-sm text-ivory-muted leading-relaxed pl-7">
+                  <p className="font-sans text-xs md:text-sm text-neutral-400 leading-relaxed pl-7 font-light">
                     {faq.a}
                   </p>
                 </div>
@@ -349,11 +353,11 @@ export default function GuideArwanaPage() {
 
         {/* CTA Banner */}
         <section className="section-container py-16">
-          <div className="border border-gold/30 bg-gradient-to-r from-navy-secondary via-navy to-navy-secondary p-8 md:p-14 text-center relative">
-            <h2 className="font-serif text-2xl md:text-4xl text-ivory mb-4">
+          <div className="rounded-3xl border border-white/[0.08] bg-[#0A0A0A] p-8 md:p-14 text-center shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
+            <h2 className="font-serif text-2xl md:text-4xl text-white mb-4 font-light">
               Tertarik Mengoleksi Arwana Super Red Bersertifikat?
             </h2>
-            <p className="font-sans text-sm text-ivory-muted max-w-xl mx-auto mb-8">
+            <p className="font-sans text-sm text-neutral-400 max-w-xl mx-auto mb-8 font-light">
               Kunjungi katalog aktif kami atau jadwalkan sesi private viewing langsung dengan kurator ASEVA AQUATICS.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
@@ -367,6 +371,6 @@ export default function GuideArwanaPage() {
           </div>
         </section>
       </article>
-    </>
+    </div>
   );
 }

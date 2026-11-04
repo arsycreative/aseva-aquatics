@@ -55,66 +55,68 @@ export default async function PortfolioDetailPage({ params }: Props) {
   };
 
   return (
-    <>
+    <div className="bg-black text-white min-h-screen">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(projectSchema) }}
       />
       {/* Hero */}
-      <section className="relative min-h-[60vh] flex items-end overflow-hidden">
+      <section className="relative min-h-[65vh] flex items-end overflow-hidden border-b border-white/[0.08]">
         <div className="absolute inset-0 z-0">
           <Image
             src={project.coverImage}
             alt={project.title}
             fill
-            className="object-cover"
+            className="object-cover scale-105"
             priority
             sizes="100vw"
             quality={90}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/60 to-navy/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/75 to-black/30" />
         </div>
-        <div className="relative z-10 section-container pb-16 pt-32">
-          <nav className="flex items-center gap-2 font-sans text-xs text-ivory-dim mb-8">
-            <Link href="/" className="hover:text-gold">Beranda</Link>
+        <div className="relative z-10 section-container pb-16 pt-36 w-full">
+          <nav className="flex items-center gap-2 font-sans text-xs text-neutral-400 mb-8">
+            <Link href="/" className="hover:text-white transition-colors">Beranda</Link>
             <span>/</span>
-            <Link href="/portofolio" className="hover:text-gold">Portofolio</Link>
+            <Link href="/portofolio" className="hover:text-white transition-colors">Portofolio</Link>
             <span>/</span>
-            <span className="text-ivory truncate">{project.title}</span>
+            <span className="text-white truncate">{project.title}</span>
           </nav>
           <div className="flex items-center gap-4 mb-4">
-            <span className="section-label">{CATEGORY_LABELS[project.category]}</span>
-            <span className="font-sans text-xs text-ivory-muted">· {project.city} · {project.year}</span>
+            <span className="text-[10px] uppercase font-mono tracking-[0.2em] px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md text-neutral-300 border border-white/10">
+              {CATEGORY_LABELS[project.category]}
+            </span>
+            <span className="font-sans text-xs text-neutral-400">· {project.city} · {project.year}</span>
           </div>
-          <h1 className="font-serif text-ivory max-w-2xl leading-tight">{project.title}</h1>
+          <h1 className="font-serif text-white max-w-3xl leading-tight font-light text-3xl sm:text-5xl lg:text-6xl">{project.title}</h1>
         </div>
       </section>
 
       {/* Content */}
-      <article className="section-padding bg-navy">
+      <article className="section-padding bg-black">
         <div className="section-container">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 xl:gap-16">
-            {/* Main Content */}
-            <div className="lg:col-span-2">
-              <p className="font-sans text-base text-ivory-muted leading-relaxed mb-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 xl:gap-16">
+            {/* Main Content (8 cols) */}
+            <div className="lg:col-span-8">
+              <p className="font-sans text-base md:text-lg text-neutral-300 leading-relaxed mb-12 font-light">
                 {project.description}
               </p>
 
-              <div className="mb-10">
-                <h2 className="font-serif text-2xl text-ivory mb-5">
-                  Tantangan <em className="text-gold">Teknis</em>
+              <div className="mb-12">
+                <h2 className="font-serif text-2xl md:text-3xl text-white mb-5 font-light">
+                  Tantangan & <em className="italic text-champagne">Solusi Teknis</em>
                 </h2>
-                <div className="p-6 border-l-2 border-gold bg-navy-secondary">
-                  <p className="font-sans text-sm text-ivory-muted leading-relaxed">
+                <div className="p-8 rounded-3xl border border-white/[0.08] bg-[#0A0A0A] shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
+                  <p className="font-sans text-sm md:text-base text-neutral-400 leading-relaxed font-light">
                     {project.challenge}
                   </p>
                 </div>
               </div>
 
-              {/* Gallery placeholder */}
-              <div className="grid grid-cols-2 gap-px bg-white/5">
+              {/* Gallery Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {project.images.map((img, i) => (
-                  <div key={i} className="relative aspect-fish">
+                  <div key={i} className="relative aspect-fish rounded-2xl overflow-hidden border border-white/[0.08] bg-[#050505]">
                     <Image
                       src={img}
                       alt={`${project.title} — Foto ${i + 1}`}
@@ -127,33 +129,40 @@ export default async function PortfolioDetailPage({ params }: Props) {
               </div>
             </div>
 
-            {/* Sidebar — Specs */}
-            <div className="space-y-0">
-              <div className="border border-white/5 divide-y divide-white/5">
-                {[
-                  { label: "Kategori", value: CATEGORY_LABELS[project.category] },
-                  { label: "Lokasi", value: project.city },
-                  { label: "Tahun", value: String(project.year) },
-                  { label: "Jenis", value: project.type },
-                  { label: "Dimensi", value: project.dimensions },
-                  { label: "Volume", value: project.volume },
-                  { label: "Kaca", value: project.glass },
-                  { label: "Filtrasi", value: project.filtration },
-                  { label: "Pencahayaan", value: project.lighting },
-                ].map((spec) => (
-                  <div key={spec.label} className="p-5 bg-navy-secondary">
-                    <p className="font-sans text-xs text-ivory-dim tracking-widest uppercase mb-1">
-                      {spec.label}
-                    </p>
-                    <p className="font-sans text-sm text-ivory">{spec.value}</p>
-                  </div>
-                ))}
+            {/* Sidebar — Specs (4 cols) */}
+            <div className="lg:col-span-4 space-y-6">
+              <div className="rounded-3xl border border-white/[0.08] overflow-hidden bg-[#0A0A0A] shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
+                <div className="p-5 border-b border-white/[0.08] bg-[#111111]">
+                  <span className="font-mono text-[10px] text-champagne tracking-widest uppercase font-medium">
+                    PARAMETER REKAYASA PROYEK
+                  </span>
+                </div>
+                <div className="divide-y divide-white/[0.06]">
+                  {[
+                    { label: "Kategori", value: CATEGORY_LABELS[project.category] },
+                    { label: "Lokasi", value: project.city },
+                    { label: "Tahun Pengerjaan", value: String(project.year) },
+                    { label: "Tipe Konstruksi", value: project.type },
+                    { label: "Dimensi Tangki", value: project.dimensions },
+                    { label: "Volume Hidrolika", value: project.volume },
+                    { label: "Spesifikasi Kaca", value: project.glass },
+                    { label: "Sistem Filtrasi", value: project.filtration },
+                    { label: "Pencahayaan", value: project.lighting },
+                  ].map((spec) => (
+                    <div key={spec.label} className="p-4 px-6">
+                      <p className="font-sans text-[10px] text-neutral-500 tracking-widest uppercase mb-1">
+                        {spec.label}
+                      </p>
+                      <p className="font-sans text-sm text-white font-light">{spec.value}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
 
               {/* CTA */}
-              <div className="mt-6 space-y-3">
+              <div className="space-y-3">
                 <Link href="/konsultasi" className="btn-primary w-full justify-center">
-                  Buat Proyek Serupa
+                  Konsultasi Proyek Serupa
                 </Link>
                 <a
                   href={getWhatsAppUrl("portfolio")}
@@ -162,7 +171,7 @@ export default async function PortfolioDetailPage({ params }: Props) {
                   className="btn-outline w-full justify-center text-xs"
                 >
                   <MessageCircle size={14} />
-                  Diskusi via WhatsApp
+                  Diskusi Langsung via WhatsApp
                 </a>
               </div>
             </div>
@@ -171,13 +180,13 @@ export default async function PortfolioDetailPage({ params }: Props) {
       </article>
 
       {/* Back */}
-      <div className="py-10 bg-navy border-t border-white/5">
+      <div className="py-12 bg-black border-t border-white/[0.08]">
         <div className="section-container">
           <Link href="/portofolio" className="btn-ghost">
-            ← Kembali ke Semua Proyek
+            ← Kembali ke Semua Studi Kasus
           </Link>
         </div>
       </div>
-    </>
+    </div>
   );
 }
