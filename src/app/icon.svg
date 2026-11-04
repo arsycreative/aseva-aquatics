@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E5D1A6"/>
+      <stop offset="45%" stop-color="#C9A96E"/>
+      <stop offset="100%" stop-color="#9C7F45"/>
+    </linearGradient>
+    <linearGradient id="arwanaRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C43B35"/>
+      <stop offset="100%" stop-color="#7A2520"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#C9A96E" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#0A0F14" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Deep Ocean Navy Base -->
+  <rect width="64" height="64" rx="14" fill="#0A0F14"/>
+  <rect width="64" height="64" rx="14" fill="url(#glow)"/>
+  
+  <!-- Subtle Luxury Gold Rim -->
+  <rect x="1" y="1" width="62" height="62" rx="13" stroke="url(#goldGrad)" stroke-width="1.5" stroke-opacity="0.5"/>
+
+  <!-- Fluid Arwana Curve Accent -->
+  <path d="M18 45 C 24 49, 40 49, 46 43 C 44 41, 38 43, 30 42 C 22 41, 19 44, 18 45 Z" fill="url(#arwanaRed)" opacity="0.85"/>
+
+  <!-- ASEVA Monogram 'A' -->
+  <!-- Left Leg -->
+  <path d="M21 44 L30 18 L34 18 L24 44 Z" fill="url(#goldGrad)"/>
+  
+  <!-- Right Leg with Elegant Serifs -->
+  <path d="M43 44 L34 18 L30 18 L40 44 Z" fill="url(#goldGrad)"/>
+  
+  <!-- Apex Diamond / Crown -->
+  <polygon points="32,15 34,18 30,18" fill="#F2EDE4"/>
+
+  <!-- Crossbar (Fluid aquatic wave bar) -->
+  <path d="M24 35 Q 32 32 40 35 Q 32 36 24 35 Z" fill="url(#goldGrad)"/>
+
+  <!-- Central Light Spark -->
+  <circle cx="32" cy="27" r="1.5" fill="#F2EDE4"/>
+</svg>
