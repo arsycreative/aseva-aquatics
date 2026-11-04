@@ -8,8 +8,14 @@ export default function PortfolioPreviewSection() {
   const featured = PORTFOLIO_PROJECTS.filter((p) => p.featured).slice(0, 3);
 
   return (
-    <section className="section-padding bg-black border-t border-white/[0.08]" aria-label="Portofolio pilihan ASEVA">
-      <div className="section-container">
+    <section className="section-padding bg-[#050505] relative overflow-hidden border-t border-white/[0.08]" aria-label="Portofolio pilihan ASEVA">
+      {/* Subtle Architectural Grid Pattern */}
+      <div className="absolute inset-0 pattern-grid opacity-40 pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_80%)]" />
+
+      {/* Ambient Lighting */}
+      <div className="absolute top-1/3 right-10 w-[35rem] h-[35rem] bg-champagne/[0.025] rounded-full blur-[160px] pointer-events-none" />
+
+      <div className="section-container relative z-10">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 md:mb-20">
           <div className="max-w-2xl">

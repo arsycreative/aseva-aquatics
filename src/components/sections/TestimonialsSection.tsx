@@ -17,7 +17,11 @@ export default function TestimonialsSection() {
       className="section-padding bg-[#050505] border-t border-white/[0.08] relative overflow-hidden"
       aria-label="Testimoni klien dan rekanan arsitek"
     >
-      <div className="section-container">
+      {/* Subtle Dot Pattern & Ambient Spotlight */}
+      <div className="absolute inset-0 pattern-dots opacity-30 pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[350px] bg-champagne/[0.03] rounded-full blur-[150px] pointer-events-none" />
+
+      <div className="section-container relative z-10">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16 md:mb-20">
           <div className="inline-flex items-center gap-3 mb-4">
@@ -35,7 +39,7 @@ export default function TestimonialsSection() {
 
         {/* Testimonial Showcase Box */}
         <div className="max-w-4xl mx-auto relative">
-          <div className="relative bg-[#0D0D0D] rounded-3xl border border-white/[0.08] p-10 md:p-16 lg:p-20 text-center shadow-[0_25px_70px_rgba(0,0,0,0.8)] backdrop-blur-xl">
+          <div className="relative bg-[#0A0A0A]/90 rounded-3xl border border-white/[0.08] p-10 md:p-16 lg:p-20 text-center shadow-[0_25px_70px_rgba(0,0,0,0.8)] backdrop-blur-2xl">
             {/* Subtle quotation emblem */}
             <Quote size={32} className="text-white/20 mx-auto mb-8" />
 

@@ -174,9 +174,11 @@ export default function AquariumCustomPage() {
         </div>
       </section>
 
-      {/* Aquarium Types */}
-      <section className="section-padding bg-[#050505] border-t border-white/[0.08]">
-        <div className="section-container">
+      {/* Aquarium Types with Subtle Grid Pattern */}
+      <section className="section-padding bg-[#050505] border-t border-white/[0.08] relative overflow-hidden">
+        <div className="absolute inset-0 pattern-grid opacity-35 pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_80%)]" />
+
+        <div className="section-container relative z-10">
           <div className="text-center mb-16 md:mb-20">
             <div className="inline-flex items-center gap-3 mb-4">
               <span className="w-8 h-px bg-champagne-dim" />
@@ -228,11 +230,13 @@ export default function AquariumCustomPage() {
         </div>
       </section>
 
-      {/* Sub-pages */}
-      <section className="section-padding bg-black">
-        <div className="section-container">
+      {/* Sub-pages with Subtle Dots Pattern */}
+      <section className="section-padding bg-[#050505] relative overflow-hidden">
+        <div className="absolute inset-0 pattern-dots opacity-30 pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_80%)]" />
+
+        <div className="section-container relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Link href="/aquarium-custom/proses" className="bg-[#0A0A0A] rounded-3xl border border-white/[0.08] p-10 group hover:border-white/25 transition-all duration-300">
+            <Link href="/aquarium-custom/proses" className="bg-[#0A0A0A] rounded-3xl border border-white/[0.08] p-10 group hover:border-white/25 transition-all duration-300 shadow-[0_15px_40px_rgba(0,0,0,0.6)]">
               <span className="section-label block mb-4">TRANSPARANSI PROSES</span>
               <h3 className="font-serif text-2xl text-white mb-4 group-hover:text-champagne transition-colors font-light">
                 Metodologi 4 Tahap Menuju Mahakarya →
@@ -241,7 +245,7 @@ export default function AquariumCustomPage() {
                 Dari orientasi visi ruang pertama hingga commissioning hidrolika dan serah terima, kami mendokumentasikan setiap tahap secara presisi.
               </p>
             </Link>
-            <Link href="/aquarium-custom/material-teknologi" className="bg-[#0A0A0A] rounded-3xl border border-white/[0.08] p-10 group hover:border-white/25 transition-all duration-300">
+            <Link href="/aquarium-custom/material-teknologi" className="bg-[#0A0A0A] rounded-3xl border border-white/[0.08] p-10 group hover:border-white/25 transition-all duration-300 shadow-[0_15px_40px_rgba(0,0,0,0.6)]">
               <span className="section-label block mb-4">SPESIFIKASI TEKNIK</span>
               <h3 className="font-serif text-2xl text-white mb-4 group-hover:text-champagne transition-colors font-light">
                 Material Kristal & Teknologi Filtrasi →
@@ -254,9 +258,20 @@ export default function AquariumCustomPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-24 bg-[#050505] border-t border-white/[0.08] text-center">
-        <div className="section-container max-w-2xl mx-auto">
+      {/* CTA with Architectural Image Background */}
+      <section className="relative py-24 bg-black border-t border-white/[0.08] text-center overflow-hidden">
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <Image
+            src="/images/aquarium-interior.jpg"
+            alt="Interior Atmosphere"
+            fill
+            className="object-cover scale-105 opacity-20"
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/85 to-black/80" />
+        </div>
+
+        <div className="section-container relative z-10 max-w-2xl mx-auto">
           <h2 className="font-serif text-white mb-4 font-light text-3xl sm:text-5xl">
             Mulai Percakapan <em className="italic text-champagne">Hari Ini</em>
           </h2>

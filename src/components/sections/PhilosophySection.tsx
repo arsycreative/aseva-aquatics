@@ -1,8 +1,14 @@
 export default function PhilosophySection() {
   return (
-    <section className="section-padding bg-black relative overflow-hidden border-t border-white/[0.08]" aria-label="Filosofi ASEVA">
+    <section className="section-padding bg-[#050505] relative overflow-hidden border-t border-white/[0.08]" aria-label="Filosofi ASEVA">
+      {/* Architectural Grid Pattern with radial mask fade */}
+      <div className="absolute inset-0 pattern-grid opacity-60 pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_80%)]" />
+
+      {/* Ambient Champagne Spotlight */}
+      <div className="absolute top-1/2 left-10 -translate-y-1/2 w-96 h-96 bg-champagne/[0.03] rounded-full blur-[140px] pointer-events-none" />
+
       {/* Subtle Background Watermark */}
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 select-none pointer-events-none opacity-[0.02] font-serif text-[18vw] leading-none whitespace-nowrap text-white">
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 select-none pointer-events-none opacity-[0.025] font-serif text-[18vw] leading-none whitespace-nowrap text-white">
         A S E V A
       </div>
 
@@ -10,7 +16,7 @@ export default function PhilosophySection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-center">
           {/* Left — Manifest Frame (5 cols) */}
           <div className="lg:col-span-5 order-2 lg:order-1">
-            <div className="relative p-10 md:p-14 bg-[#0D0D0D] rounded-3xl border border-white/[0.08] backdrop-blur-xl shadow-[0_25px_60px_rgba(0,0,0,0.8)]">
+            <div className="relative p-10 md:p-14 bg-[#0A0A0A]/95 rounded-3xl border border-white/[0.08] backdrop-blur-2xl shadow-[0_25px_60px_rgba(0,0,0,0.8)]">
               <span className="font-mono text-[9px] tracking-[0.3em] uppercase text-champagne block mb-6 font-medium">
                 MANIFIESTO ATELIER · 2026
               </span>

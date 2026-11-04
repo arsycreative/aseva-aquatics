@@ -4,8 +4,14 @@ import { PROCESS_STEPS } from "@/lib/data";
 
 export default function ProcessSection() {
   return (
-    <section className="section-padding bg-black relative border-t border-white/[0.08]" aria-label="Proses kerja ASEVA">
-      <div className="section-container">
+    <section className="section-padding bg-[#050505] relative overflow-hidden border-t border-white/[0.08]" aria-label="Proses kerja ASEVA">
+      {/* Precision Drafting Dot Matrix Pattern */}
+      <div className="absolute inset-0 pattern-dots opacity-45 pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_85%)]" />
+
+      {/* Ambient center spotlight */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[30rem] bg-white/[0.015] rounded-full blur-[140px] pointer-events-none" />
+
+      <div className="section-container relative z-10">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 md:mb-20">
           <div className="max-w-2xl">
@@ -30,11 +36,11 @@ export default function ProcessSection() {
         </div>
 
         {/* Steps Grid with Architectural Blueprint Style */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-white/[0.08] border border-white/[0.08] rounded-2xl overflow-hidden">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-white/[0.08] border border-white/[0.08] rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.8)] backdrop-blur-xl">
           {PROCESS_STEPS.map((step, index) => (
             <div
               key={step.number}
-              className="p-8 md:p-10 bg-[#0A0A0A] relative flex flex-col justify-between group hover:bg-[#121212] transition-all duration-500 min-h-[340px]"
+              className="p-8 md:p-10 bg-[#0A0A0A]/95 relative flex flex-col justify-between group hover:bg-[#121212] transition-all duration-500 min-h-[340px]"
             >
               <div>
                 {/* Step Header */}

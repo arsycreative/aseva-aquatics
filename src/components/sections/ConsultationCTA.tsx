@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { MessageCircle, ArrowRight, ShieldCheck, Clock, MapPin } from "lucide-react";
 import { getWhatsAppUrl } from "@/lib/utils";
 
@@ -8,8 +9,25 @@ export default function ConsultationCTA() {
       className="relative py-28 md:py-36 bg-black overflow-hidden border-t border-white/[0.08]"
       aria-label="Invitasi konsultasi pribadi"
     >
-      {/* Ambient background light */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-white/[0.03] rounded-full blur-[160px] pointer-events-none" />
+      {/* Background Architectural Image Layer with Dark Cinema Grading */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <Image
+          src="/images/aquarium-interior.jpg"
+          alt="Atmosphere Aquarium Custom ASEVA AQUATICS"
+          fill
+          className="object-cover object-center scale-105 opacity-20"
+          sizes="100vw"
+          quality={85}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/85 to-black/75" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black" />
+      </div>
+
+      {/* Subtle Pattern Grid Accent */}
+      <div className="absolute inset-0 pattern-grid opacity-30 pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]" />
+
+      {/* Ambient background spotlight */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-champagne/[0.03] rounded-full blur-[160px] pointer-events-none" />
 
       <div className="section-container relative z-10 text-center max-w-3xl mx-auto">
         <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-white/10 bg-white/[0.04] backdrop-blur-md mb-8">

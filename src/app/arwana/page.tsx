@@ -31,8 +31,12 @@ export default function ArwanaPage() {
   return (
     <div className="bg-black text-white min-h-screen">
       {/* Page Header */}
-      <section className="pt-36 pb-20 bg-black border-b border-white/[0.08]">
-        <div className="section-container">
+      <section className="relative pt-36 pb-20 bg-black border-b border-white/[0.08] overflow-hidden">
+        {/* Subtle Drafting Texture */}
+        <div className="absolute inset-0 pattern-dots opacity-40 pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_80%)]" />
+        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-80 h-80 bg-champagne/[0.025] rounded-full blur-[140px] pointer-events-none" />
+
+        <div className="section-container relative z-10">
           <div className="max-w-3xl">
             <div className="flex items-center gap-3 mb-4">
               <span className="w-8 h-px bg-champagne-dim" />
@@ -65,8 +69,10 @@ export default function ArwanaPage() {
       </section>
 
       {/* Bottom CTA */}
-      <section className="py-20 bg-[#080808] border-t border-white/[0.08]">
-        <div className="section-container text-center max-w-2xl mx-auto">
+      <section className="relative py-20 bg-[#080808] border-t border-white/[0.08] overflow-hidden">
+        <div className="absolute inset-0 pattern-grid opacity-30 pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]" />
+
+        <div className="section-container relative z-10 text-center max-w-2xl mx-auto">
           <p className="font-sans text-sm text-neutral-400 mb-8 font-light">
             Tidak menemukan yang Anda cari? Hubungi kami — koleksi terbaru spesimen khusus belum tentu selalu terpajang di etalase web publik.
           </p>
