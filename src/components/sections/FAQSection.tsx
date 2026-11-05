@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Plus, Minus, MessageCircle } from "lucide-react";
+import { Plus, Minus, MessageCircle, HelpCircle } from "lucide-react";
 import { FAQ_ITEMS } from "@/lib/data";
 import { getWhatsAppUrl } from "@/lib/utils";
 
@@ -9,23 +9,19 @@ export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="section-padding bg-black border-t border-white/[0.08]" aria-label="FAQ ASEVA AQUATICS">
+    <section className="py-28 md:py-36 bg-black border-t border-white/[0.08]" aria-label="FAQ ASEVA AQUATICS">
       <div className="section-container">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20">
           {/* Left Column (5 cols) */}
           <div className="lg:col-span-5">
-            <div className="flex items-center gap-3 mb-4">
-              <span className="w-8 h-px bg-champagne-dim" />
-              <span className="section-label">PERTANYAAN UMUM</span>
-            </div>
-            <h2 className="font-serif text-3xl md:text-5xl text-white font-light leading-tight mb-6">
-              Transparansi
-              <span className="block font-serif italic text-transparent bg-clip-text bg-gradient-to-r from-white via-champagne to-champagne-dim">
-                Sebelum Memulai.
-              </span>
+            <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-champagne block mb-3 font-medium">
+              TRANSPARANSI & PANDUAN AWAL
+            </span>
+            <h2 className="font-serif text-3xl sm:text-5xl text-white font-light leading-tight mb-6">
+              Pertimbangan Teknis Sebelum Memulai
             </h2>
-            <p className="font-sans text-xs md:text-sm text-neutral-400 leading-relaxed mb-10 font-light">
-              Pertimbangan teknis seputar biaya akuarium custom, sirkulasi filtrasi, dan prosedur legalitas satwa arwana bersertifikat di Bandung dan Jabodetabek.
+            <p className="font-sans text-xs md:text-sm text-neutral-400 leading-relaxed mb-8 font-light">
+              Pertimbangan teknis seputar estimasi biaya akuarium custom, sirkulasi filtrasi dry-wet, dan prosedur sertifikasi resmi satwa arwana di Bandung, Jakarta, dan sekitarnya.
             </p>
             <a
               href={getWhatsAppUrl("Halo ASEVA AQUATICS, saya ingin menanyakan beberapa hal mengenai layanan Anda.")}

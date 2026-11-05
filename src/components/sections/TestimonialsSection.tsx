@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { ChevronLeft, ChevronRight, Quote, Star } from "lucide-react";
 import { TESTIMONIALS } from "@/lib/data";
 
 export default function TestimonialsSection() {
@@ -14,34 +14,34 @@ export default function TestimonialsSection() {
 
   return (
     <section
-      className="section-padding bg-[#050505] border-t border-white/[0.08] relative overflow-hidden"
+      className="py-28 md:py-36 bg-[#060608] border-t border-white/[0.08] relative overflow-hidden"
       aria-label="Testimoni klien dan rekanan arsitek"
     >
       {/* Subtle Dot Pattern & Ambient Spotlight */}
-      <div className="absolute inset-0 pattern-dots opacity-30 pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]" />
+      <div className="absolute inset-0 pattern-dots opacity-25 pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[350px] bg-champagne/[0.03] rounded-full blur-[150px] pointer-events-none" />
 
       <div className="section-container relative z-10">
-        {/* Header */}
+        {/* Editorial Top Headline */}
         <div className="text-center max-w-2xl mx-auto mb-16 md:mb-20">
-          <div className="inline-flex items-center gap-3 mb-4">
-            <span className="w-8 h-px bg-champagne-dim" />
-            <span className="section-label">BUKTI KREDIBILITAS</span>
-            <span className="w-8 h-px bg-champagne-dim" />
-          </div>
-          <h2 className="font-serif text-3xl md:text-5xl text-white font-light leading-tight">
-            Kepercayaan Kolektor
-            <span className="block font-serif italic text-transparent bg-clip-text bg-gradient-to-r from-white via-champagne to-champagne-dim">
-              & Rekanan Arsitektur
-            </span>
+          <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-champagne block mb-3 font-medium">
+            REPUTASI & SUARA KOLEKTOR
+          </span>
+          <h2 className="font-serif text-3xl sm:text-5xl text-white font-light leading-tight">
+            Kepercayaan Kolektor & Rekanan Arsitek
           </h2>
+          <p className="font-sans text-xs md:text-sm text-neutral-400 mt-2 font-light">
+            Pengalaman nyata pemilik hunian mewah, villa, dan praktisi arsitektur di Bandung & Jakarta.
+          </p>
         </div>
 
         {/* Testimonial Showcase Box */}
         <div className="max-w-4xl mx-auto relative">
-          <div className="relative bg-[#0A0A0A]/90 rounded-3xl border border-white/[0.08] p-10 md:p-16 lg:p-20 text-center shadow-[0_25px_70px_rgba(0,0,0,0.8)] backdrop-blur-2xl">
+          <div className="relative bg-[#0A0A0E]/90 rounded-3xl border border-white/[0.08] p-8 md:p-16 lg:p-20 text-center shadow-[0_25px_70px_rgba(0,0,0,0.85)] backdrop-blur-2xl">
             {/* Subtle quotation emblem */}
-            <Quote size={32} className="text-white/20 mx-auto mb-8" />
+            <div className="w-12 h-12 rounded-full bg-white/[0.03] border border-white/10 flex items-center justify-center mx-auto mb-8 text-champagne">
+              <Quote size={20} />
+            </div>
 
             {/* Quote Body */}
             <blockquote className="font-serif text-xl sm:text-2xl md:text-3xl text-white/95 font-light leading-relaxed italic mb-10 max-w-3xl mx-auto">
@@ -56,7 +56,7 @@ export default function TestimonialsSection() {
               <span className="font-sans text-xs text-neutral-400 tracking-widest uppercase mt-1">
                 {testimonial.role} · {testimonial.city}
               </span>
-              <span className="font-mono text-[11px] text-neutral-500 mt-1">
+              <span className="font-mono text-[11px] text-champagne/80 mt-1">
                 Proyek: {testimonial.project}
               </span>
             </div>
@@ -82,11 +82,18 @@ export default function TestimonialsSection() {
             </div>
           </div>
 
-          {/* Minimalist Index Indicator */}
-          <div className="flex items-center justify-center gap-3 mt-8 font-mono text-xs text-neutral-500">
-            <span>0{current + 1}</span>
-            <span className="w-12 h-px bg-white/15" />
-            <span>0{TESTIMONIALS.length}</span>
+          {/* Direct Interactive Pagination Dots */}
+          <div className="flex items-center justify-center gap-2 mt-8">
+            {TESTIMONIALS.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrent(i)}
+                className={`transition-all duration-300 rounded-full ${
+                  i === current ? "w-8 h-1.5 bg-champagne" : "w-1.5 h-1.5 bg-white/20 hover:bg-white/40"
+                }`}
+                aria-label={`Lihat testimoni ke-${i + 1}`}
+              />
+            ))}
           </div>
         </div>
       </div>

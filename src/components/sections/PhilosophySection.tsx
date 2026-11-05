@@ -1,81 +1,123 @@
+"use client";
+
+import { Activity, Eye, ShieldAlert, Sparkles } from "lucide-react";
+
 export default function PhilosophySection() {
   return (
-    <section className="section-padding bg-[#050505] relative overflow-hidden border-t border-white/[0.08]" aria-label="Filosofi ASEVA">
+    <section
+      className="py-28 md:py-36 bg-[#090807] relative overflow-hidden border-t border-white/[0.08]"
+      aria-label="Filosofi ASEVA"
+    >
       {/* Architectural Grid Pattern with radial mask fade */}
-      <div className="absolute inset-0 pattern-grid opacity-60 pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_80%)]" />
+      <div className="absolute inset-0 pattern-grid opacity-35 pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]" />
 
-      {/* Ambient Champagne Spotlight */}
-      <div className="absolute top-1/2 left-10 -translate-y-1/2 w-96 h-96 bg-champagne/[0.03] rounded-full blur-[140px] pointer-events-none" />
+      {/* Warm Smoked Bronze Spotlight */}
+      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[600px] h-[600px] bg-champagne/[0.035] rounded-full blur-[180px] pointer-events-none" />
 
-      {/* Subtle Background Watermark */}
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 select-none pointer-events-none opacity-[0.025] font-serif text-[18vw] leading-none whitespace-nowrap text-white">
+      {/* Subtle Background Watermark Numeral */}
+      <div className="absolute right-4 top-1/2 -translate-y-1/2 select-none pointer-events-none opacity-[0.03] font-serif text-[24vw] leading-none whitespace-nowrap text-white font-light">
         A S E V A
       </div>
 
       <div className="section-container relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left — Manifest Frame (5 cols) */}
           <div className="lg:col-span-5 order-2 lg:order-1">
-            <div className="relative p-10 md:p-14 bg-[#0A0A0A]/95 rounded-3xl border border-white/[0.08] backdrop-blur-2xl shadow-[0_25px_60px_rgba(0,0,0,0.8)]">
-              <span className="font-mono text-[9px] tracking-[0.3em] uppercase text-champagne block mb-6 font-medium">
-                MANIFIESTO ATELIER · 2026
-              </span>
+            <div className="relative p-8 md:p-12 bg-[#0E0D0B]/95 rounded-3xl border border-white/[0.09] backdrop-blur-2xl shadow-[0_30px_70px_rgba(0,0,0,0.85)]">
+              {/* Header inside manifesto */}
+              <div className="flex items-center justify-between pb-4 border-b border-white/[0.08] mb-6">
+                <span className="font-mono text-[9px] tracking-[0.3em] uppercase text-champagne font-medium">
+                  MANIFIESTO ATELIER · NO. 01
+                </span>
+                <span className="text-neutral-500 font-mono text-[10px]">EST. BANDUNG</span>
+              </div>
 
               <blockquote className="font-serif text-2xl md:text-3xl text-white leading-relaxed font-light italic mb-8">
-                &ldquo;Bukan sekadar estetika dekoratif — ini adalah pertemuan presisi antara biologi air, fisika gravitasi, dan keheningan seni rupa.&rdquo;
+                &ldquo;Bukan sekadar dekorasi air — ini adalah perpaduan presisi antara biologi satwa purba, fisika gravitasi, dan keheningan seni rupa.&rdquo;
               </blockquote>
 
               <div className="pt-6 border-t border-white/[0.08] flex items-center justify-between">
                 <div>
                   <span className="font-serif text-base text-white block font-light">ASEVA AQUATICS</span>
-                  <span className="font-sans text-[10px] text-neutral-500 tracking-widest uppercase">Prinsip Rekayasa Ruang</span>
+                  <span className="font-sans text-[10px] text-neutral-400 tracking-widest uppercase">
+                    Prinsip Rekayasa Hidrologi Ruang
+                  </span>
                 </div>
-                <div className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center">
+                <div className="w-8 h-8 rounded-full border border-champagne/30 bg-champagne/[0.06] flex items-center justify-center">
                   <span className="text-[10px] text-champagne font-serif">✦</span>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right — Narrative & Technical Excellence (7 cols) */}
+          {/* Right — Narrative & 3 Tactile Telemetry Milestones (7 cols) */}
           <div className="lg:col-span-7 order-1 lg:order-2">
-            <div className="flex items-center gap-3 mb-4">
-              <span className="w-8 h-px bg-champagne-dim" />
-              <span className="section-label">FILOSOFI & KEHENINGAN RUANG</span>
-            </div>
+            <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-champagne-dim block mb-3 font-medium">
+              FILOSOFI & KEHENINGAN
+            </span>
 
-            <h2 className="font-serif text-3xl md:text-5xl text-white font-light leading-tight mb-8">
+            <h2 className="font-serif text-3xl sm:text-5xl md:text-6xl text-white font-light leading-[1.1] mb-6">
               Ekosistem Hidup sebagai
               <span className="block font-serif italic text-transparent bg-clip-text bg-gradient-to-r from-white via-champagne to-champagne-dim">
-                Pusat Ketenangan Hunian.
+                Pusat Ketenangan Jiwa.
               </span>
             </h2>
 
-            <div className="space-y-6 text-neutral-400 font-sans text-sm md:text-base leading-relaxed font-light mb-12">
+            <div className="space-y-4 text-neutral-400 font-sans text-xs md:text-sm leading-relaxed font-light mb-10">
               <p>
-                ASEVA AQUATICS lahir dari penolakan terhadap konsep akuarium komersial yang bising, berantakan kabel, dan sekadar perakit kaca biasa. Kami memandang akuarium mewah sebagai <strong className="text-white font-normal">elemen arsitektural permanen</strong> yang menuntut perhitungan beban struktur, akustik hidrolika hening, dan kejernihan optik kristal.
+                ASEVA AQUATICS hadir dari penolakan terhadap konsep akuarium komersial biasa yang berantakan kabel, bising oleh dengung pompa, dan sekadar kaca rakitan. Kami memandang akuarium mewah sebagai <strong className="text-white font-normal">instalasi arsitektural permanen</strong> yang menuntut perhitungan beban tonase sipil, akustik hidrolika hening, dan kejernihan optik kristal.
               </p>
               <p>
-                Setiap karya kami di Bandung, Jakarta, dan Jawa Barat dirancang berdampingan dengan arsitek dan desainer interior Anda. Mengintegrasikan teknologi pendukung kehidupan (<em>life-support</em>) yang sepenuhnya tak kasat mata di balik dinding dan kabinet bernilai seni.
+                Setiap karya di Bandung, Jakarta, dan Jawa Barat dirancang selaras dengan masterplan arsitek dan desainer interior Anda. Seluruh teknologi penopang kehidupan (<em>life-support system</em>) tersembunyi sempurna di balik dinding dan panel artistik.
               </p>
             </div>
 
-            {/* 3 Technical Milestones */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 border-t border-white/[0.08] pt-8">
-              <div>
-                <span className="font-mono text-xs text-champagne block mb-1 font-medium">&lt; 28 dB</span>
-                <span className="font-serif text-base text-white block mb-0.5 font-light">Akustik Senyap</span>
-                <p className="text-[11px] text-neutral-400 font-sans">Pompa berisolasi getaran tanpa dengung</p>
+            {/* 3 Tactile Telemetry Gauge Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 border-t border-white/[0.08] pt-6">
+              {/* Gauge 1: Acoustics */}
+              <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/[0.06] flex flex-col justify-between">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="font-mono text-xs text-champagne font-medium">&lt; 28 dB</span>
+                  <div className="flex items-end gap-0.5 h-3">
+                    <span className="w-0.5 h-1.5 bg-champagne rounded-full animate-pulse" />
+                    <span className="w-0.5 h-3 bg-champagne rounded-full" />
+                    <span className="w-0.5 h-2 bg-champagne rounded-full" />
+                  </div>
+                </div>
+                <span className="font-serif text-base text-white block mb-0.5 font-light">
+                  Akustik Senyap
+                </span>
+                <p className="text-[11px] text-neutral-400 font-sans font-light">
+                  Pompa getaran teredam tanpa dengung motor
+                </p>
               </div>
-              <div>
-                <span className="font-mono text-xs text-champagne block mb-1 font-medium">99.2% Optik</span>
-                <span className="font-serif text-base text-white block mb-0.5 font-light">Low-Iron Crystal</span>
-                <p className="text-[11px] text-neutral-400 font-sans">Kaca bebas rona kehijauan</p>
+
+              {/* Gauge 2: Optic */}
+              <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/[0.06] flex flex-col justify-between">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="font-mono text-xs text-champagne font-medium">99.2% Optik</span>
+                  <Eye size={12} className="text-champagne" />
+                </div>
+                <span className="font-serif text-base text-white block mb-0.5 font-light">
+                  Low-Iron Crystal
+                </span>
+                <p className="text-[11px] text-neutral-400 font-sans font-light">
+                  Kaca bebas rona kehijauan, warna air 100% murni
+                </p>
               </div>
-              <div>
-                <span className="font-mono text-xs text-champagne block mb-1 font-medium">0 Pipa Terlihat</span>
-                <span className="font-serif text-base text-white block mb-0.5 font-light">Sistem Dry-Wet</span>
-                <p className="text-[11px] text-neutral-400 font-sans">Jalur sirkulasi tersembunyi total</p>
+
+              {/* Gauge 3: Zero Piping */}
+              <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/[0.06] flex flex-col justify-between">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="font-mono text-xs text-champagne font-medium">0 Pipa Terlihat</span>
+                  <Sparkles size={12} className="text-champagne" />
+                </div>
+                <span className="font-serif text-base text-white block mb-0.5 font-light">
+                  Sistem Dry-Wet
+                </span>
+                <p className="text-[11px] text-neutral-400 font-sans font-light">
+                  Semua jalur sirkulasi terselubung di dalam kabinet
+                </p>
               </div>
             </div>
           </div>

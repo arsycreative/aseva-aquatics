@@ -5,6 +5,7 @@ import PhilosophySection from "@/components/sections/PhilosophySection";
 import StatsSection from "@/components/sections/StatsSection";
 import ProcessSection from "@/components/sections/ProcessSection";
 import FeaturedFishSection from "@/components/sections/FeaturedFishSection";
+import AcousticEngineeringSection from "@/components/sections/AcousticEngineeringSection";
 import PortfolioPreviewSection from "@/components/sections/PortfolioPreviewSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import FAQSection from "@/components/sections/FAQSection";
@@ -25,6 +26,7 @@ export default function HomePage() {
       <StatsSection />
       <ProcessSection />
       <FeaturedFishSection />
+      <AcousticEngineeringSection />
       <PortfolioPreviewSection />
       <TestimonialsSection />
       <FAQSection />
