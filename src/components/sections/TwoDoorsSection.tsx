@@ -95,8 +95,8 @@ export default function TwoDoorsSection() {
                 <h3 className="font-serif text-3xl md:text-4xl text-white font-light leading-tight mb-4 group-hover:text-champagne transition-colors duration-500">
                   Koleksi Arwana Super Red
                 </h3>
-                <p className="font-sans text-xs md:text-sm text-neutral-400 leading-relaxed max-w-md mb-8 font-light">
-                  Kurasi individual per ekor kualitas kontes. Dilengkapi microchip 15-digit resmi terverifikasi, sertifikat penangkaran captive-bred BKSDA/CITES, dan garansi selamat (DOA) 100%.
+                <p className="font-sans text-xs md:text-sm text-neutral-300 leading-relaxed max-w-md mb-6 font-light">
+                  Kurasi individual kualitas kontes berlisensi CITES resmi, bersertifikat captive-bred BKSDA, dan garansi selamat (DOA) 100% se-Indonesia.
                 </p>
 
                 {/* Specs Pills */}
@@ -169,8 +169,8 @@ export default function TwoDoorsSection() {
                 <h3 className="font-serif text-3xl md:text-4xl text-white font-light leading-tight mb-4 group-hover:text-champagne transition-colors duration-500">
                   Aquarium Custom &amp; Galeri
                 </h3>
-                <p className="font-sans text-xs md:text-sm text-neutral-400 leading-relaxed max-w-md mb-8 font-light">
-                  Perancangan akuarium mewah berintegrasi interior arsitektur. Kaca ultra-clear kristal optik 99.2%, sistem pipa filtrasi dry-wet senyap total tanpa getaran, dan kabinet bernilai seni rupa.
+                <p className="font-sans text-xs md:text-sm text-neutral-300 leading-relaxed max-w-md mb-6 font-light">
+                  Perancangan akuarium mewah berintegrasi arsitektur interior: kaca kristal low-iron 99.2%, sirkulasi dry-wet senyap total, dan garansi kebocoran struktural.
                 </p>
 
                 {/* Specs Pills */}
