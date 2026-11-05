@@ -3,7 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Cpu, ShieldCheck, Sparkles, CheckCircle2, Info } from "lucide-react";
+import { ArrowRight, Cpu, ShieldCheck } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { FISH_COLLECTION } from "@/lib/data";
 import { STATUS_CLASSES, STATUS_LABELS, getWhatsAppUrl } from "@/lib/utils";
 
@@ -55,8 +56,14 @@ export default function FeaturedFishSection() {
       <div className="absolute inset-0 pattern-dots opacity-20 pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]" />
 
       <div className="section-container relative z-10">
-        {/* Curatorial Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 md:mb-16">
+        {/* Curatorial Header with Scroll Reveal */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 md:mb-16"
+        >
           <div>
             <div className="inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 mb-4">
               <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
@@ -79,12 +86,18 @@ export default function FeaturedFishSection() {
             <span>Buka Seluruh Arsip Koleksi</span>
             <ArrowRight size={14} className="text-champagne" />
           </Link>
-        </div>
+        </motion.div>
 
-        {/* Interactive Curator's Showcase — Asymmetric 7 / 5 */}
+        {/* Interactive Curator's Showcase — Asymmetric 7 / 5 with Scroll Motion */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Main Hero Specimen Stage (7 cols) */}
-          <div className="lg:col-span-7 bg-[#0A0A0A] rounded-3xl border border-white/[0.1] p-6 md:p-8 relative overflow-hidden shadow-[0_25px_70px_rgba(0,0,0,0.85)]">
+          {/* Main Hero Specimen Stage with Scroll Reveal (7 cols) */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-7 bg-[#0A0A0A] rounded-3xl border border-white/[0.1] p-6 md:p-8 relative overflow-hidden shadow-[0_25px_70px_rgba(0,0,0,0.85)]"
+          >
             {/* Top Stage Metadata */}
             <div className="flex items-center justify-between pb-5 border-b border-white/[0.08] mb-6">
               <div className="flex items-center gap-3">
@@ -103,15 +116,26 @@ export default function FeaturedFishSection() {
 
             {/* Specimen High-Resolution Image Canvas with Interactive Hotspots */}
             <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-black border border-white/[0.06] mb-6 group">
-              <Image
-                src={activeFish.coverImage}
-                alt={`${activeFish.name} — Arwana Super Red ASEVA`}
-                fill
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                sizes="(max-width: 1024px) 100vw, 60vw"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeFish.id}
+                  initial={{ opacity: 0, scale: 0.98 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 1.02 }}
+                  transition={{ duration: 0.5 }}
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src={activeFish.coverImage}
+                    alt={`${activeFish.name} — Arwana Super Red ASEVA`}
+                    fill
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    sizes="(max-width: 1024px) 100vw, 60vw"
+                    priority
+                  />
+                </motion.div>
+              </AnimatePresence>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 pointer-events-none" />
 
               {/* Interactive Hotspot Pins */}
               {hotspots.map((spot) => (
@@ -131,14 +155,18 @@ export default function FeaturedFishSection() {
 
                   {/* Hotspot Floating Tooltip */}
                   {activeHotspot === spot.id && (
-                    <div className="absolute bottom-9 left-1/2 -translate-x-1/2 w-56 p-3 rounded-xl bg-black/95 border border-champagne/40 backdrop-blur-xl shadow-2xl z-30 text-left">
+                    <motion.div
+                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      className="absolute bottom-9 left-1/2 -translate-x-1/2 w-56 p-3 rounded-xl bg-black/95 border border-champagne/40 backdrop-blur-xl shadow-2xl z-30 text-left"
+                    >
                       <span className="font-serif text-xs text-champagne block font-medium mb-1">
                         {spot.title}
                       </span>
                       <p className="font-sans text-[11px] text-neutral-300 leading-tight font-light">
                         {spot.desc}
                       </p>
-                    </div>
+                    </motion.div>
                   )}
                 </div>
               ))}
@@ -195,10 +223,16 @@ export default function FeaturedFishSection() {
                 <span>Lihat Sertifikat Lengkap</span>
               </Link>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Right Specimen Selector Queue (5 cols) */}
-          <div className="lg:col-span-5 space-y-4">
+          {/* Right Specimen Selector Queue with Scroll Reveal (5 cols) */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-5 space-y-4"
+          >
             <div className="flex items-center justify-between pb-2 border-b border-white/[0.08]">
               <span className="font-mono text-[10px] tracking-[0.2em] text-neutral-400 uppercase">
                 DAFTAR SPESIMEN SIAP ADOPSI
@@ -272,7 +306,7 @@ export default function FeaturedFishSection() {
                 <ShieldCheck size={18} className="text-champagne flex-shrink-0 mt-0.5" />
                 <div>
                   <h4 className="font-serif text-sm text-white font-medium mb-1">
-                    Jaminan Legalitas & Kesehatan 100%
+                    Jaminan Legalitas &amp; Kesehatan 100%
                   </h4>
                   <p className="text-[11px] text-neutral-400 font-sans leading-relaxed font-light">
                     Semua arwana ditranspor menggunakan tabung oksigen bertekanan medis dengan garansi selamat (DOA) sampai ke alamat Anda di seluruh Indonesia.
@@ -280,7 +314,7 @@ export default function FeaturedFishSection() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

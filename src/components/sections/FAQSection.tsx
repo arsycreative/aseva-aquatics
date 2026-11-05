@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Plus, Minus, MessageCircle, HelpCircle } from "lucide-react";
+import { Plus, Minus, MessageCircle } from "lucide-react";
+import { motion } from "framer-motion";
 import { FAQ_ITEMS } from "@/lib/data";
 import { getWhatsAppUrl } from "@/lib/utils";
 
@@ -12,10 +13,16 @@ export default function FAQSection() {
     <section className="py-28 md:py-36 bg-black border-t border-white/[0.08]" aria-label="FAQ ASEVA AQUATICS">
       <div className="section-container">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20">
-          {/* Left Column (5 cols) */}
-          <div className="lg:col-span-5">
+          {/* Left Column with Scroll Reveal (5 cols) */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-5"
+          >
             <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-champagne block mb-3 font-medium">
-              TRANSPARANSI & PANDUAN AWAL
+              TRANSPARANSI &amp; PANDUAN AWAL
             </span>
             <h2 className="font-serif text-3xl sm:text-5xl text-white font-light leading-tight mb-6">
               Pertimbangan Teknis Sebelum Memulai
@@ -51,10 +58,16 @@ export default function FAQSection() {
                 }),
               }}
             />
-          </div>
+          </motion.div>
 
-          {/* Right Column (7 cols) — Accordion */}
-          <div className="lg:col-span-7 divide-y divide-white/[0.08]">
+          {/* Right Column with Scroll Reveal (7 cols) — Accordion */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-7 divide-y divide-white/[0.08]"
+          >
             {FAQ_ITEMS.map((item, index) => (
               <div
                 key={index}
@@ -94,7 +107,7 @@ export default function FAQSection() {
                 </div>
               </div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

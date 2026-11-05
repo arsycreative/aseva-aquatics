@@ -1,16 +1,30 @@
+"use client";
+
+import { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { MessageCircle, ArrowRight, ShieldCheck, Clock, MapPin } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { getWhatsAppUrl } from "@/lib/utils";
 
 export default function ConsultationCTA() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+
+  const bgY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+
   return (
     <section
+      ref={containerRef}
       className="relative py-28 md:py-36 bg-black overflow-hidden border-t border-white/[0.08]"
       aria-label="Invitasi konsultasi pribadi"
     >
-      {/* Background Architectural Image Layer with Dark Cinema Grading */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+      {/* Background Architectural Image Layer with Dark Cinema Grading & Scroll Parallax */}
+      <motion.div style={{ y: bgY }} className="absolute inset-0 z-0 h-[120%] -top-[10%] overflow-hidden pointer-events-none">
         <Image
           src="/images/aquarium-interior.jpg"
           alt="Atmosphere Aquarium Custom ASEVA AQUATICS"
@@ -21,7 +35,7 @@ export default function ConsultationCTA() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/85 to-black/75" />
         <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black" />
-      </div>
+      </motion.div>
 
       {/* Subtle Pattern Grid Accent */}
       <div className="absolute inset-0 pattern-grid opacity-30 pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]" />
@@ -29,7 +43,13 @@ export default function ConsultationCTA() {
       {/* Ambient background spotlight */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-champagne/[0.03] rounded-full blur-[160px] pointer-events-none" />
 
-      <div className="section-container relative z-10 text-center max-w-3xl mx-auto">
+      <motion.div
+        initial={{ opacity: 0, y: 35 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        className="section-container relative z-10 text-center max-w-3xl mx-auto"
+      >
         <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-white/10 bg-white/[0.04] backdrop-blur-md mb-8">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
           <span className="text-[10px] font-sans tracking-[0.25em] uppercase text-champagne font-medium">
@@ -80,7 +100,7 @@ export default function ConsultationCTA() {
             <span>Kerahasiaan data klien terjamin</span>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

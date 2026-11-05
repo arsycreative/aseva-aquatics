@@ -1,6 +1,7 @@
 "use client";
 
-import { Activity, Eye, ShieldAlert, Sparkles } from "lucide-react";
+import { Activity, Eye, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function PhilosophySection() {
   return (
@@ -21,8 +22,14 @@ export default function PhilosophySection() {
 
       <div className="section-container relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left — Manifest Frame (5 cols) */}
-          <div className="lg:col-span-5 order-2 lg:order-1">
+          {/* Left — Manifest Frame with Scroll Motion (5 cols) */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-5 order-2 lg:order-1"
+          >
             <div className="relative p-8 md:p-12 bg-[#0E0D0B]/95 rounded-3xl border border-white/[0.09] backdrop-blur-2xl shadow-[0_30px_70px_rgba(0,0,0,0.85)]">
               {/* Header inside manifesto */}
               <div className="flex items-center justify-between pb-4 border-b border-white/[0.08] mb-6">
@@ -33,7 +40,7 @@ export default function PhilosophySection() {
               </div>
 
               <blockquote className="font-serif text-2xl md:text-3xl text-white leading-relaxed font-light italic mb-8">
-                &ldquo;Bukan sekadar dekorasi air — ini adalah perpaduan presisi antara biologi satwa purba, fisika gravitasi, dan keheningan seni rupa.&rdquo;
+                &ldquo;Bukan sekadar dekorasi air — ini adalah perpaduan presisi antara biologi satwa purba, fisika gravitasi, dan keindahan seni rupa.&rdquo;
               </blockquote>
 
               <div className="pt-6 border-t border-white/[0.08] flex items-center justify-between">
@@ -48,36 +55,48 @@ export default function PhilosophySection() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Right — Narrative & 3 Tactile Telemetry Milestones (7 cols) */}
-          <div className="lg:col-span-7 order-1 lg:order-2">
+          {/* Right — Narrative & 3 Tactile Telemetry Milestones with Scroll Motion (7 cols) */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-7 order-1 lg:order-2"
+          >
             <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-champagne-dim block mb-3 font-medium">
-              FILOSOFI & KEHENINGAN
+              FILOSOFI ATELIER &amp; REKAYASA RUANG
             </span>
 
             <h2 className="font-serif text-3xl sm:text-5xl md:text-6xl text-white font-light leading-[1.1] mb-6">
               Ekosistem Hidup sebagai
               <span className="block font-serif italic text-transparent bg-clip-text bg-gradient-to-r from-white via-champagne to-champagne-dim">
-                Pusat Ketenangan Jiwa.
+                Pusat Ketenangan &amp; Keindahan Ruang.
               </span>
             </h2>
 
             <div className="space-y-4 text-neutral-400 font-sans text-xs md:text-sm leading-relaxed font-light mb-10">
               <p>
-                ASEVA AQUATICS hadir dari penolakan terhadap konsep akuarium komersial biasa yang berantakan kabel, bising oleh dengung pompa, dan sekadar kaca rakitan. Kami memandang akuarium mewah sebagai <strong className="text-white font-normal">instalasi arsitektural permanen</strong> yang menuntut perhitungan beban tonase sipil, akustik hidrolika hening, dan kejernihan optik kristal.
+                ASEVA AQUATICS hadir dari penolakan terhadap konsep akuarium komersial biasa yang berantakan kabel, bising oleh getaran pompa, dan sekadar kaca rakitan. Kami memandang akuarium mewah sebagai <strong className="text-white font-normal">instalasi arsitektural permanen</strong> yang menuntut perhitungan beban tonase sipil, peredaman hidrolika, dan kejernihan optik kristal.
               </p>
               <p>
                 Setiap karya di Bandung, Jakarta, dan Jawa Barat dirancang selaras dengan masterplan arsitek dan desainer interior Anda. Seluruh teknologi penopang kehidupan (<em>life-support system</em>) tersembunyi sempurna di balik dinding dan panel artistik.
               </p>
             </div>
 
-            {/* 3 Tactile Telemetry Gauge Cards */}
+            {/* 3 Tactile Telemetry Gauge Cards with Staggered Scroll Motion */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 border-t border-white/[0.08] pt-6">
               {/* Gauge 1: Acoustics */}
-              <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/[0.06] flex flex-col justify-between">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="p-4 rounded-2xl bg-white/[0.02] border border-white/[0.06] flex flex-col justify-between"
+              >
                 <div className="flex items-center justify-between mb-3">
-                  <span className="font-mono text-xs text-champagne font-medium">&lt; 28 dB</span>
+                  <span className="font-mono text-xs text-champagne font-medium">Sine-Wave</span>
                   <div className="flex items-end gap-0.5 h-3">
                     <span className="w-0.5 h-1.5 bg-champagne rounded-full animate-pulse" />
                     <span className="w-0.5 h-3 bg-champagne rounded-full" />
@@ -85,15 +104,21 @@ export default function PhilosophySection() {
                   </div>
                 </div>
                 <span className="font-serif text-base text-white block mb-0.5 font-light">
-                  Akustik Senyap
+                  Hidrolika Senyap
                 </span>
                 <p className="text-[11px] text-neutral-400 font-sans font-light">
                   Pompa getaran teredam tanpa dengung motor
                 </p>
-              </div>
+              </motion.div>
 
               {/* Gauge 2: Optic */}
-              <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/[0.06] flex flex-col justify-between">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="p-4 rounded-2xl bg-white/[0.02] border border-white/[0.06] flex flex-col justify-between"
+              >
                 <div className="flex items-center justify-between mb-3">
                   <span className="font-mono text-xs text-champagne font-medium">99.2% Optik</span>
                   <Eye size={12} className="text-champagne" />
@@ -104,10 +129,16 @@ export default function PhilosophySection() {
                 <p className="text-[11px] text-neutral-400 font-sans font-light">
                   Kaca bebas rona kehijauan, warna air 100% murni
                 </p>
-              </div>
+              </motion.div>
 
               {/* Gauge 3: Zero Piping */}
-              <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/[0.06] flex flex-col justify-between">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="p-4 rounded-2xl bg-white/[0.02] border border-white/[0.06] flex flex-col justify-between"
+              >
                 <div className="flex items-center justify-between mb-3">
                   <span className="font-mono text-xs text-champagne font-medium">0 Pipa Terlihat</span>
                   <Sparkles size={12} className="text-champagne" />
@@ -118,9 +149,9 @@ export default function PhilosophySection() {
                 <p className="text-[11px] text-neutral-400 font-sans font-light">
                   Semua jalur sirkulasi terselubung di dalam kabinet
                 </p>
-              </div>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Compass, Layers, Wrench, CheckCircle, Sparkles } from "lucide-react";
-import { PROCESS_STEPS } from "@/lib/data";
+import { ArrowRight, Compass, CheckCircle, Sparkles } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function ProcessSection() {
   const [activeStep, setActiveStep] = useState(0);
@@ -65,8 +65,14 @@ export default function ProcessSection() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-champagne/[0.025] rounded-full blur-[170px] pointer-events-none" />
 
       <div className="section-container relative z-10">
-        {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 md:mb-20">
+        {/* Header with Scroll Motion */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 md:mb-20"
+        >
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 mb-4">
               <Compass size={12} className="text-champagne" />
@@ -88,10 +94,16 @@ export default function ProcessSection() {
             <span>Panduan Metodologi Penuh</span>
             <ArrowRight size={14} className="text-champagne" />
           </Link>
-        </div>
+        </motion.div>
 
-        {/* Phase Navigation Progression Bar */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
+        {/* Phase Navigation Progression Bar with Scroll Stagger */}
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-8"
+        >
           {stepDetails.map((step, index) => {
             const isActive = index === activeStep;
             return (
@@ -105,7 +117,10 @@ export default function ProcessSection() {
                 }`}
               >
                 {isActive && (
-                  <span className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-champagne via-white to-champagne" />
+                  <motion.span
+                    layoutId="active-step-indicator"
+                    className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-champagne via-white to-champagne"
+                  />
                 )}
                 <div className="flex items-center justify-between mb-2">
                   <span className="font-mono text-[10px] tracking-widest text-champagne uppercase font-medium">
@@ -121,63 +136,78 @@ export default function ProcessSection() {
               </button>
             );
           })}
-        </div>
+        </motion.div>
 
-        {/* Active Phase Deep Dive Card */}
-        <div className="bg-[#0C0C10] rounded-3xl border border-white/[0.08] p-8 md:p-14 shadow-[0_25px_60px_rgba(0,0,0,0.85)] relative overflow-hidden">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            {/* Left: Phase Narrative */}
-            <div className="lg:col-span-7">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 mb-4">
-                <Sparkles size={11} className="text-champagne" />
-                <span className="font-mono text-[10px] tracking-widest text-champagne uppercase">
-                  {current.badge}
-                </span>
-              </div>
-              <h3 className="font-serif text-3xl sm:text-4xl text-white font-light mb-4">
-                {current.name}
-              </h3>
-              <p className="font-sans text-xs sm:text-sm text-neutral-400 font-light leading-relaxed mb-8">
-                {current.highlight}
-              </p>
+        {/* Active Phase Deep Dive Card with AnimatePresence */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          className="bg-[#0C0C10] rounded-3xl border border-white/[0.08] p-8 md:p-14 shadow-[0_25px_60px_rgba(0,0,0,0.85)] relative overflow-hidden"
+        >
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeStep}
+              initial={{ opacity: 0, x: 15 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -15 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center"
+            >
+              {/* Left: Phase Narrative */}
+              <div className="lg:col-span-7">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 mb-4">
+                  <Sparkles size={11} className="text-champagne" />
+                  <span className="font-mono text-[10px] tracking-widest text-champagne uppercase">
+                    {current.badge}
+                  </span>
+                </div>
+                <h3 className="font-serif text-3xl sm:text-4xl text-white font-light mb-4">
+                  {current.name}
+                </h3>
+                <p className="font-sans text-xs sm:text-sm text-neutral-400 font-light leading-relaxed mb-8">
+                  {current.highlight}
+                </p>
 
-              {/* Step Key Deliverable */}
-              <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] flex items-center gap-3">
-                <CheckCircle size={16} className="text-champagne flex-shrink-0" />
-                <div>
-                  <span className="text-[10px] text-neutral-500 uppercase font-sans block">Hasil Kerja Tahap Ini</span>
-                  <span className="text-xs sm:text-sm text-white font-sans font-medium">{current.deliverable}</span>
+                {/* Step Key Deliverable */}
+                <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] flex items-center gap-3">
+                  <CheckCircle size={16} className="text-champagne flex-shrink-0" />
+                  <div>
+                    <span className="text-[10px] text-neutral-500 uppercase font-sans block">Hasil Kerja Tahap Ini</span>
+                    <span className="text-xs sm:text-sm text-white font-sans font-medium">{current.deliverable}</span>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Right: Technical Telemetry Box */}
-            <div className="lg:col-span-5 bg-black/60 rounded-2xl border border-white/[0.06] p-6 space-y-4">
-              <div className="flex items-center justify-between text-xs pb-3 border-b border-white/[0.06]">
-                <span className="text-neutral-500 font-sans">Durasi Pengerjaan:</span>
-                <span className="font-mono text-champagne font-medium">{current.duration}</span>
-              </div>
-              <div className="flex items-center justify-between text-xs pb-3 border-b border-white/[0.06]">
-                <span className="text-neutral-500 font-sans">Presisi Toleransi:</span>
-                <span className="font-sans text-neutral-200 text-right">{current.tolerance}</span>
-              </div>
-              <div className="flex items-center justify-between text-xs pt-1">
-                <span className="text-neutral-500 font-sans">Keterlibatan Klien:</span>
-                <span className="font-sans text-white">Review & Persetujuan</span>
-              </div>
+              {/* Right: Technical Telemetry Box */}
+              <div className="lg:col-span-5 bg-black/60 rounded-2xl border border-white/[0.06] p-6 space-y-4">
+                <div className="flex items-center justify-between text-xs pb-3 border-b border-white/[0.06]">
+                  <span className="text-neutral-500 font-sans">Durasi Pengerjaan:</span>
+                  <span className="font-mono text-champagne font-medium">{current.duration}</span>
+                </div>
+                <div className="flex items-center justify-between text-xs pb-3 border-b border-white/[0.06]">
+                  <span className="text-neutral-500 font-sans">Presisi Toleransi:</span>
+                  <span className="font-sans text-neutral-200 text-right">{current.tolerance}</span>
+                </div>
+                <div className="flex items-center justify-between text-xs pt-1">
+                  <span className="text-neutral-500 font-sans">Keterlibatan Klien:</span>
+                  <span className="font-sans text-white">Review &amp; Persetujuan</span>
+                </div>
 
-              <div className="pt-4 border-t border-white/[0.06]">
-                <Link
-                  href="/konsultasi"
-                  className="w-full btn-outline text-xs justify-center py-2.5 flex items-center gap-2"
-                >
-                  <span>Mulai Konsultasi Fase 01</span>
-                  <ArrowRight size={13} />
-                </Link>
+                <div className="pt-4 border-t border-white/[0.06]">
+                  <Link
+                    href="/konsultasi"
+                    className="w-full btn-outline text-xs justify-center py-2.5 flex items-center gap-2"
+                  >
+                    <span>Mulai Konsultasi Fase 01</span>
+                    <ArrowRight size={13} />
+                  </Link>
+                </div>
               </div>
-            </div>
-          </div>
-        </div>
+            </motion.div>
+          </AnimatePresence>
+        </motion.div>
       </div>
     </section>
   );

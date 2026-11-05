@@ -3,7 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Maximize2, Droplets, Shield, Compass } from "lucide-react";
+import { ArrowRight, Maximize2, Compass } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { PORTFOLIO_PROJECTS } from "@/lib/data";
 import { CATEGORY_LABELS } from "@/lib/utils";
 
@@ -30,8 +31,14 @@ export default function PortfolioPreviewSection() {
       <div className="absolute top-1/3 right-10 w-[35rem] h-[35rem] bg-champagne/[0.025] rounded-full blur-[160px] pointer-events-none" />
 
       <div className="section-container relative z-10">
-        {/* Editorial Header & Filter Tabs */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-14 md:mb-16">
+        {/* Editorial Header & Filter Tabs with Scroll Motion */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-14 md:mb-16"
+        >
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 mb-4">
               <Compass size={12} className="text-champagne" />
@@ -40,7 +47,7 @@ export default function PortfolioPreviewSection() {
               </span>
             </div>
             <h2 className="font-serif text-3xl sm:text-5xl text-white font-light leading-tight">
-              Instalasi Pilihan di Hunian & Komersial
+              Instalasi Pilihan di Hunian &amp; Komersial
             </h2>
             <p className="font-sans text-xs md:text-sm text-neutral-400 mt-2 font-light leading-relaxed max-w-xl">
               Setiap karya adalah perpaduan antara kalkulasi tonase sipil, transparansi kaca Diamant, dan keharmonisan interior.
@@ -68,33 +75,48 @@ export default function PortfolioPreviewSection() {
               </button>
             ))}
           </div>
-        </div>
+        </motion.div>
 
-        {/* Asymmetrical Editorial Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
-          {/* Main Hero Project (7 cols) */}
-          <div className="lg:col-span-7">
-            <ProjectCard project={heroProject} large />
-          </div>
+        {/* Asymmetrical Editorial Grid with Scroll Motion */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={filter}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12"
+          >
+            {/* Main Hero Project (7 cols) */}
+            <div className="lg:col-span-7">
+              <ProjectCard project={heroProject} large />
+            </div>
 
-          {/* Secondary Stack (5 cols) */}
-          <div className="lg:col-span-5 flex flex-col gap-8">
-            {sideProjects.length > 0 ? (
-              sideProjects.map((project) => (
-                <ProjectCard key={project.id} project={project} />
-              ))
-            ) : (
-              <div className="h-full flex items-center justify-center p-8 bg-[#0A0A0A]/50 rounded-3xl border border-white/[0.06] text-neutral-500 font-sans text-xs">
-                Kategori ini sedang dalam pembaruan dokumentasi foto.
-              </div>
-            )}
-          </div>
-        </div>
+            {/* Secondary Stack (5 cols) */}
+            <div className="lg:col-span-5 flex flex-col gap-8">
+              {sideProjects.length > 0 ? (
+                sideProjects.map((project) => (
+                  <ProjectCard key={project.id} project={project} />
+                ))
+              ) : (
+                <div className="h-full flex items-center justify-center p-8 bg-[#0A0A0A]/50 rounded-3xl border border-white/[0.06] text-neutral-500 font-sans text-xs">
+                  Kategori ini sedang dalam pembaruan dokumentasi foto.
+                </div>
+              )}
+            </div>
+          </motion.div>
+        </AnimatePresence>
 
-        {/* Bottom Explorer Action */}
-        <div className="flex items-center justify-between pt-6 border-t border-white/[0.08]">
+        {/* Bottom Explorer Action with Scroll Reveal */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="flex items-center justify-between pt-6 border-t border-white/[0.08]"
+        >
           <span className="font-mono text-xs text-neutral-400 tracking-wider">
-            ARSIP DOKUMENTASI PROYEK JAWA BARAT & JABODETABEK
+            ARSIP DOKUMENTASI PROYEK JAWA BARAT &amp; JABODETABEK
           </span>
           <Link
             href="/portofolio"
@@ -103,7 +125,7 @@ export default function PortfolioPreviewSection() {
             <span>Seluruh Studi Kasus ({PORTFOLIO_PROJECTS.length})</span>
             <ArrowRight size={14} className="text-champagne" />
           </Link>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
