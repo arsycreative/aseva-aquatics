@@ -2,30 +2,30 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { MessageCircle, CheckCircle } from "lucide-react";
+import { MessageCircle, CheckCircle, Shield, Sparkles, MapPin, Layers, Clock, ArrowRight } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/data";
 import { formatConsultationWhatsApp, getWhatsAppUrl } from "@/lib/utils";
 
 const INTEREST_OPTIONS = [
-  "Arwana Super Red",
-  "Aquarium Custom",
-  "Perawatan Aquarium",
-  "Kolaborasi Arsitek/Interior",
+  { id: "Arwana Super Red", label: "Arwana Super Red", desc: "Kurasi Spesimen Bersertifikat CITES" },
+  { id: "Aquarium Custom", label: "Aquarium Custom", desc: "Instalasi Kaca Kristal Arsitektural" },
+  { id: "Perawatan Aquarium", label: "Perawatan & Maintenance", desc: "Kunjungan & Stabilisasi Biologi Air" },
+  { id: "Kolaborasi Arsitek/Interior", label: "Kolaborasi Arsitek / Desainer", desc: "Integrasi Gambar Kerja & Sipil" },
 ];
 
 const CITY_OPTIONS = [
-  "Bandung Raya (Zona 1 — Prioritas Utama)",
-  "Jabodetabek (Zona 2)",
-  "Jawa Barat Lainnya (Zona 2)",
-  "Luar Area Layanan",
+  { id: "Bandung Raya (Zona 1 — Prioritas Utama)", label: "Bandung Raya", badge: "Zona 1 · Prioritas" },
+  { id: "Jabodetabek (Zona 2)", label: "Jabodetabek", badge: "Zona 2 · Terjadwal" },
+  { id: "Jawa Barat Lainnya (Zona 2)", label: "Jawa Barat Lainnya", badge: "Zona 2" },
+  { id: "Luar Area Layanan", label: "Luar Wilayah Jawa Barat", badge: "Konsultasi Khusus" },
 ];
 
 const BUDGET_OPTIONS = [
-  "Rp 15 juta — Rp 50 juta",
-  "Rp 50 juta — Rp 150 juta",
-  "Rp 150 juta — Rp 500 juta",
-  "Di atas Rp 500 juta",
-  "Belum yakin, ingin berdiskusi terlebih dahulu",
+  { id: "Rp 15 juta — Rp 50 juta", label: "Rp 15jt – 50jt", desc: "Unit Display Kompak" },
+  { id: "Rp 50 juta — Rp 150 juta", label: "Rp 50jt – 150jt", desc: "Koleksi Arwana / Custom 2–3 Meter" },
+  { id: "Rp 150 juta — Rp 500 juta", label: "Rp 150jt – 500jt", desc: "Instalasi Built-In Skala Villa" },
+  { id: "Di atas Rp 500 juta", label: "Di atas Rp 500jt", desc: "Proyek Mega Arsitektural" },
+  { id: "Belum yakin, ingin berdiskusi terlebih dahulu", label: "Fleksibel / Diskusi Awal", desc: "Penyesuaian Konsep Desain" },
 ];
 
 export default function KonsultasiPage() {
@@ -44,14 +44,14 @@ export default function KonsultasiPage() {
 
   const validate = () => {
     const newErrors: Record<string, string> = {};
-    if (!formData.name.trim()) newErrors.name = "Nama wajib diisi";
+    if (!formData.name.trim()) newErrors.name = "Nama lengkap wajib diisi";
     if (!formData.whatsapp.trim()) newErrors.whatsapp = "Nomor WhatsApp wajib diisi";
     else if (!/^(\+62|62|0)8[1-9][0-9]{6,10}$/.test(formData.whatsapp.replace(/\s/g, "")))
-      newErrors.whatsapp = "Format nomor Indonesia tidak valid";
-    if (!formData.city) newErrors.city = "Pilih kota/wilayah";
-    if (!formData.interest) newErrors.interest = "Pilih minat Anda";
-    if (!formData.budget) newErrors.budget = "Pilih rentang budget";
-    if (!formData.privacy) newErrors.privacy = "Anda harus menyetujui kebijakan privasi";
+      newErrors.whatsapp = "Format nomor Indonesia tidak valid (contoh: 08123456789)";
+    if (!formData.interest) newErrors.interest = "Pilih kategori layanan yang Anda butuhkan";
+    if (!formData.city) newErrors.city = "Pilih wilayah lokasi proyek Anda";
+    if (!formData.budget) newErrors.budget = "Pilih estimasi rentang investasi";
+    if (!formData.privacy) newErrors.privacy = "Anda harus menyetujui kebijakan privasi data";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -63,7 +63,7 @@ export default function KonsultasiPage() {
     // Submit to Netlify Forms
     const formElement = e.target as HTMLFormElement;
     const data = new FormData(formElement);
-    
+
     try {
       await fetch("/", {
         method: "POST",
@@ -78,13 +78,24 @@ export default function KonsultasiPage() {
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value, type } = e.target;
     setFormData((prev) => ({
       ...prev,
       [name]: type === "checkbox" ? (e.target as HTMLInputElement).checked : value,
     }));
+  };
+
+  const selectOption = (field: "interest" | "city" | "budget", value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+    if (errors[field]) {
+      setErrors((prev) => {
+        const next = { ...prev };
+        delete next[field];
+        return next;
+      });
+    }
   };
 
   if (submitted) {
@@ -164,169 +175,225 @@ export default function KonsultasiPage() {
                 data-netlify="true"
                 netlify-honeypot="bot-field"
                 onSubmit={handleSubmit}
-                className="space-y-8 bg-[#0A0A0A] p-8 md:p-12 rounded-3xl border border-white/[0.08] shadow-[0_20px_50px_rgba(0,0,0,0.6)]"
+                className="space-y-10 bg-[#0A0A0A] p-8 md:p-12 rounded-3xl border border-white/[0.08] shadow-[0_20px_50px_rgba(0,0,0,0.6)]"
               >
                 {/* Netlify hidden inputs */}
                 <input type="hidden" name="form-name" value="konsultasi" />
+                <input type="hidden" name="interest" value={formData.interest} />
+                <input type="hidden" name="city" value={formData.city} />
+                <input type="hidden" name="budget" value={formData.budget} />
                 <div className="hidden">
                   <input name="bot-field" tabIndex={-1} autoComplete="off" />
                 </div>
 
-                {/* Name & WA */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <label className="form-label" htmlFor="name">
-                      Nama Lengkap <span className="text-arwana">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      placeholder="Nama Anda"
-                      className="form-field"
-                      autoComplete="name"
-                    />
-                    {errors.name && (
-                      <p className="font-sans text-xs text-arwana mt-2">{errors.name}</p>
-                    )}
-                  </div>
-                  <div>
-                    <label className="form-label" htmlFor="whatsapp">
-                      Nomor WhatsApp <span className="text-arwana">*</span>
-                    </label>
-                    <input
-                      type="tel"
-                      id="whatsapp"
-                      name="whatsapp"
-                      value={formData.whatsapp}
-                      onChange={handleChange}
-                      placeholder="08xx xxxx xxxx"
-                      className="form-field"
-                      autoComplete="tel"
-                    />
-                    {errors.whatsapp && (
-                      <p className="font-sans text-xs text-arwana mt-2">{errors.whatsapp}</p>
-                    )}
-                  </div>
-                </div>
-
-                {/* Email */}
+                {/* Step 1: Minat Layanan (Interactive Cards) */}
                 <div>
-                  <label className="form-label" htmlFor="email">
-                    Alamat Email <span className="text-neutral-500 font-normal">(opsional)</span>
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="email@anda.com"
-                    className="form-field"
-                    autoComplete="email"
-                  />
-                </div>
-
-                {/* City & Interest */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <label className="form-label" htmlFor="city">
-                      Kota / Wilayah Proyek <span className="text-arwana">*</span>
+                  <div className="flex items-center justify-between mb-3">
+                    <label className="form-label mb-0">
+                      1. Kategori Layanan yang Anda Cari <span className="text-arwana">*</span>
                     </label>
-                    <select
-                      id="city"
-                      name="city"
-                      value={formData.city}
-                      onChange={handleChange}
-                      className="form-field appearance-none cursor-pointer"
-                    >
-                      <option value="">Pilih wilayah Anda</option>
-                      {CITY_OPTIONS.map((opt) => (
-                        <option key={opt} value={opt} className="bg-black text-white">{opt}</option>
-                      ))}
-                    </select>
-                    {errors.city && (
-                      <p className="font-sans text-xs text-arwana mt-2">{errors.city}</p>
-                    )}
+                    <span className="text-[10px] font-mono text-neutral-500">PILIH SALAH SATU</span>
                   </div>
-                  <div>
-                    <label className="form-label" htmlFor="interest">
-                      Kategori Layanan <span className="text-arwana">*</span>
-                    </label>
-                    <select
-                      id="interest"
-                      name="interest"
-                      value={formData.interest}
-                      onChange={handleChange}
-                      className="form-field appearance-none cursor-pointer"
-                    >
-                      <option value="">Pilih fokus ketertarikan Anda</option>
-                      {INTEREST_OPTIONS.map((opt) => (
-                        <option key={opt} value={opt} className="bg-black text-white">{opt}</option>
-                      ))}
-                    </select>
-                    {errors.interest && (
-                      <p className="font-sans text-xs text-arwana mt-2">{errors.interest}</p>
-                    )}
-                  </div>
-                </div>
-
-                {/* Budget */}
-                <div>
-                  <label className="form-label" htmlFor="budget">
-                    Estimasi Rentang Investasi <span className="text-arwana">*</span>
-                  </label>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {BUDGET_OPTIONS.map((opt) => (
-                      <label
-                        key={opt}
-                        className={`flex items-center gap-3 p-4 rounded-xl border cursor-pointer transition-all duration-300 ${
-                          formData.budget === opt
-                            ? "border-white bg-white/[0.08] text-white"
-                            : "border-white/10 text-neutral-400 hover:border-white/30"
-                        }`}
-                      >
-                        <input
-                          type="radio"
-                          name="budget"
-                          value={opt}
-                          checked={formData.budget === opt}
-                          onChange={handleChange}
-                          className="sr-only"
-                        />
-                        <span
-                          className={`w-3.5 h-3.5 rounded-full border flex-shrink-0 transition-all ${
-                            formData.budget === opt ? "bg-white border-white ring-2 ring-white/20" : "border-white/30"
+                    {INTEREST_OPTIONS.map((item) => {
+                      const isSelected = formData.interest === item.id;
+                      return (
+                        <div
+                          key={item.id}
+                          onClick={() => selectOption("interest", item.id)}
+                          className={`p-4 rounded-2xl border cursor-pointer transition-all duration-300 flex items-start justify-between ${
+                            isSelected
+                              ? "bg-white/[0.08] border-champagne shadow-lg shadow-black"
+                              : "bg-[#0D0D0D] border-white/[0.06] hover:border-white/25 hover:bg-white/[0.02]"
                           }`}
-                        />
-                        <span className="font-sans text-xs leading-tight font-light">{opt}</span>
-                      </label>
-                    ))}
+                        >
+                          <div>
+                            <span className="font-serif text-base text-white block mb-0.5 font-normal">
+                              {item.label}
+                            </span>
+                            <span className="text-[11px] font-sans text-neutral-400 font-light leading-tight block">
+                              {item.desc}
+                            </span>
+                          </div>
+                          <div
+                            className={`w-5 h-5 rounded-full border flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors ${
+                              isSelected
+                                ? "border-champagne bg-champagne text-black"
+                                : "border-white/20"
+                            }`}
+                          >
+                            {isSelected && <span className="text-[10px] font-bold">✓</span>}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  {errors.interest && (
+                    <p className="font-sans text-xs text-arwana mt-2">{errors.interest}</p>
+                  )}
+                </div>
+
+                {/* Step 2: Wilayah Proyek (Interactive Cards) */}
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <label className="form-label mb-0">
+                      2. Kota / Wilayah Proyek Anda <span className="text-arwana">*</span>
+                    </label>
+                    <span className="text-[10px] font-mono text-neutral-500">AREA LAYANAN</span>
+                  </div>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    {CITY_OPTIONS.map((city) => {
+                      const isSelected = formData.city === city.id;
+                      return (
+                        <div
+                          key={city.id}
+                          onClick={() => selectOption("city", city.id)}
+                          className={`p-3.5 rounded-2xl border cursor-pointer transition-all duration-300 text-center flex flex-col justify-between min-h-[85px] ${
+                            isSelected
+                              ? "bg-white/[0.08] border-champagne shadow-lg"
+                              : "bg-[#0D0D0D] border-white/[0.06] hover:border-white/25 hover:bg-white/[0.02]"
+                          }`}
+                        >
+                          <span className="font-serif text-sm text-white font-normal block mb-1">
+                            {city.label}
+                          </span>
+                          <span className="text-[9px] font-mono text-neutral-400 uppercase tracking-wider block">
+                            {city.badge}
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  {errors.city && (
+                    <p className="font-sans text-xs text-arwana mt-2">{errors.city}</p>
+                  )}
+                </div>
+
+                {/* Step 3: Rentang Investasi (Segmented Radio Cards) */}
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <label className="form-label mb-0">
+                      3. Estimasi Rentang Investasi <span className="text-arwana">*</span>
+                    </label>
+                    <span className="text-[10px] font-mono text-neutral-500">BUDGET RANGE</span>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {BUDGET_OPTIONS.map((opt) => {
+                      const isSelected = formData.budget === opt.id;
+                      return (
+                        <div
+                          key={opt.id}
+                          onClick={() => selectOption("budget", opt.id)}
+                          className={`p-4 rounded-xl border cursor-pointer transition-all duration-300 flex items-center justify-between ${
+                            isSelected
+                              ? "border-champagne bg-white/[0.08] text-white shadow-md shadow-black"
+                              : "border-white/10 bg-[#0D0D0D] text-neutral-400 hover:border-white/30"
+                          }`}
+                        >
+                          <div>
+                            <span className="font-sans text-xs font-medium text-white block">
+                              {opt.label}
+                            </span>
+                            <span className="font-sans text-[11px] text-neutral-400 font-light">
+                              {opt.desc}
+                            </span>
+                          </div>
+                          <div
+                            className={`w-4 h-4 rounded-full border flex items-center justify-center flex-shrink-0 transition-colors ${
+                              isSelected
+                                ? "border-champagne bg-champagne text-black"
+                                : "border-white/25"
+                            }`}
+                          >
+                            {isSelected && <span className="text-[8px] font-bold">✓</span>}
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
                   {errors.budget && (
                     <p className="font-sans text-xs text-arwana mt-2">{errors.budget}</p>
                   )}
                 </div>
 
-                {/* Message */}
-                <div>
-                  <label className="form-label" htmlFor="message">
-                    Deskripsi Visi / Catatan Tambahan <span className="text-neutral-500 font-normal">(opsional)</span>
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder="Ukuran ruangan, konsep arsitektur yang Anda inginkan, atau pertanyaan spesifik..."
-                    className="form-field resize-none"
-                    rows={4}
-                  />
+                {/* Step 4: Contact Details (Name, WA, Email) */}
+                <div className="pt-6 border-t border-white/[0.08] space-y-6">
+                  <span className="font-mono text-[10px] tracking-[0.25em] text-champagne uppercase block font-medium">
+                    4. IDENTITAS &amp; KONTAK PRIVAT
+                  </span>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                      <label className="form-label" htmlFor="name">
+                        Nama Lengkap <span className="text-arwana">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        placeholder="Nama Anda"
+                        className="form-field"
+                        autoComplete="name"
+                      />
+                      {errors.name && (
+                        <p className="font-sans text-xs text-arwana mt-2">{errors.name}</p>
+                      )}
+                    </div>
+                    <div>
+                      <label className="form-label" htmlFor="whatsapp">
+                        Nomor WhatsApp <span className="text-arwana">*</span>
+                      </label>
+                      <input
+                        type="tel"
+                        id="whatsapp"
+                        name="whatsapp"
+                        value={formData.whatsapp}
+                        onChange={handleChange}
+                        placeholder="08xx xxxx xxxx"
+                        className="form-field"
+                        autoComplete="tel"
+                      />
+                      {errors.whatsapp && (
+                        <p className="font-sans text-xs text-arwana mt-2">{errors.whatsapp}</p>
+                      )}
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="form-label" htmlFor="email">
+                      Alamat Email <span className="text-neutral-500 font-normal">(opsional)</span>
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="email@anda.com"
+                      className="form-field"
+                      autoComplete="email"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="form-label" htmlFor="message">
+                      Deskripsi Visi / Catatan Tambahan <span className="text-neutral-500 font-normal">(opsional)</span>
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      placeholder="Ukuran ruangan, konsep arsitektur yang Anda inginkan, preferensi ikan, atau pertanyaan spesifik..."
+                      className="form-field resize-none"
+                      rows={4}
+                    />
+                  </div>
                 </div>
 
-                {/* Privacy */}
+                {/* Privacy Checkbox */}
                 <div>
                   <label className="flex items-start gap-3 cursor-pointer">
                     <input
@@ -356,15 +423,17 @@ export default function KonsultasiPage() {
                   id="consultation-submit-btn"
                   className="btn-primary w-full justify-center py-4 text-xs font-semibold"
                 >
-                  Kirim Permintaan Konsultasi
+                  <span>Kirim Permintaan Konsultasi</span>
+                  <ArrowRight size={14} />
                 </button>
+
                 <p className="font-sans text-xs text-neutral-500 text-center font-light">
                   Atau langsung terhubung ke:{" "}
                   <a
                     href={`https://wa.me/${SITE_CONFIG.whatsapp}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white hover:underline"
+                    className="text-white hover:underline font-normal"
                   >
                     Concierge WhatsApp Resmi
                   </a>
@@ -389,7 +458,7 @@ export default function KonsultasiPage() {
                     { step: "04", title: "Survei Lokasi Eksklusif", text: "Survei teknis bebas biaya di seluruh area Bandung Raya." },
                   ].map((item) => (
                     <li key={item.step} className="flex items-start gap-3.5">
-                      <span className="font-mono text-xs text-neutral-500 font-light flex-shrink-0 mt-0.5">
+                      <span className="font-mono text-xs text-champagne font-light flex-shrink-0 mt-0.5">
                         {item.step}
                       </span>
                       <div>

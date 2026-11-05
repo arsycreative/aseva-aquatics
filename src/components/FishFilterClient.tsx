@@ -3,9 +3,10 @@
 import { useState, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Cpu } from "lucide-react";
+import { ArrowRight, Cpu, Eye } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { FISH_COLLECTION } from "@/lib/data";
-import { STATUS_CLASSES, STATUS_LABELS, getWhatsAppUrl } from "@/lib/utils";
+import { getWhatsAppUrl } from "@/lib/utils";
 
 type Fish = (typeof FISH_COLLECTION)[0];
 
@@ -54,8 +55,8 @@ export default function FishFilterClient({ fish }: { fish: Fish[] }) {
               onClick={() => setSizeFilter(f.value)}
               className={`font-sans text-[11px] px-4 py-1.5 rounded-full border tracking-wider transition-all duration-300 ${
                 sizeFilter === f.value
-                  ? "border-white bg-white text-black font-medium"
-                  : "border-white/10 text-neutral-400 hover:border-white/30 hover:text-white"
+                  ? "border-white bg-white text-black font-medium shadow-md shadow-white/20"
+                  : "border-white/10 text-neutral-400 hover:border-white/30 hover:text-white bg-white/[0.02]"
               }`}
             >
               {f.label}
@@ -74,8 +75,8 @@ export default function FishFilterClient({ fish }: { fish: Fish[] }) {
               onClick={() => setStatusFilter(f.value)}
               className={`font-sans text-[11px] px-4 py-1.5 rounded-full border tracking-wider transition-all duration-300 ${
                 statusFilter === f.value
-                  ? "border-white bg-white text-black font-medium"
-                  : "border-white/10 text-neutral-400 hover:border-white/30 hover:text-white"
+                  ? "border-white bg-white text-black font-medium shadow-md shadow-white/20"
+                  : "border-white/10 text-neutral-400 hover:border-white/30 hover:text-white bg-white/[0.02]"
               }`}
             >
               {f.label}
@@ -87,10 +88,10 @@ export default function FishFilterClient({ fish }: { fish: Fish[] }) {
       {/* Count & Status Ticker */}
       <div className="flex items-center justify-between text-[11px] font-mono text-neutral-500 mb-8">
         <span>ARSIP AKTIF: {filtered.length} DARI {fish.length} SPESIMEN</span>
-        <span className="hidden sm:inline text-neutral-400">DILENGKAPI SERTIFIKAT BKSDA & CITES</span>
+        <span className="hidden sm:inline text-neutral-400">DILENGKAPI SERTIFIKAT BKSDA &amp; CITES</span>
       </div>
 
-      {/* Grid */}
+      {/* Grid with AnimatePresence */}
       {filtered.length === 0 ? (
         <div className="text-center py-28 border border-white/[0.08] bg-[#0A0A0A] rounded-2xl p-8">
           <p className="font-serif text-2xl text-white mb-3 font-light">Tidak ada koleksi pada filter ini</p>
@@ -106,98 +107,136 @@ export default function FishFilterClient({ fish }: { fish: Fish[] }) {
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7">
-          {filtered.map((item) => (
-            <article
-              key={item.id}
-              className="card-fish flex flex-col justify-between group hover:border-white/25 transition-all duration-700 bg-[#0A0A0A] p-5 border border-white/[0.08] rounded-2xl shadow-[0_15px_40px_rgba(0,0,0,0.6)]"
-            >
-              <div>
-                {/* Top Card Metadata */}
-                <div className="flex items-center justify-between pb-3.5 mb-3.5 border-b border-white/[0.06] text-[10px] font-mono">
-                  <span className="text-neutral-400 tracking-widest">{item.id}</span>
-                  <span className={STATUS_CLASSES[item.status]}>
-                    {STATUS_LABELS[item.status]}
-                  </span>
-                </div>
+        <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7">
+          <AnimatePresence>
+            {filtered.map((item) => (
+              <motion.article
+                layout
+                key={item.id}
+                initial={{ opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.96 }}
+                transition={{ duration: 0.4 }}
+                className="card-fish flex flex-col justify-between group hover:border-white/25 transition-all duration-700 bg-[#0A0A0A] p-5 border border-white/[0.08] rounded-2xl shadow-[0_15px_40px_rgba(0,0,0,0.6)]"
+              >
+                <div>
+                  {/* Top Card Metadata with Breathing Pulse Dot */}
+                  <div className="flex items-center justify-between pb-3.5 mb-3.5 border-b border-white/[0.06] text-[10px] font-mono">
+                    <span className="text-neutral-400 tracking-widest">{item.id}</span>
 
-                {/* Image Container */}
-                <Link href={`/arwana/${item.slug}`} className="block relative aspect-[4/3] rounded-xl overflow-hidden mb-5 bg-[#050505] border border-white/[0.04]">
-                  <Image
-                    src={item.coverImage}
-                    alt={`${item.name} — Arwana Super Red ${item.grade} dari ASEVA AQUATICS`}
-                    fill
-                    className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity" />
-
-                  {/* Microchip Badge */}
-                  <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between text-[9px] font-mono text-neutral-300 bg-black/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/[0.08]">
-                    <span className="flex items-center gap-1">
-                      <Cpu size={10} className="text-champagne" /> RFID
-                    </span>
-                    <span className="tracking-widest truncate">{item.microchip.slice(-8)}</span>
-                  </div>
-
-                  {/* Status overlay if sold */}
-                  {item.status === "sold" && (
-                    <div className="absolute inset-0 bg-black/80 backdrop-blur-[2px] flex items-center justify-center">
-                      <span className="font-serif text-sm tracking-[0.2em] text-neutral-300 uppercase border border-white/20 px-4 py-1.5 rounded-full">
-                        Koleksi Terjual
+                    {/* Live Status Badge */}
+                    <span
+                      className={`inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-[10px] uppercase font-mono tracking-wider ${
+                        item.status === "available"
+                          ? "bg-emerald-950/60 text-emerald-400 border border-emerald-500/30"
+                          : item.status === "reserved"
+                          ? "bg-amber-950/60 text-amber-300 border border-amber-500/30"
+                          : "bg-white/5 text-neutral-500 border border-white/10"
+                      }`}
+                    >
+                      {item.status === "available" && (
+                        <span className="relative flex h-1.5 w-1.5">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                          <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400" />
+                        </span>
+                      )}
+                      {item.status === "reserved" && (
+                        <span className="inline-block h-1.5 w-1.5 rounded-full bg-amber-400 animate-pulse" />
+                      )}
+                      {item.status === "sold" && (
+                        <span className="inline-block h-1.5 w-1.5 rounded-full bg-neutral-600" />
+                      )}
+                      <span>
+                        {item.status === "available"
+                          ? "Tersedia"
+                          : item.status === "reserved"
+                          ? "Dipesan"
+                          : "Terjual"}
                       </span>
-                    </div>
-                  )}
-                </Link>
-
-                {/* Details */}
-                <Link href={`/arwana/${item.slug}`} className="block group-hover:text-champagne transition-colors">
-                  <h3 className="font-serif text-xl text-white mb-2 font-light leading-snug">
-                    {item.name}
-                  </h3>
-                </Link>
-
-                <div className="space-y-1.5 text-xs font-sans text-neutral-400 font-light mb-6">
-                  <div className="flex items-center justify-between text-[11px] border-b border-white/[0.04] pb-1.5">
-                    <span className="text-neutral-500">Panjang:</span>
-                    <span className="font-mono text-white">{item.size} cm</span>
+                    </span>
                   </div>
-                  <div className="flex items-center justify-between text-[11px] border-b border-white/[0.04] pb-1.5">
-                    <span className="text-neutral-500">Grade:</span>
-                    <span className="text-champagne font-medium">{item.grade.split(" — ")[0]}</span>
-                  </div>
-                  <div className="flex items-center justify-between text-[11px] pt-0.5">
-                    <span className="text-neutral-500">Warna:</span>
-                    <span className="text-neutral-300">{item.color}</span>
-                  </div>
-                </div>
-              </div>
 
-              {/* Bottom Action */}
-              <div className="pt-4 border-t border-white/[0.06]">
-                {item.status !== "sold" ? (
-                  <a
-                    href={getWhatsAppUrl("arwana", item.id)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-full border border-white/20 text-white text-[11px] font-sans tracking-[0.18em] uppercase hover:bg-white hover:text-black transition-all duration-300 font-medium"
-                  >
-                    <span>Private Inquiry</span>
-                    <ArrowRight size={12} />
-                  </a>
-                ) : (
+                  {/* Image Container with Hover Zoom */}
                   <Link
                     href={`/arwana/${item.slug}`}
-                    className="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-full border border-white/10 text-neutral-500 text-[11px] font-sans tracking-[0.18em] uppercase hover:border-white/30 hover:text-white transition-all duration-300"
+                    className="block relative aspect-[4/3] rounded-xl overflow-hidden mb-5 bg-[#050505] border border-white/[0.04] group/img"
                   >
-                    <span>Buka Arsip Ikan</span>
-                    <ArrowRight size={12} />
+                    <Image
+                      src={item.coverImage}
+                      alt={`${item.name} — Arwana Super Red ${item.grade} dari ASEVA AQUATICS`}
+                      fill
+                      className="object-cover transition-transform duration-1000 ease-out group-hover/img:scale-108"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover/img:opacity-30 transition-opacity" />
+
+                    {/* Microchip RFID Badge with Glow */}
+                    <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between text-[9px] font-mono text-neutral-300 bg-black/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/[0.08] group-hover:border-champagne/40 transition-colors">
+                      <span className="flex items-center gap-1 text-champagne">
+                        <Cpu size={10} /> RFID
+                      </span>
+                      <span className="tracking-widest truncate">{item.microchip.slice(-8)}</span>
+                    </div>
+
+                    {/* Status overlay if sold */}
+                    {item.status === "sold" && (
+                      <div className="absolute inset-0 bg-black/80 backdrop-blur-[2px] flex items-center justify-center">
+                        <span className="font-serif text-sm tracking-[0.2em] text-neutral-300 uppercase border border-white/20 px-4 py-1.5 rounded-full">
+                          Koleksi Terjual
+                        </span>
+                      </div>
+                    )}
                   </Link>
-                )}
-              </div>
-            </article>
-          ))}
-        </div>
+
+                  {/* Details */}
+                  <Link href={`/arwana/${item.slug}`} className="block group-hover:text-champagne transition-colors">
+                    <h3 className="font-serif text-xl text-white mb-2 font-light leading-snug">
+                      {item.name}
+                    </h3>
+                  </Link>
+
+                  <div className="space-y-1.5 text-xs font-sans text-neutral-400 font-light mb-6">
+                    <div className="flex items-center justify-between text-[11px] border-b border-white/[0.04] pb-1.5">
+                      <span className="text-neutral-500">Panjang:</span>
+                      <span className="font-mono text-white">{item.size} cm</span>
+                    </div>
+                    <div className="flex items-center justify-between text-[11px] border-b border-white/[0.04] pb-1.5">
+                      <span className="text-neutral-500">Grade:</span>
+                      <span className="text-champagne font-medium">{item.grade.split(" — ")[0]}</span>
+                    </div>
+                    <div className="flex items-center justify-between text-[11px] pt-0.5">
+                      <span className="text-neutral-500">Warna:</span>
+                      <span className="text-neutral-300">{item.color}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bottom Action */}
+                <div className="pt-4 border-t border-white/[0.06]">
+                  {item.status !== "sold" ? (
+                    <a
+                      href={getWhatsAppUrl("arwana", item.id)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-full border border-white/20 text-white text-[11px] font-sans tracking-[0.18em] uppercase hover:bg-white hover:text-black transition-all duration-300 font-medium"
+                    >
+                      <span>Private Inquiry</span>
+                      <ArrowRight size={12} />
+                    </a>
+                  ) : (
+                    <Link
+                      href={`/arwana/${item.slug}`}
+                      className="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-full border border-white/10 text-neutral-500 text-[11px] font-sans tracking-[0.18em] uppercase hover:border-white/30 hover:text-white transition-all duration-300"
+                    >
+                      <span>Buka Arsip Ikan</span>
+                      <ArrowRight size={12} />
+                    </Link>
+                  )}
+                </div>
+              </motion.article>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       )}
     </div>
   );

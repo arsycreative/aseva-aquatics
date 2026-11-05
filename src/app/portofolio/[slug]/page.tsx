@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { MessageCircle } from "lucide-react";
+import { MessageCircle, ShieldCheck, Layers, Droplets, CheckCircle, ArrowRight } from "lucide-react";
 import { PORTFOLIO_PROJECTS } from "@/lib/data";
 import { CATEGORY_LABELS, getWhatsAppUrl } from "@/lib/utils";
+import ProjectGalleryClient from "@/components/ProjectGalleryClient";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -60,6 +61,7 @@ export default async function PortfolioDetailPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(projectSchema) }}
       />
+
       {/* Hero */}
       <section className="relative min-h-[65vh] flex items-end overflow-hidden border-b border-white/[0.08]">
         <div className="absolute inset-0 z-0">
@@ -104,7 +106,7 @@ export default async function PortfolioDetailPage({ params }: Props) {
 
               <div className="mb-12">
                 <h2 className="font-serif text-2xl md:text-3xl text-white mb-5 font-light">
-                  Tantangan & <em className="italic text-champagne">Solusi Teknis</em>
+                  Tantangan &amp; <em className="italic text-champagne">Solusi Teknis</em>
                 </h2>
                 <div className="p-8 rounded-3xl border border-white/[0.08] bg-[#0A0A0A] shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
                   <p className="font-sans text-sm md:text-base text-neutral-400 leading-relaxed font-light">
@@ -113,29 +115,52 @@ export default async function PortfolioDetailPage({ params }: Props) {
                 </div>
               </div>
 
-              {/* Gallery Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {project.images.map((img, i) => (
-                  <div key={i} className="relative aspect-fish rounded-2xl overflow-hidden border border-white/[0.08] bg-[#050505]">
-                    <Image
-                      src={img}
-                      alt={`${project.title} — Foto ${i + 1}`}
-                      fill
-                      className="object-cover"
-                      sizes="50vw"
-                    />
-                  </div>
-                ))}
+              {/* Gallery Grid with Interactive Lightbox */}
+              <div className="mb-12">
+                <div className="flex items-center justify-between mb-6 pb-3 border-b border-white/[0.08]">
+                  <span className="font-mono text-xs text-neutral-400 uppercase tracking-widest">
+                    DOKUMENTASI VISUAL &amp; DETAIL NAT KACA
+                  </span>
+                  <span className="text-xs text-champagne font-mono">KLIK UNTUK FULLSCREEN</span>
+                </div>
+                <ProjectGalleryClient
+                  title={project.title}
+                  city={project.city}
+                  images={project.images}
+                />
+              </div>
+
+              {/* Engineering Guarantees Strip */}
+              <div className="p-6 md:p-8 rounded-3xl border border-white/[0.08] bg-[#0A0A0A] grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <div>
+                  <span className="font-mono text-xs text-champagne block mb-1">SAFETY FACTOR 3.8×</span>
+                  <span className="font-serif text-sm text-white block">Ketahanan Hidrostatis</span>
+                  <p className="text-[11px] text-neutral-500 font-sans mt-0.5">Kalkulasi beban tonase gempa</p>
+                </div>
+                <div>
+                  <span className="font-mono text-xs text-champagne block mb-1">SILIKON JERMAN</span>
+                  <span className="font-serif text-sm text-white block">Deviasi &lt; 0.5 mm</span>
+                  <p className="text-[11px] text-neutral-500 font-sans mt-0.5">Perekatan suhu terkontrol</p>
+                </div>
+                <div>
+                  <span className="font-mono text-xs text-champagne block mb-1">GARANSI STRUKTUR</span>
+                  <span className="font-serif text-sm text-white block">Bebas Bocor 100%</span>
+                  <p className="text-[11px] text-neutral-500 font-sans mt-0.5">Perlindungan resmi ASEVA</p>
+                </div>
               </div>
             </div>
 
-            {/* Sidebar — Specs (4 cols) */}
+            {/* Sidebar — Architectural Blueprint Spec-Sheet (4 cols) */}
             <div className="lg:col-span-4 space-y-6">
               <div className="rounded-3xl border border-white/[0.08] overflow-hidden bg-[#0A0A0A] shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
-                <div className="p-5 border-b border-white/[0.08] bg-[#111111]">
-                  <span className="font-mono text-[10px] text-champagne tracking-widest uppercase font-medium">
-                    PARAMETER REKAYASA PROYEK
-                  </span>
+                <div className="p-5 border-b border-white/[0.08] bg-[#111111] flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Layers size={14} className="text-champagne" />
+                    <span className="font-mono text-[10px] text-champagne tracking-widest uppercase font-medium">
+                      TECHNICAL SPEC-SHEET
+                    </span>
+                  </div>
+                  <span className="text-[9px] font-mono text-neutral-500">ID: {project.id}</span>
                 </div>
                 <div className="divide-y divide-white/[0.06]">
                   {[
@@ -149,7 +174,7 @@ export default async function PortfolioDetailPage({ params }: Props) {
                     { label: "Sistem Filtrasi", value: project.filtration },
                     { label: "Pencahayaan", value: project.lighting },
                   ].map((spec) => (
-                    <div key={spec.label} className="p-4 px-6">
+                    <div key={spec.label} className="p-4 px-6 hover:bg-white/[0.02] transition-colors">
                       <p className="font-sans text-[10px] text-neutral-500 tracking-widest uppercase mb-1">
                         {spec.label}
                       </p>
@@ -159,10 +184,11 @@ export default async function PortfolioDetailPage({ params }: Props) {
                 </div>
               </div>
 
-              {/* CTA */}
+              {/* CTAs */}
               <div className="space-y-3">
                 <Link href="/konsultasi" className="btn-primary w-full justify-center">
-                  Konsultasi Proyek Serupa
+                  <span>Konsultasi Proyek Serupa</span>
+                  <ArrowRight size={14} />
                 </Link>
                 <a
                   href={getWhatsAppUrl("portfolio")}
@@ -171,7 +197,7 @@ export default async function PortfolioDetailPage({ params }: Props) {
                   className="btn-outline w-full justify-center text-xs"
                 >
                   <MessageCircle size={14} />
-                  Diskusi Langsung via WhatsApp
+                  <span>Diskusi Langsung via WhatsApp</span>
                 </a>
               </div>
             </div>

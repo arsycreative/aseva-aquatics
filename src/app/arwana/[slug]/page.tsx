@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { MessageCircle, Shield, Cpu, ArrowLeft } from "lucide-react";
 import { FISH_COLLECTION } from "@/lib/data";
+import FishGalleryClient from "@/components/FishGalleryClient";
 import { STATUS_CLASSES, STATUS_LABELS, getWhatsAppUrl } from "@/lib/utils";
 
 interface Props {
@@ -80,35 +81,15 @@ export default async function FishDetailPage({ params }: Props) {
       <article className="section-padding bg-black">
         <div className="section-container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-20">
-            {/* Left — Images */}
+            {/* Left — Interactive Gallery & Fullscreen Lightbox */}
             <div>
-              <div className="relative aspect-fish rounded-3xl overflow-hidden border border-white/[0.08] shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
-                <Image
-                  src={fish.coverImage}
-                  alt={`${fish.name} — Arwana Super Red ${fish.id} dari ASEVA AQUATICS`}
-                  fill
-                  className="object-cover"
-                  priority
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  quality={90}
-                />
-                {fish.status === "sold" && (
-                  <div className="absolute inset-0 bg-black/75 backdrop-blur-[2px] flex items-center justify-center">
-                    <span className="font-serif text-sm tracking-[0.2em] text-neutral-300 uppercase border border-white/20 px-6 py-2.5 rounded-full">
-                      Terjual · Arsip Koleksi
-                    </span>
-                  </div>
-                )}
-              </div>
-
-              {/* Certification badge */}
-              <div className="mt-5 flex items-center gap-3.5 p-4 rounded-2xl border border-white/[0.08] bg-[#0A0A0A]">
-                <Shield size={16} className="text-champagne flex-shrink-0" />
-                <p className="font-sans text-xs text-neutral-400 font-light">
-                  <span className="text-white font-medium">Terverifikasi & Bersertifikat.</span>{" "}
-                  Setiap ikan dilengkapi dokumen legal lengkap CITES & BKSDA resmi.
-                </p>
-              </div>
+              <FishGalleryClient
+                name={fish.name}
+                id={fish.id}
+                images={fish.images}
+                coverImage={fish.coverImage}
+                status={fish.status}
+              />
             </div>
 
             {/* Right — Details */}
