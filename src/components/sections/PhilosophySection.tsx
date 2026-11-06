@@ -57,19 +57,19 @@ export default function PhilosophySection() {
                   {/* Glass Pane 1 (Horizontal bottom) */}
                   <rect x="20" y="70" width="240" height="24" rx="2" fill="#181822" stroke="#4A4A58" strokeWidth="1" />
                   {/* Glass Pane 2 (Vertical side wall) */}
-                  <rect x="35" y="15" width="24" height="65" rx="2" fill="#1F202E" stroke="#C5A880" strokeWidth="1.2" />
+                  <rect x="35" y="15" width="24" height="65" rx="2" fill="#1F202E" stroke="#D92338" strokeWidth="1.2" />
 
                   {/* German Structural Silicone Joint */}
-                  <rect x="35" y="70" width="24" height="10" fill="#C5A880" fillOpacity="0.8" />
+                  <rect x="35" y="70" width="24" height="10" fill="#D92338" fillOpacity="0.8" />
                   
                   {/* Annotations */}
-                  <path d="M 65 30 L 110 30" stroke="#C5A880" strokeWidth="0.8" strokeDasharray="1 2" />
-                  <circle cx="65" cy="30" r="2" fill="#C5A880" />
+                  <path d="M 65 30 L 110 30" stroke="#D92338" strokeWidth="0.8" strokeDasharray="1 2" />
+                  <circle cx="65" cy="30" r="2" fill="#D92338" />
                   <text x="116" y="33" fill="#D4D4D8" fontSize="8" fontFamily="monospace">Low-Iron Crystal (19mm)</text>
 
-                  <path d="M 65 75 L 140 75" stroke="#C5A880" strokeWidth="0.8" strokeDasharray="1 2" />
-                  <circle cx="65" cy="75" r="2" fill="#C5A880" />
-                  <text x="146" y="78" fill="#C5A880" fontSize="8" fontFamily="monospace">Silikon Nat Jerman &lt;0.5mm</text>
+                  <path d="M 65 75 L 140 75" stroke="#D92338" strokeWidth="0.8" strokeDasharray="1 2" />
+                  <circle cx="65" cy="75" r="2" fill="#D92338" />
+                  <text x="146" y="78" fill="#D92338" fontSize="8" fontFamily="monospace">Silikon Nat Jerman &lt;0.5mm</text>
                 </svg>
               </div>
 

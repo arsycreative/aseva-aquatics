@@ -18,14 +18,14 @@ const config: Config = {
           700: "#1A1A1A",
           card: "#0D0D0D",
         },
-        // Champagne Platinum & Pale Architectural Gold (Non-mustard, refined luxury)
+        // Arwana Super Red — Imperial Crimson & Blood Red Spectrum (Primary Brand Color)
         champagne: {
-          DEFAULT: "#E5D5C5",
-          light: "#F5EFE8",
-          shimmer: "#FAF7F2",
-          dim: "#C5A880",
-          bronze: "#9E8262",
-          dark: "#68533D",
+          DEFAULT: "#D92338",      // Imperial Crimson Super Red
+          light: "#FF4D61",        // Iridescent Scale Shimmer
+          shimmer: "#FECDD3",      // Pale Ruby Tint
+          dim: "#B91C1C",          // Deep Blood Red
+          bronze: "#881337",       // Velvet Wine Crimson
+          dark: "#4C0519",         // Deep Oxblood
         },
         // Titanium Silver & Cool Greys
         titanium: {
@@ -40,14 +40,23 @@ const config: Config = {
           muted: "#EDEDED",
           dim: "#9E9E9E",
         },
-        // Ruby Scarlet for Super Red accents
+        // Arwana Super Red explicit tokens
         arwana: {
-          DEFAULT: "#D92638",
+          DEFAULT: "#D92338",
+          glow: "#FF4D61",
           light: "#F43F5E",
+          dim: "#B91C1C",
+          dark: "#881337",
+        },
+        crimson: {
+          DEFAULT: "#D92338",
+          glow: "#FF4D61",
+          light: "#FECDD3",
+          dim: "#B91C1C",
           dark: "#881337",
         },
 
-        // Aliases to seamlessly elevate all legacy references to modern obsidian & champagne
+        // Aliases to seamlessly elevate all legacy references
         navy: {
           DEFAULT: "#050505",
           secondary: "#0D0D0D",
@@ -55,10 +64,10 @@ const config: Config = {
           card: "#0E0E0E",
         },
         gold: {
-          DEFAULT: "#E5D5C5",
-          light: "#F5EFE8",
-          dim: "#C5A880",
-          muted: "#9E8262",
+          DEFAULT: "#D92338",
+          light: "#FF4D61",
+          dim: "#B91C1C",
+          muted: "#881337",
         },
         ivory: {
           DEFAULT: "#FFFFFF",
@@ -75,8 +84,9 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
         "navy-gradient": "linear-gradient(180deg, #050505 0%, #0D0D0D 100%)",
-        "gold-gradient": "linear-gradient(135deg, #FFFFFF 0%, #E5D5C5 50%, #C5A880 100%)",
-        "champagne-gradient": "linear-gradient(135deg, #FFFFFF 0%, #E5D5C5 40%, #C5A880 100%)",
+        "gold-gradient": "linear-gradient(135deg, #FFFFFF 0%, #FF4D61 50%, #B91C1C 100%)",
+        "champagne-gradient": "linear-gradient(135deg, #FFFFFF 0%, #FF4D61 40%, #B91C1C 100%)",
+        "crimson-gradient": "linear-gradient(135deg, #FFFFFF 0%, #D92338 50%, #881337 100%)",
         "hero-overlay":
           "linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(5,5,5,0.75) 60%, rgba(5,5,5,0.98) 100%)",
       },
