@@ -15,7 +15,16 @@ export const metadata: Metadata = {
     title: "Desain & Pembuatan Aquarium Custom Kelas Atas — ASEVA AQUATICS",
     description: "Karya akuarium mewah terintegrasi arsitektur interior untuk hunian eksklusif di Bandung dan Jabodetabek.",
     url: "https://asevaaquatics.com/aquarium-custom",
+    siteName: "ASEVA AQUATICS",
+    locale: "id_ID",
+    type: "website",
     images: [{ url: "/images/aquarium-interior.jpg", width: 1200, height: 630, alt: "Aquarium Custom Luxury Interior" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Desain & Pembuatan Aquarium Custom Kelas Atas — ASEVA AQUATICS",
+    description: "Kaca kristal ultra-clear low-iron, sistem filtrasi tersembunyi, garansi kebocoran.",
+    images: ["/images/aquarium-interior.jpg"],
   },
 };
 
@@ -50,22 +59,22 @@ const AQUARIUM_TYPES = [
   {
     title: "Aquarium Dinding (Built-In)",
     description: "Focal point ruang keluarga atau eksekutif suite. Terintegrasi rata dinding arsitektural tanpa kabel atau pipa terlihat.",
-    image: "/images/aquarium-interior.jpg",
+    image: "/images/projects/prj-001.jpg",
   },
   {
     title: "Partisi Ruang Dua Sisi",
     description: "Membagi dua zona interior megah sekaligus menghidupkan keduanya. Dapat dinikmati dari dua sudut pandang berbeda.",
-    image: "/images/aquarium-interior.jpg",
+    image: "/images/projects/prj-002.jpg",
   },
   {
     title: "Aquarium Kolom Struktural",
     description: "Memanfaatkan kolom atau tiang struktural menjadi instalasi artistik silinder atau kubus yang dramatis.",
-    image: "/images/aquarium-interior.jpg",
+    image: "/images/projects/prj-003.jpg",
   },
   {
     title: "Ikon Lobi Komersial",
     description: "Instalasi skala besar bernilai magnetis untuk lobi hotel bintang lima, galeri seni, restoran fine-dining, dan kantor pusat.",
-    image: "/images/aquarium-interior.jpg",
+    image: "/images/projects/prj-004.jpg",
   },
 ];
 

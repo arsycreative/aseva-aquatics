@@ -16,12 +16,37 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const article = JOURNAL_ARTICLES.find((a) => a.slug === slug);
   if (!article) return {};
+
+  const pageUrl = `https://asevaaquatics.com/jurnal/${article.slug}`;
+
   return {
-    title: article.title,
+    title: `${article.title} | Jurnal ASEVA AQUATICS`,
     description: article.excerpt,
+    alternates: {
+      canonical: pageUrl,
+    },
     openGraph: {
+      title: article.title,
+      description: article.excerpt,
+      url: pageUrl,
+      siteName: "ASEVA AQUATICS",
+      locale: "id_ID",
       type: "article",
       publishedTime: article.publishedAt,
+      images: [
+        {
+          url: article.coverImage,
+          width: 1200,
+          height: 630,
+          alt: article.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: article.title,
+      description: article.excerpt,
+      images: [article.coverImage],
     },
   };
 }
@@ -110,22 +135,62 @@ export default async function ArticlePage({ params }: Props) {
 
   return (
     <div className="bg-black text-white min-h-screen">
-      {/* JSON-LD Article Schema */}
+      {/* JSON-LD Article & Breadcrumb Schema */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "Article",
-            headline: article.title,
-            description: article.excerpt,
-            datePublished: article.publishedAt,
-            author: { "@type": "Organization", name: "ASEVA AQUATICS" },
-            publisher: {
-              "@type": "Organization",
-              name: "ASEVA AQUATICS",
-              logo: { "@type": "ImageObject", url: "https://asevaaquatics.com/logo.png" },
-            },
+            "@graph": [
+              {
+                "@type": "Article",
+                "@id": `https://asevaaquatics.com/jurnal/${article.slug}#article`,
+                headline: article.title,
+                description: article.excerpt,
+                image: [`https://asevaaquatics.com${article.coverImage}`],
+                datePublished: article.publishedAt,
+                dateModified: article.publishedAt,
+                mainEntityOfPage: `https://asevaaquatics.com/jurnal/${article.slug}`,
+                articleSection: article.category === "arwana" ? "Arwana Super Red" : "Aquarium Custom",
+                author: {
+                  "@type": "Organization",
+                  name: "ASEVA AQUATICS",
+                  url: "https://asevaaquatics.com",
+                },
+                publisher: {
+                  "@type": "Organization",
+                  name: "ASEVA AQUATICS",
+                  logo: {
+                    "@type": "ImageObject",
+                    url: "https://asevaaquatics.com/apple-touch-icon.png",
+                  },
+                },
+              },
+              {
+                "@type": "BreadcrumbList",
+                "@id": `https://asevaaquatics.com/jurnal/${article.slug}#breadcrumb`,
+                itemListElement: [
+                  {
+                    "@type": "ListItem",
+                    position: 1,
+                    name: "Beranda",
+                    item: "https://asevaaquatics.com",
+                  },
+                  {
+                    "@type": "ListItem",
+                    position: 2,
+                    name: "Jurnal",
+                    item: "https://asevaaquatics.com/jurnal",
+                  },
+                  {
+                    "@type": "ListItem",
+                    position: 3,
+                    name: article.title,
+                    item: `https://asevaaquatics.com/jurnal/${article.slug}`,
+                  },
+                ],
+              },
+            ],
           }),
         }}
       />

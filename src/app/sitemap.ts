@@ -5,13 +5,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://asevaaquatics.com";
 
   const staticPages = [
-    { url: baseUrl, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 1 },
+    { url: baseUrl, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 1.0 },
     { url: `${baseUrl}/arwana`, lastModified: new Date(), changeFrequency: "daily" as const, priority: 0.9 },
-    { url: `${baseUrl}/aquarium-custom`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.9 },
+    { url: `${baseUrl}/aquarium-custom`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.9 },
     { url: `${baseUrl}/aquarium-custom/proses`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.7 },
     { url: `${baseUrl}/aquarium-custom/material-teknologi`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.7 },
-    { url: `${baseUrl}/perawatan-aquarium`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.8 },
     { url: `${baseUrl}/portofolio`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.8 },
+    { url: `${baseUrl}/perawatan-aquarium`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.8 },
+    { url: `${baseUrl}/jurnal`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.8 },
     { url: `${baseUrl}/area-layanan`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.8 },
     { url: `${baseUrl}/area-layanan/bandung`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.9 },
     { url: `${baseUrl}/area-layanan/jakarta-jabodetabek`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.8 },

@@ -19,17 +19,38 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const project = PORTFOLIO_PROJECTS.find((p) => p.slug === slug);
   if (!project) return {};
+
+  const pageTitle = `${project.title} (${project.city}) — Studi Kasus Portofolio ASEVA`;
+  const pageDesc = `${project.description.slice(0, 160)}`;
+  const pageUrl = `https://asevaaquatics.com/portofolio/${project.slug}`;
+
   return {
-    title: `${project.title} (${project.city}) — Studi Kasus Portofolio ASEVA`,
-    description: `${project.description.slice(0, 160)}`,
+    title: pageTitle,
+    description: pageDesc,
     alternates: {
-      canonical: `https://asevaaquatics.com/portofolio/${project.slug}`,
+      canonical: pageUrl,
     },
     openGraph: {
       title: `${project.title} — ASEVA AQUATICS`,
-      description: project.description.slice(0, 160),
-      url: `https://asevaaquatics.com/portofolio/${project.slug}`,
-      images: [{ url: project.coverImage, width: 1200, height: 630, alt: project.title }],
+      description: pageDesc,
+      url: pageUrl,
+      siteName: "ASEVA AQUATICS",
+      locale: "id_ID",
+      type: "website",
+      images: [
+        {
+          url: project.coverImage,
+          width: 1200,
+          height: 630,
+          alt: project.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${project.title} — ASEVA AQUATICS`,
+      description: pageDesc,
+      images: [project.coverImage],
     },
   };
 }
@@ -39,27 +60,65 @@ export default async function PortfolioDetailPage({ params }: Props) {
   const project = PORTFOLIO_PROJECTS.find((p) => p.slug === slug);
   if (!project) notFound();
 
-  const projectSchema = {
+  const projectGraph = {
     "@context": "https://schema.org",
-    "@type": "CreativeWork",
-    name: project.title,
-    description: project.description,
-    image: `https://asevaaquatics.com${project.coverImage}`,
-    creator: {
-      "@type": "HomeAndConstructionBusiness",
-      name: "ASEVA AQUATICS",
-    },
-    contentLocation: {
-      "@type": "Place",
-      name: project.city,
-    },
+    "@graph": [
+      {
+        "@type": "CreativeWork",
+        "@id": `https://asevaaquatics.com/portofolio/${project.slug}#work`,
+        name: project.title,
+        description: project.description,
+        image: `https://asevaaquatics.com${project.coverImage}`,
+        dateCreated: `${project.year}-01-01`,
+        creator: {
+          "@type": "HomeAndConstructionBusiness",
+          name: "ASEVA AQUATICS",
+          url: "https://asevaaquatics.com",
+        },
+        contentLocation: {
+          "@type": "Place",
+          name: project.city,
+        },
+        keywords: [
+          "Aquarium Custom",
+          project.type,
+          project.dimensions,
+          project.volume,
+          project.glass,
+        ],
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `https://asevaaquatics.com/portofolio/${project.slug}#breadcrumb`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Beranda",
+            item: "https://asevaaquatics.com",
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Portofolio",
+            item: "https://asevaaquatics.com/portofolio",
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: project.title,
+            item: `https://asevaaquatics.com/portofolio/${project.slug}`,
+          },
+        ],
+      },
+    ],
   };
 
   return (
     <div className="bg-black text-white min-h-screen">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(projectSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(projectGraph) }}
       />
 
       {/* Hero */}

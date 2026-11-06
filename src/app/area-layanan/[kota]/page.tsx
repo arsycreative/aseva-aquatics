@@ -98,9 +98,38 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { kota } = await params;
   const data = LOCATION_DATA[kota as keyof typeof LOCATION_DATA];
   if (!data) return {};
+
+  const pageUrl = `https://asevaaquatics.com/area-layanan/${data.slug}`;
+
   return {
     title: data.title,
     description: data.description,
+    keywords: data.keywords,
+    alternates: {
+      canonical: pageUrl,
+    },
+    openGraph: {
+      title: data.title,
+      description: data.description,
+      url: pageUrl,
+      siteName: "ASEVA AQUATICS",
+      locale: "id_ID",
+      type: "website",
+      images: [
+        {
+          url: "/images/aquarium-interior.jpg",
+          width: 1200,
+          height: 630,
+          alt: data.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: data.title,
+      description: data.description,
+      images: ["/images/aquarium-interior.jpg"],
+    },
   };
 }
 
@@ -109,27 +138,72 @@ export default async function AreaLayananPage({ params }: Props) {
   const data = LOCATION_DATA[kota as keyof typeof LOCATION_DATA];
   if (!data) notFound();
 
+  const areaGraph = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Service",
+        "@id": `https://asevaaquatics.com/area-layanan/${data.slug}#service`,
+        name: data.h1,
+        description: data.description,
+        serviceType: ["Aquarium Custom Mewah", "Arwana Super Red Bersertifikat", "Perawatan Aquarium"],
+        areaServed: {
+          "@type": "AdministrativeArea",
+          name: data.cityName,
+        },
+        provider: {
+          "@type": "HomeAndConstructionBusiness",
+          name: "ASEVA AQUATICS",
+          url: "https://asevaaquatics.com",
+          telephone: "+6281234567890",
+        },
+      },
+      {
+        "@type": "FAQPage",
+        "@id": `https://asevaaquatics.com/area-layanan/${data.slug}#faq`,
+        mainEntity: data.faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.q,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.a,
+          },
+        })),
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `https://asevaaquatics.com/area-layanan/${data.slug}#breadcrumb`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Beranda",
+            item: "https://asevaaquatics.com",
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Area Layanan",
+            item: "https://asevaaquatics.com/area-layanan",
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: data.cityName,
+            item: `https://asevaaquatics.com/area-layanan/${data.slug}`,
+          },
+        ],
+      },
+    ],
+  };
+
   return (
     <div className="bg-black text-white min-h-screen">
-      {/* JSON-LD LocalBusiness + Service Schema */}
+      {/* JSON-LD Service, FAQPage & BreadcrumbList Schema */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Service",
-            name: data.h1,
-            serviceType: ["Aquarium Custom", "Arwana Super Red", "Perawatan Aquarium"],
-            areaServed: {
-              "@type": "Place",
-              name: data.cityName,
-            },
-            provider: {
-              "@type": "LocalBusiness",
-              name: "ASEVA AQUATICS",
-              url: "https://asevaaquatics.com",
-            },
-          }),
+          __html: JSON.stringify(areaGraph),
         }}
       />
 

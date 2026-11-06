@@ -17,6 +17,21 @@ export const metadata: Metadata = {
   alternates: {
     canonical: `${SITE_CONFIG.domain}/legal`,
   },
+  openGraph: {
+    title: "Ketentuan Legal & Garansi Resmi — ASEVA AQUATICS",
+    description: "Perlindungan data pribadi, garansi hidup DOA arwana, dan garansi struktur akuarium ASEVA.",
+    url: `${SITE_CONFIG.domain}/legal`,
+    siteName: "ASEVA AQUATICS",
+    locale: "id_ID",
+    type: "website",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Legal ASEVA AQUATICS" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ketentuan Legal & Garansi Resmi — ASEVA AQUATICS",
+    description: "Perlindungan data pribadi, garansi DOA arwana, dan garansi struktur akuarium.",
+    images: ["/og-image.jpg"],
+  },
 };
 
 export default function LegalPage() {

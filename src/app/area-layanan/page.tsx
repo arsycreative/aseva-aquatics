@@ -23,6 +23,23 @@ export const metadata: Metadata = {
     title: "Area Layanan ASEVA AQUATICS — Bandung & Jabodetabek",
     description: "Layanan perancangan aquarium custom dan kurasi arwana bersertifikat untuk hunian premium di Jawa Barat dan Jabodetabek.",
     url: `${SITE_CONFIG.domain}/area-layanan`,
+    siteName: "ASEVA AQUATICS",
+    locale: "id_ID",
+    type: "website",
+    images: [
+      {
+        url: "/images/aquarium-interior.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Area Layanan ASEVA AQUATICS",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Area Layanan ASEVA AQUATICS — Bandung, Jakarta & Jawa Barat",
+    description: "Layanan survei, pembuatan aquarium custom, dan kurasi arwana super red bersertifikat.",
+    images: ["/images/aquarium-interior.jpg"],
   },
 };
 

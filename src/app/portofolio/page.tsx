@@ -9,6 +9,32 @@ export const metadata: Metadata = {
   title: "Portofolio Aquarium Custom & Arwana — Galeri Proyek ASEVA AQUATICS",
   description:
     "Galeri proyek aquarium custom ASEVA: residensial, komersial, dan aquarium arwana. Studi kasus mendalam dengan dimensi, material, dan tantangan teknis tiap proyek.",
+  alternates: {
+    canonical: "https://asevaaquatics.com/portofolio",
+  },
+  openGraph: {
+    title: "Portofolio Aquarium Custom & Arwana — ASEVA AQUATICS",
+    description:
+      "Dokumentasi proyek akuarium custom kelas atas di hunian villa, perkantoran, dan komersial di Bandung dan Jabodetabek.",
+    url: "https://asevaaquatics.com/portofolio",
+    siteName: "ASEVA AQUATICS",
+    locale: "id_ID",
+    type: "website",
+    images: [
+      {
+        url: "/images/projects/prj-001.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Portofolio Mahakarya ASEVA AQUATICS",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Portofolio Proyek ASEVA AQUATICS",
+    description: "Studi kasus akuarium custom arsitektural di Bandung & Jabodetabek.",
+    images: ["/images/projects/prj-001.jpg"],
+  },
 };
 
 export default function PortofolioPage() {

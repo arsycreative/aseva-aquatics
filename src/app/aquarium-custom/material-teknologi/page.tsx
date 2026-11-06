@@ -5,6 +5,32 @@ export const metadata: Metadata = {
   title: "Material & Teknologi Aquarium Premium — Kaca Low-Iron, Filtrasi Life-Support",
   description:
     "Spesifikasi teknis lengkap material aquarium custom ASEVA: kaca ultra-clear low-iron, silikon marine-grade, sistem filtrasi sump tank tersembunyi, pencahayaan spektrum LED.",
+  alternates: {
+    canonical: "https://asevaaquatics.com/aquarium-custom/material-teknologi",
+  },
+  openGraph: {
+    title: "Material & Rekayasa Teknologi Akuarium Mewah — ASEVA AQUATICS",
+    description:
+      "Spesifikasi kaca kristal low-iron 99.2%, silikon struktural marine-grade Jerman, dan sistem filtrasi dry-wet senyap total.",
+    url: "https://asevaaquatics.com/aquarium-custom/material-teknologi",
+    siteName: "ASEVA AQUATICS",
+    locale: "id_ID",
+    type: "website",
+    images: [
+      {
+        url: "/images/journal/kaca-aquarium.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Material Kaca Kristal Low-Iron ASEVA",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Material & Rekayasa Teknologi ASEVA AQUATICS",
+    description: "Kaca optik kristal 99.2% dan sistem filtrasi sump senyap <28dB.",
+    images: ["/images/journal/kaca-aquarium.jpg"],
+  },
 };
 
 const MATERIALS = [

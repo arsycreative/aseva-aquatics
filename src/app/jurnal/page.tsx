@@ -7,6 +7,32 @@ export const metadata: Metadata = {
   title: "Jurnal Edukasi — Arwana Super Red & Aquarium Custom",
   description:
     "Artikel edukasi mendalam tentang arwana super red, aquarium custom, material, dan perawatan. Panduan dari para ahli ASEVA AQUATICS untuk kolektor dan calon pemilik aquarium.",
+  alternates: {
+    canonical: "https://asevaaquatics.com/jurnal",
+  },
+  openGraph: {
+    title: "Jurnal Edukasi — Arwana Super Red & Aquarium Custom | ASEVA AQUATICS",
+    description:
+      "Wawasan teknis seputar arwana super red Kapuas Hulu, kalkulasi beban sipil akuarium, kaca optik kristal, dan stabilitas biologi air.",
+    url: "https://asevaaquatics.com/jurnal",
+    siteName: "ASEVA AQUATICS",
+    locale: "id_ID",
+    type: "website",
+    images: [
+      {
+        url: "/images/journal/anatomi-arwana.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Jurnal Edukasi ASEVA AQUATICS",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Jurnal Edukasi ASEVA AQUATICS",
+    description: "Panduan teknis akuarium custom mewah dan kurasi arwana super red kelas kontes.",
+    images: ["/images/journal/anatomi-arwana.jpg"],
+  },
 };
 
 const CATEGORY_LABELS = {

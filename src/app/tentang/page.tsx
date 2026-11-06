@@ -14,6 +14,16 @@ export const metadata: Metadata = {
     title: "Tentang ASEVA AQUATICS — Filosofi & Legalitas Resmi",
     description: "Kurasi Arwana Super Red Bersertifikat & Desain Aquarium Custom Kelas Atas di Bandung dan Jabodetabek.",
     url: "https://asevaaquatics.com/tentang",
+    siteName: "ASEVA AQUATICS",
+    locale: "id_ID",
+    type: "website",
+    images: [{ url: "/images/journal/kaca-aquarium.jpg", width: 1200, height: 630, alt: "Atelier ASEVA AQUATICS" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Tentang ASEVA AQUATICS",
+    description: "Filosofi, standar legalitas CITES, dan tim perancang akuarium custom.",
+    images: ["/images/journal/kaca-aquarium.jpg"],
   },
 };
 

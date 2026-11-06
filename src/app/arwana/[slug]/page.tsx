@@ -19,11 +19,38 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const fish = FISH_COLLECTION.find((f) => f.slug === slug);
   if (!fish) return {};
+
+  const pageTitle = `${fish.name} (${fish.id}) — Arwana Super Red ${fish.grade}`;
+  const pageDesc = `${fish.name} — Arwana Super Red ${fish.size}cm, ${fish.color}. ${fish.grade}. Sertifikat CITES: ${fish.certificate}. Microchip RFID: ${fish.microchip}. ASEVA AQUATICS.`;
+  const pageUrl = `https://asevaaquatics.com/arwana/${fish.slug}`;
+
   return {
-    title: `${fish.name} (${fish.id}) — Arwana Super Red ${fish.grade}`,
-    description: `${fish.name} — Arwana Super Red ${fish.size}cm, ${fish.color}. ${fish.grade}. Sertifikat: ${fish.certificate}. Microchip: ${fish.microchip}. ASEVA AQUATICS.`,
+    title: pageTitle,
+    description: pageDesc,
+    alternates: {
+      canonical: pageUrl,
+    },
     openGraph: {
-      images: [{ url: fish.coverImage, width: 1200, height: 630 }],
+      title: `${fish.name} (${fish.id}) — Arwana Super Red | ASEVA AQUATICS`,
+      description: pageDesc,
+      url: pageUrl,
+      siteName: "ASEVA AQUATICS",
+      locale: "id_ID",
+      type: "website",
+      images: [
+        {
+          url: fish.coverImage,
+          width: 1200,
+          height: 630,
+          alt: `${fish.name} — Arwana Super Red ASEVA`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${fish.name} (${fish.id}) — Arwana Super Red`,
+      description: `Spesimen ${fish.size}cm · CITES: ${fish.certificate} · Microchip: ${fish.microchip}`,
+      images: [fish.coverImage],
     },
   };
 }
@@ -37,30 +64,73 @@ export default async function FishDetailPage({ params }: Props) {
     (f) => f.slug !== slug && f.status !== "sold"
   ).slice(0, 3);
 
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Product",
+        "@id": `https://asevaaquatics.com/arwana/${fish.slug}#product`,
+        name: `${fish.name} — Arwana Super Red (${fish.id})`,
+        description: `${fish.notes} Spesifikasi: Ukuran ${fish.size}cm, ${fish.color}, kepala ${fish.headShape}, sirip ${fish.finShape}. Sertifikat CITES: ${fish.certificate}, Microchip: ${fish.microchip}.`,
+        sku: fish.id,
+        identifier: fish.microchip,
+        category: "Arwana Super Red (Scleropages formosus)",
+        image: [`https://asevaaquatics.com${fish.coverImage}`],
+        brand: {
+          "@type": "Brand",
+          name: "ASEVA AQUATICS",
+        },
+        offers: {
+          "@type": "Offer",
+          url: `https://asevaaquatics.com/arwana/${fish.slug}`,
+          priceCurrency: "IDR",
+          price: "0",
+          priceValidUntil: "2027-12-31",
+          itemCondition: "https://schema.org/NewCondition",
+          availability:
+            fish.status === "available"
+              ? "https://schema.org/InStock"
+              : "https://schema.org/SoldOut",
+          seller: {
+            "@type": "Organization",
+            name: "ASEVA AQUATICS",
+          },
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `https://asevaaquatics.com/arwana/${fish.slug}#breadcrumb`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Beranda",
+            item: "https://asevaaquatics.com",
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Koleksi Arwana",
+            item: "https://asevaaquatics.com/arwana",
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: fish.name,
+            item: `https://asevaaquatics.com/arwana/${fish.slug}`,
+          },
+        ],
+      },
+    ],
+  };
+
   return (
     <div className="bg-black text-white min-h-screen">
-      {/* JSON-LD Product Schema */}
+      {/* JSON-LD Product & Breadcrumb Schema */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Product",
-            name: `${fish.name} — Arwana Super Red`,
-            description: fish.notes,
-            sku: fish.id,
-            identifier: fish.microchip,
-            brand: { "@type": "Brand", name: "ASEVA AQUATICS" },
-            offers: {
-              "@type": "Offer",
-              availability:
-                fish.status === "available"
-                  ? "https://schema.org/InStock"
-                  : "https://schema.org/SoldOut",
-              priceCurrency: "IDR",
-              seller: { "@type": "Organization", name: "ASEVA AQUATICS" },
-            },
-          }),
+          __html: JSON.stringify(productJsonLd),
         }}
       />
 

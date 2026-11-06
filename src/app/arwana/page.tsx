@@ -23,7 +23,16 @@ export const metadata: Metadata = {
     title: "Koleksi Arwana Super Red Bersertifikat — ASEVA AQUATICS",
     description: "Kurasi eksklusif Arwana Super Red berlisensi CITES & BKSDA untuk kolektor serius.",
     url: "https://asevaaquatics.com/arwana",
+    siteName: "ASEVA AQUATICS",
+    locale: "id_ID",
+    type: "website",
     images: [{ url: "/images/hero-arwana.jpg", width: 1200, height: 630, alt: "Arwana Super Red ASEVA" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Koleksi Arwana Super Red Bersertifikat — ASEVA AQUATICS",
+    description: "Kurasi eksklusif Arwana Super Red berlisensi CITES & BKSDA untuk kolektor serius.",
+    images: ["/images/hero-arwana.jpg"],
   },
 };
 

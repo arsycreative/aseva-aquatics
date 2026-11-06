@@ -103,40 +103,81 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Manrope:wght@300;400;500;600;700&display=swap"
           rel="stylesheet"
         />
-        {/* JSON-LD LocalBusiness Schema */}
+        {/* JSON-LD Structured Data: Organization, LocalBusiness & WebSite */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "HomeAndConstructionBusiness",
-              name: "ASEVA AQUATICS",
-              description: SITE_CONFIG.description,
-              url: SITE_CONFIG.domain,
-              telephone: `+${SITE_CONFIG.whatsapp}`,
-              email: SITE_CONFIG.email,
-              address: {
-                "@type": "PostalAddress",
-                addressLocality: "Bandung",
-                addressRegion: "Jawa Barat",
-                addressCountry: "ID",
-              },
-              areaServed: [
-                { "@type": "City", name: "Bandung" },
-                { "@type": "City", name: "Jakarta" },
-                { "@type": "State", name: "Jawa Barat" },
-              ],
-              openingHoursSpecification: [
+              "@graph": [
                 {
-                  "@type": "OpeningHoursSpecification",
-                  dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-                  opens: "09:00",
-                  closes: "17:00",
+                  "@type": "HomeAndConstructionBusiness",
+                  "@id": `${SITE_CONFIG.domain}/#organization`,
+                  name: "ASEVA AQUATICS",
+                  alternateName: "ASEVA",
+                  description: SITE_CONFIG.description,
+                  url: SITE_CONFIG.domain,
+                  telephone: `+${SITE_CONFIG.whatsapp}`,
+                  email: SITE_CONFIG.email,
+                  image: `${SITE_CONFIG.domain}/og-image.jpg`,
+                  logo: `${SITE_CONFIG.domain}/apple-touch-icon.png`,
+                  priceRange: "$$$$",
+                  currenciesAccepted: "IDR",
+                  paymentAccepted: "Bank Transfer",
+                  address: {
+                    "@type": "PostalAddress",
+                    addressLocality: "Bandung",
+                    addressRegion: "Jawa Barat",
+                    addressCountry: "ID",
+                  },
+                  geo: {
+                    "@type": "GeoCoordinates",
+                    latitude: -6.9175,
+                    longitude: 107.6191,
+                  },
+                  areaServed: [
+                    { "@type": "City", name: "Bandung" },
+                    { "@type": "City", name: "Jakarta" },
+                    { "@type": "City", name: "Bogor" },
+                    { "@type": "City", name: "Depok" },
+                    { "@type": "City", name: "Tangerang" },
+                    { "@type": "City", name: "Bekasi" },
+                    { "@type": "State", name: "Jawa Barat" },
+                  ],
+                  openingHoursSpecification: [
+                    {
+                      "@type": "OpeningHoursSpecification",
+                      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                      opens: "09:00",
+                      closes: "17:00",
+                    },
+                  ],
+                  serviceType: [
+                    "Desain & Pembuatan Aquarium Custom Mewah",
+                    "Kurasi Arwana Super Red Bersertifikat CITES",
+                    "Jasa Perawatan & Maintenance Aquarium Berkala",
+                  ],
+                  knowsAbout: [
+                    "Aquarium Custom",
+                    "Arwana Super Red (Scleropages formosus)",
+                    "Kaca Kristal Low-Iron Diamant",
+                    "Sistem Sirkulasi Dry-Wet Sump",
+                    "Sertifikasi BKSDA dan CITES Internasional",
+                  ],
+                  sameAs: [SITE_CONFIG.instagram, SITE_CONFIG.youtubeShorts],
+                },
+                {
+                  "@type": "WebSite",
+                  "@id": `${SITE_CONFIG.domain}/#website`,
+                  url: SITE_CONFIG.domain,
+                  name: "ASEVA AQUATICS",
+                  description: SITE_CONFIG.description,
+                  publisher: {
+                    "@id": `${SITE_CONFIG.domain}/#organization`,
+                  },
+                  inLanguage: "id-ID",
                 },
               ],
-              priceRange: "$$$$",
-              serviceType: ["Aquarium Custom", "Arwana Super Red", "Perawatan Aquarium"],
-              sameAs: [SITE_CONFIG.instagram],
             }),
           }}
         />

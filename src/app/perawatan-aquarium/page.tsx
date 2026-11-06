@@ -21,6 +21,16 @@ export const metadata: Metadata = {
     title: "Jasa Perawatan & Maintenance Aquarium Premium — ASEVA AQUATICS",
     description: "Perawatan berkala akuarium custom kelas atas untuk menjaga kejernihan ekosistem dan kesehatan satwa Anda.",
     url: "https://asevaaquatics.com/perawatan-aquarium",
+    siteName: "ASEVA AQUATICS",
+    locale: "id_ID",
+    type: "website",
+    images: [{ url: "/images/aquarium-interior.jpg", width: 1200, height: 630, alt: "Maintenance Aquarium ASEVA" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Jasa Perawatan & Maintenance Aquarium Premium — ASEVA AQUATICS",
+    description: "Perawatan berkala akuarium custom dan parameter air di Bandung & Jabodetabek.",
+    images: ["/images/aquarium-interior.jpg"],
   },
 };
 

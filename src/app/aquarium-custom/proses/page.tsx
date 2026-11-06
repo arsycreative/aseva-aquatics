@@ -6,6 +6,32 @@ export const metadata: Metadata = {
   title: "Proses Pembuatan Aquarium Custom — Dari Visi hingga Serah Terima",
   description:
     "Transparansi penuh proses kerja 4 langkah ASEVA AQUATICS: Visi, Perancangan, Pembuatan, Pemasangan. Dari diskusi pertama hingga aquarium menyala di ruang Anda.",
+  alternates: {
+    canonical: "https://asevaaquatics.com/aquarium-custom/proses",
+  },
+  openGraph: {
+    title: "Metodologi & Proses Rancang Bangun Akuarium Custom — ASEVA AQUATICS",
+    description:
+      "Panduan transparansi tahapan studi kelayakan sipil, pemodelan CAD 3D, fabrikasi CNC kaca kristal, dan uji kebocoran 72 jam.",
+    url: "https://asevaaquatics.com/aquarium-custom/proses",
+    siteName: "ASEVA AQUATICS",
+    locale: "id_ID",
+    type: "website",
+    images: [
+      {
+        url: "/images/journal/kaca-aquarium.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Proses Kerja Akuarium Custom ASEVA",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Proses Kerja Akuarium Custom ASEVA AQUATICS",
+    description: "4 Tahap realisasi akuarium mewah presisi tinggi di Bandung & Jabodetabek.",
+    images: ["/images/journal/kaca-aquarium.jpg"],
+  },
 };
 
 const DETAILED_STEPS = [

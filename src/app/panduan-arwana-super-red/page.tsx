@@ -26,7 +26,16 @@ export const metadata: Metadata = {
     description:
       "Kenali kriteria arwana super red kualitas kontes, verifikasi microchip legalitas resmi, dan rahasia tanning warna merah darah.",
     url: `${SITE_CONFIG.domain}/panduan-arwana-super-red`,
+    siteName: "ASEVA AQUATICS",
+    locale: "id_ID",
+    type: "article",
     images: [{ url: "/images/journal/anatomi-arwana.jpg", width: 1200, height: 675, alt: "Anatomi Arwana Super Red" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Panduan Lengkap Arwana Super Red — ASEVA AQUATICS",
+    description: "Anatomi sendok, kriteria kontes, verifikasi microchip, dan manajemen air ideal.",
+    images: ["/images/journal/anatomi-arwana.jpg"],
   },
 };
 
