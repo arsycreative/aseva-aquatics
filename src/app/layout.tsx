@@ -95,7 +95,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="id" className="bg-black text-white">
+    <html lang="id" className="bg-black text-white" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -182,7 +182,10 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-black text-white antialiased selection:bg-white/20 selection:text-white">
+      <body
+        suppressHydrationWarning
+        className="bg-black text-white antialiased selection:bg-white/20 selection:text-white"
+      >
         <Navbar />
         <main id="main-content">{children}</main>
         <Footer />
