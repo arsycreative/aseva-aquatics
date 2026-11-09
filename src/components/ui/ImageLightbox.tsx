@@ -22,16 +22,29 @@ export default function ImageLightbox({
   title,
   subtitle,
 }: ImageLightboxProps) {
+  if (!isOpen || images.length === 0) return null;
+
+  return (
+    <LightboxModal
+      key={initialIndex}
+      onClose={onClose}
+      images={images}
+      initialIndex={initialIndex}
+      title={title}
+      subtitle={subtitle}
+    />
+  );
+}
+
+function LightboxModal({
+  onClose,
+  images,
+  initialIndex,
+  title,
+  subtitle,
+}: Omit<ImageLightboxProps, "isOpen"> & { initialIndex: number }) {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [scale, setScale] = useState(1);
-
-  // Sync initial index
-  useEffect(() => {
-    if (isOpen) {
-      setCurrentIndex(initialIndex);
-      setScale(1);
-    }
-  }, [isOpen, initialIndex]);
 
   const handleNext = useCallback(() => {
     if (images.length <= 1) return;
@@ -51,8 +64,6 @@ export default function ImageLightbox({
 
   // Keyboard controls
   useEffect(() => {
-    if (!isOpen) return;
-
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
       else if (e.key === "ArrowRight") handleNext();
@@ -66,9 +77,7 @@ export default function ImageLightbox({
       window.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "";
     };
-  }, [isOpen, onClose, handleNext, handlePrev]);
-
-  if (!isOpen || images.length === 0) return null;
+  }, [onClose, handleNext, handlePrev]);
 
   const currentImage = images[currentIndex] || images[0];
 

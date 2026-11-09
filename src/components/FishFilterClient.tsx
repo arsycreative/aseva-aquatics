@@ -3,7 +3,7 @@
 import { useState, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Cpu, Eye } from "lucide-react";
+import { ArrowRight, Cpu } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FISH_COLLECTION } from "@/lib/data";
 import { getWhatsAppUrl } from "@/lib/utils";

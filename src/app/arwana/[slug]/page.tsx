@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { MessageCircle, Shield, Cpu, ArrowLeft } from "lucide-react";
+import { MessageCircle, Shield, Cpu } from "lucide-react";
 import { FISH_COLLECTION } from "@/lib/data";
 import FishGalleryClient from "@/components/FishGalleryClient";
 import { STATUS_CLASSES, STATUS_LABELS, getWhatsAppUrl } from "@/lib/utils";

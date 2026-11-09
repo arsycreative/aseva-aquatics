@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
-import { ArrowRight } from "lucide-react";
 import { PORTFOLIO_PROJECTS } from "@/lib/data";
-import { CATEGORY_LABELS } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Portofolio Aquarium Custom & Arwana — Galeri Proyek ASEVA AQUATICS",

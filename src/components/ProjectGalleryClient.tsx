@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Maximize2, Eye } from "lucide-react";
+import { Maximize2 } from "lucide-react";
 import ImageLightbox from "@/components/ui/ImageLightbox";
 
 interface ProjectGalleryClientProps {

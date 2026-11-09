@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { PROCESS_STEPS } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Proses Pembuatan Aquarium Custom — Dari Visi hingga Serah Terima",

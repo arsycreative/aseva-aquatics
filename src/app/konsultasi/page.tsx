@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { MessageCircle, CheckCircle, Shield, Sparkles, MapPin, Layers, Clock, ArrowRight } from "lucide-react";
+import { MessageCircle, CheckCircle, ArrowRight } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/data";
 import { formatConsultationWhatsApp, getWhatsAppUrl } from "@/lib/utils";
 

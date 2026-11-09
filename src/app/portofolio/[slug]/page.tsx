@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { MessageCircle, ShieldCheck, Layers, Droplets, CheckCircle, ArrowRight } from "lucide-react";
+import { MessageCircle, Layers, ArrowRight } from "lucide-react";
 import { PORTFOLIO_PROJECTS } from "@/lib/data";
 import { CATEGORY_LABELS, getWhatsAppUrl } from "@/lib/utils";
 import ProjectGalleryClient from "@/components/ProjectGalleryClient";
