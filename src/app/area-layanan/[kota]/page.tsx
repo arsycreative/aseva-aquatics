@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { MessageCircle, MapPin, CheckCircle, ArrowRight } from "lucide-react";
+import { SITE_CONFIG } from "@/lib/data";
 import { getWhatsAppUrl } from "@/lib/utils";
 import ScrollReveal from "@/components/ScrollReveal";
 
@@ -190,7 +191,7 @@ export default async function AreaLayananPage({ params }: Props) {
           "@type": "HomeAndConstructionBusiness",
           name: "ASEVA AQUATICS",
           url: "https://asevaaquatics.com",
-          telephone: "+6281234567890",
+          telephone: `+${SITE_CONFIG.whatsapp}`,
         },
       },
       {

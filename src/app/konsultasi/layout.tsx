@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SITE_CONFIG } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Konsultasi Privat — Rancang Bangun Akuarium Custom & Kurasi Arwana Super Red",
@@ -47,8 +48,8 @@ export default function KonsultasiLayout({
     mainEntity: {
       "@type": "Organization",
       name: "ASEVA AQUATICS",
-      telephone: "+6281234567890",
-      email: "konsultasi@asevaaquatics.com",
+      telephone: `+${SITE_CONFIG.whatsapp}`,
+      email: SITE_CONFIG.email,
       areaServed: ["Bandung", "Jakarta", "Bogor", "Depok", "Tangerang", "Bekasi", "Jawa Barat"],
     },
   };
