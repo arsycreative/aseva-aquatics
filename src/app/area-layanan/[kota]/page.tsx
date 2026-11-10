@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { MessageCircle, MapPin, CheckCircle } from "lucide-react";
+import { MessageCircle, MapPin, CheckCircle, ArrowRight } from "lucide-react";
 import { getWhatsAppUrl } from "@/lib/utils";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const LOCATION_DATA = {
   bandung: {
@@ -13,23 +14,33 @@ const LOCATION_DATA = {
     description:
       "Spesialis aquarium custom premium dan arwana super red bersertifikat di Bandung Raya. Tim inti ASEVA berbasis di Bandung, siap survei dan instalasi 1–2 hari kerja.",
     zone: "Zona 1 — Prioritas Utama",
+    slaSurvey: "24–48 Jam Kerja",
+    slaMaintenance: "Respons Hari yang Sama (Same-Day)",
+    logisticsMode: "Armada Langsung Workshop Bandung",
     intro:
-      "Bandung adalah basis atelier utama tim perancang dan workshop fabrikasi ASEVA AQUATICS. Sebagai prioritas utama kami, proyek di Bandung Raya mendapat penanganan tercepat dengan survei bebas biaya komitmen.",
+      "Bandung adalah basis atelier utama tim perancang dan workshop fabrikasi kaca ASEVA AQUATICS. Proyek di wilayah Bandung Raya mendapatkan prioritas survei teknis bebas biaya komitmen dan respons perawatan tercepat.",
     localContext: [
       "Kawasan Dago Pakar, Setiabudi, dan Kota Baru Parahyangan didominasi arsitektur hunian modern-tropis bertingkat yang menuntut perhitungan beban gravitasi lantai sipil secara cermat.",
-      "Suhu udara Bandung Utara yang sejuk (18–22°C di malam hari) memerlukan instalasi titanium heater digital berpresisi tinggi demi menjaga kestabilan metabolisme satwa arwana super red.",
-      "Kontur perbukitan dan jalur logistik hunian privat dikalkulasikan secara khusus dalam pemindahan kaca monolitik masif.",
+      "Suhu udara Bandung Utara yang sejuk (18–22°C di malam hari) memerlukan instalasi Dual Titanium Heater digital berpresisi tinggi demi menjaga kestabilan metabolisme Arwana Super Red.",
+      "Kontur perbukitan dan akses hunian privat dikalkulasikan secara khusus dalam mobilisasi kaca monolitik berukuran besar.",
     ],
-    coverage: ["Dago & Bandung Utara", "Setiabudi & Cidadap", "Kota Baru Parahyangan", "Mekarwangi & Singgasana", "Buah Batu & Bandung Timur", "Cimahi & Lembang"],
+    coverage: [
+      "Dago & Bandung Utara",
+      "Setiabudi & Cidadap",
+      "Kota Baru Parahyangan",
+      "Mekarwangi & Singgasana",
+      "Buah Batu & Summarecon",
+      "Cimahi & Lembang",
+    ],
     keywords: ["aquarium custom bandung", "jasa pembuatan aquarium bandung", "arwana super red bandung"],
     faqs: [
       {
         q: "Berapa lama estimasi pengerjaan akuarium custom di Bandung?",
-        a: "Untuk akuarium residensial built-in ukuran 1,5 hingga 2 meter, proses rancang bangun hingga commissioning hidrolika memakan waktu 3–5 minggu. Proyek skala besar dapat disesuaikan dengan kurva S pembangunan rumah Anda.",
+        a: "Untuk akuarium residensial built-in ukuran 1,5 hingga 2,5 meter, proses rancang bangun hingga commissioning hidrolika memakan waktu 3–5 minggu. Proyek skala besar dapat disesuaikan dengan kurva S pembangunan rumah Anda.",
       },
       {
         q: "Apakah ada biaya untuk survei lokasi hunian di Bandung?",
-        a: "Survei teknis dimensi ruang dan jalur plumbing di seluruh area Bandung Raya sepenuhnya bebas biaya komitmen.",
+        a: "Survei teknis dimensi ruang, evaluasi beban lantai, dan jalur plumbing di seluruh area Bandung Raya sepenuhnya bebas biaya komitmen.",
       },
     ],
   },
@@ -41,23 +52,38 @@ const LOCATION_DATA = {
     description:
       "Spesialis aquarium custom mewah dan arwana super red bersertifikat untuk Jakarta Selatan, Jakarta Barat, PIK, BSD, Pondok Indah, dan seluruh Jabodetabek. Survei terjadwal dari Bandung.",
     zone: "Zona 2 — Metropolitan Prioritas",
+    slaSurvey: "Terjadwal Mingguan",
+    slaMaintenance: "Kunjungan Rutin Terjadwal",
+    logisticsMode: "Ekspedisi Khusus via Tol Cipularang",
     intro:
-      "Jakarta dan Jabodetabek adalah pasar metropolitan utama kami. Tim ASEVA rutin melakukan kunjungan terjadwal mingguan untuk koordinasi arsitektur, instalasi teknis, dan pengantaran satwa berlisensi CITES.",
+      "Jakarta dan Jabodetabek merupakan pasar residensial dan komersial utama kami. Tim insinyur ASEVA rutin melakukan kunjungan terjadwal mingguan untuk koordinasi gambar kerja arsitektur, instalasi teknis, serta pengantaran satwa berlisensi CITES.",
     localContext: [
-      "Hunian eksklusif di Jakarta Selatan (Pondok Indah, Senopati), PIK 1 & 2, serta BSD City memiliki ketinggian void ruang tamu yang ideal untuk akuarium kristal dinding masif.",
-      "Gedung perkantoran CBD Jakarta (SCBD, Sudirman, Mega Kuningan) mengadopsi akuarium lobi built-in kedap suara sebagai statement kemewahan.",
-      "Pengantaran ikan arwana dari Bandung ke Jakarta dilakukan melalui jalur Tol Cipularang dengan kendaraan berpendingin dan pasokan oksigen medis murni.",
+      "Hunian eksklusif di Jakarta Selatan (Pondok Indah, Senopati), PIK 1 & 2, serta BSD City memiliki ketinggian void ruang utama yang ideal untuk instalasi akuarium dinding Low-Iron berdimensi masif.",
+      "Ruang eksekutif dan lobi kantor pusat di CBD Jakarta (SCBD, Sudirman, Kuningan) menuntut sistem filtrasi sump berisolasi akustik (<28 dB) yang 100% hening.",
+      "Pengantaran Arwana Super Red dari Bandung ke Jakarta dilakukan menggunakan kendaraan berinsulasi termal dengan pasokan oksigen medis murni dan Garansi Hidup 100%.",
     ],
-    coverage: ["Jakarta Selatan (Pondok Indah, Senopati)", "Pantai Indah Kapuk (PIK 1 & 2)", "BSD City & Alam Sutera", "Menteng & Kuningan", "Sentul City & Bogor", "Bekasi & Depok"],
-    keywords: ["aquarium custom jakarta", "jasa pembuatan aquarium jakarta", "arwana super red jakarta", "aquarium mewah jabodetabek"],
+    coverage: [
+      "Jakarta Selatan (Pondok Indah, Senopati)",
+      "Pantai Indah Kapuk (PIK 1 & PIK 2)",
+      "BSD City & Alam Sutera",
+      "Menteng, SCBD & Kuningan",
+      "Sentul City & Bogor",
+      "Bekasi & Depok",
+    ],
+    keywords: [
+      "aquarium custom jakarta",
+      "jasa pembuatan aquarium jakarta",
+      "arwana super red jakarta",
+      "aquarium mewah jabodetabek",
+    ],
     faqs: [
       {
         q: "Bagaimana skema biaya logistik instalasi akuarium di Jakarta dari Bandung?",
-        a: "Biaya logistik pengiriman kaca, rangka baja, dan akomodasi teknisi dicantumkan secara transparan dan terukur di dalam proposal awal sebelum persetujuan proyek.",
+        a: "Biaya mobilisasi kaca Low-Iron, rangka baja, dan tim instalasi dicantumkan secara transparan sejak awal di dalam proposal penawaran tanpa biaya tersembunyi.",
       },
       {
         q: "Bagaimana jaminan keselamatan satwa saat pengiriman ke Jakarta?",
-        a: "Seluruh pengiriman arwana super red dilindungi protokol garansi hidup selamat (DOA) 100% dengan wadah terisolasi suhu dan tabung oksigen bertekanan.",
+        a: "Seluruh pengiriman Arwana Super Red dilindungi protokol Garansi Hidup Selamat (DOA) 100% dengan kemasan terisolasi suhu dan tabung oksigen medis.",
       },
     ],
   },
@@ -69,18 +95,27 @@ const LOCATION_DATA = {
     description:
       "Layanan aquarium custom dan arwana super red bersertifikat untuk kota-kota besar di Jawa Barat: Cirebon, Karawang, Sukabumi, Tasikmalaya, Garut, dan Subang.",
     zone: "Zona 2 — Jawa Barat Regional",
+    slaSurvey: "Terjadwal Berdasarkan Proyek",
+    slaMaintenance: "Kunjungan Berkala & Dukungan Jarak Jauh",
+    logisticsMode: "Armada Berpelindung & Oksigen Medis",
     intro:
       "ASEVA AQUATICS melayani pemilik hunian residensial dan properti komersial di seluruh kota strategis Jawa Barat dengan jadwal survei terkoordinasi dan pengantaran satwa berlisensi resmi.",
     localContext: [
-      "Kawasan pesisir seperti Cirebon dan Indramayu memiliki suhu lingkungan hangat yang memerlukan kalibrasi siklus evaporasi dan kontrol chiller yang berbeda dari dataran tinggi.",
-      "Pertumbuhan hunian premium di Karawang, Purwakarta, dan Sukabumi semakin menuntut kehadiran instalasi akuarium custom berkejernihan tinggi.",
+      "Kawasan pesisir seperti Cirebon dan Indramayu memiliki suhu ruang yang lebih hangat sehingga memerlukan desain sirkulasi udara kabinet dan kontrol evaporasi yang optimal.",
+      "Pertumbuhan hunian privat dan villa di Karawang, Purwakarta, Sukabumi, hingga Garut menuntut instalasi akuarium berkejernihan kristal yang mudah dirawat.",
     ],
-    coverage: ["Cirebon & Indramayu", "Karawang & Purwakarta", "Sukabumi & Cianjur", "Tasikmalaya & Garut", "Subang & Sumedang"],
+    coverage: [
+      "Cirebon & Indramayu",
+      "Karawang & Purwakarta",
+      "Sukabumi & Cianjur",
+      "Tasikmalaya & Garut",
+      "Subang & Sumedang",
+    ],
     keywords: ["aquarium custom jawa barat", "jasa pembuatan aquarium cirebon", "arwana super red jawa barat"],
     faqs: [
       {
         q: "Apakah tim teknisi ASEVA melayani survei ke kota-kota Jawa Barat selain Bandung?",
-        a: "Ya, kami menjadwalkan kunjungan survei teknis ke seluruh kota besar di Jawa Barat. Diskusikan rencana proyek Anda melalui formulir konsultasi kami.",
+        a: "Ya, kami menjadwalkan kunjungan survei teknis dan pengiriman instalasi ke seluruh kota strategis di Jawa Barat.",
       },
     ],
   },
@@ -207,9 +242,10 @@ export default async function AreaLayananPage({ params }: Props) {
         }}
       />
 
-      {/* Header */}
-      <section className="pt-36 pb-20 bg-black border-b border-white/[0.08]">
-        <div className="section-container">
+      {/* Header (Slate #090B10) */}
+      <section className="relative pt-36 pb-20 bg-[#090B10] border-b border-white/[0.08] overflow-hidden">
+        <div className="absolute inset-0 pattern-dots opacity-30 pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_80%)]" />
+        <div className="section-container relative z-10">
           <nav className="flex items-center gap-2 font-sans text-xs text-neutral-400 mb-8">
             <Link href="/" className="hover:text-white transition-colors">Beranda</Link>
             <span>/</span>
@@ -217,83 +253,147 @@ export default async function AreaLayananPage({ params }: Props) {
             <span>/</span>
             <span className="text-white">{data.cityName}</span>
           </nav>
-          <div className="flex items-center gap-3 mb-4">
-            <MapPin size={16} className="text-champagne" />
-            <span className="section-label">{data.zone}</span>
-          </div>
-          <h1 className="font-serif text-white max-w-3xl mb-6 leading-tight font-light text-3xl sm:text-5xl lg:text-6xl">
-            {data.h1}
-          </h1>
-          <p className="font-sans text-sm md:text-base text-neutral-400 leading-relaxed max-w-2xl mb-10 font-light">
-            {data.intro}
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Link href="/konsultasi" className="btn-primary">
-              Konsultasi Ruang Gratis
-            </Link>
-            <a
-              href={getWhatsAppUrl()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-whatsapp inline-flex items-center gap-3"
-            >
-              <MessageCircle size={16} />
-              Chat WhatsApp Langsung
-            </a>
+          <ScrollReveal>
+            <div className="flex items-center gap-3 mb-4">
+              <MapPin size={16} className="text-champagne-light" />
+              <span className="section-label">{data.zone}</span>
+            </div>
+            <h1 className="font-serif text-white max-w-3xl mb-6 leading-tight font-light text-3xl sm:text-5xl lg:text-6xl">
+              {data.h1}
+            </h1>
+            <p className="font-sans text-sm md:text-base text-neutral-300 leading-relaxed max-w-2xl mb-10 font-light">
+              {data.intro}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link href="/konsultasi" className="btn-primary">
+                Jadwalkan Survei & Konsultasi
+              </Link>
+              <a
+                href={getWhatsAppUrl(`Halo ASEVA AQUATICS, saya berlokasi di wilayah ${data.cityName} dan ingin berkonsultasi mengenai layanan aquarium custom / arwana super red.`)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-whatsapp inline-flex items-center gap-3"
+              >
+                <MessageCircle size={16} />
+                Chat WhatsApp Langsung
+              </a>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Regional SLA Telemetry Strip (Monolith #030305) */}
+      <section className="py-10 bg-[#030305] border-b border-white/[0.08]">
+        <div className="section-container">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-0 md:divide-x md:divide-white/[0.08]">
+            <div className="md:pr-8">
+              <span className="block font-mono text-[10px] text-champagne-light tracking-widest uppercase mb-1">
+                JADWAL SURVEI TEKNIS
+              </span>
+              <span className="font-serif text-2xl text-white font-light">{data.slaSurvey}</span>
+            </div>
+            <div className="md:px-8">
+              <span className="block font-mono text-[10px] text-champagne-light tracking-widest uppercase mb-1">
+                DUKUNGAN MAINTENANCE
+              </span>
+              <span className="font-serif text-2xl text-white font-light">{data.slaMaintenance}</span>
+            </div>
+            <div className="md:pl-8">
+              <span className="block font-mono text-[10px] text-champagne-light tracking-widest uppercase mb-1">
+                MODA LOGISTIK & SATWA
+              </span>
+              <span className="font-serif text-2xl text-white font-light">{data.logisticsMode}</span>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Coverage Area */}
-      <section className="section-padding bg-black border-b border-white/[0.08]">
+      {/* Coverage Area & Regional Context (Warm Charcoal #0A0A0E) */}
+      <section className="section-padding bg-[#0A0A0E] border-b border-white/[0.08]">
         <div className="section-container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-16">
-            <div>
-              <h2 className="font-serif text-2xl md:text-3xl text-white mb-6 font-light">
-                Cakupan Titik <em className="italic text-champagne">Layanan Utama</em>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 xl:gap-16">
+            <ScrollReveal className="lg:col-span-5">
+              <span className="section-label block mb-3">JANGKAUAN AREA</span>
+              <h2 className="font-serif text-2xl md:text-4xl text-white mb-6 font-light">
+                Kluster Layanan <em className="italic text-champagne">{data.cityName}</em>
               </h2>
-              <div className="flex flex-wrap gap-2.5">
+              <div className="flex flex-wrap gap-2.5 mb-8">
                 {data.coverage.map((city) => (
                   <span
                     key={city}
-                    className="font-sans text-xs text-neutral-300 rounded-full border border-white/10 px-4 py-2 bg-[#0A0A0A]"
+                    className="font-sans text-xs text-white rounded-full border border-white/15 px-4 py-2.5 bg-[#12131A]"
                   >
                     {city}
                   </span>
                 ))}
               </div>
-            </div>
-            <div>
-              <h2 className="font-serif text-2xl md:text-3xl text-white mb-6 font-light">
+              <div className="p-6 rounded-2xl bg-black/50 border border-white/[0.08]">
+                <p className="font-sans text-xs text-neutral-300 leading-relaxed font-light">
+                  Tim kami berkoordinasi langsung dengan pengelola kawasan residensial dan kontraktor interior setempat untuk memastikan kelancaran perizinan kerja serta mobilisasi material kaca besar.
+                </p>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.1} className="lg:col-span-7">
+              <span className="section-label block mb-3">REKAYASA LOKAL</span>
+              <h2 className="font-serif text-2xl md:text-4xl text-white mb-6 font-light">
                 Karakteristik & <em className="italic text-champagne">Konteks Wilayah</em>
               </h2>
               <div className="space-y-4">
                 {data.localContext.map((ctx, i) => (
-                  <div key={i} className="flex items-start gap-3 p-5 rounded-2xl bg-[#0A0A0A] border border-white/[0.08]">
-                    <CheckCircle size={16} className="text-champagne mt-0.5 flex-shrink-0" />
-                    <p className="font-sans text-xs md:text-sm text-neutral-400 leading-relaxed font-light">{ctx}</p>
+                  <div key={i} className="flex items-start gap-3.5 p-6 rounded-2xl bg-[#111218] border border-white/[0.08]">
+                    <CheckCircle size={18} className="text-champagne-light mt-0.5 flex-shrink-0" />
+                    <p className="font-sans text-xs md:text-sm text-neutral-300 leading-relaxed font-light">{ctx}</p>
                   </div>
                 ))}
               </div>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="section-padding bg-[#050505]">
+      {/* FAQ (Deep Minimalist #040406) */}
+      <section className="section-padding bg-[#040406] border-b border-white/[0.08]">
         <div className="section-container max-w-4xl">
-          <h2 className="font-serif text-2xl md:text-3xl text-white mb-10 font-light">
-            Pertanyaan Umum <em className="italic text-champagne">{data.cityName}</em>
-          </h2>
+          <ScrollReveal className="mb-12">
+            <span className="section-label block mb-3">INFORMASI OPERASIONAL</span>
+            <h2 className="font-serif text-2xl md:text-4xl text-white font-light">
+              Pertanyaan Umum Wilayah <em className="italic text-champagne">{data.cityName}</em>
+            </h2>
+          </ScrollReveal>
           <div className="space-y-4">
             {data.faqs.map((faq, i) => (
-              <div key={i} className="p-6 md:p-8 rounded-2xl border border-white/[0.08] bg-[#0A0A0A]">
-                <h3 className="font-serif text-lg text-white mb-3 font-light">{faq.q}</h3>
-                <p className="font-sans text-xs md:text-sm text-neutral-400 leading-relaxed font-light">{faq.a}</p>
-              </div>
+              <ScrollReveal key={i} delay={i * 0.08}>
+                <div className="p-6 md:p-8 rounded-2xl border border-white/[0.08] bg-[#0A0A0E]">
+                  <h3 className="font-serif text-xl text-white mb-3 font-light">{faq.q}</h3>
+                  <p className="font-sans text-xs md:text-sm text-neutral-300 leading-relaxed font-light">{faq.a}</p>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Bottom CTA (Smoked Lounge #08080B) */}
+      <section className="py-24 bg-[#08080B] text-center">
+        <div className="section-container max-w-2xl mx-auto">
+          <ScrollReveal>
+            <h2 className="font-serif text-white mb-4 font-light text-3xl sm:text-5xl">
+              Rencanakan Proyek Anda di <em className="italic text-champagne">{data.cityName}</em>
+            </h2>
+            <p className="font-sans text-sm text-neutral-400 max-w-md mx-auto mb-10 font-light">
+              Hubungi kami untuk menjadwalkan survei ruang atau melihat katalog spesimen Arwana Super Red yang siap dikirim ke {data.cityName}.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/aquarium-custom#kalkulator" className="btn-primary text-xs">
+                <span>Hitung Estimasi Aquarium</span>
+                <ArrowRight size={14} />
+              </Link>
+              <Link href="/arwana" className="btn-outline text-xs">
+                Lihat Koleksi Arwana
+              </Link>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
     </div>

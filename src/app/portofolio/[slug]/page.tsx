@@ -250,7 +250,7 @@ export default async function PortfolioDetailPage({ params }: Props) {
                   <ArrowRight size={14} />
                 </Link>
                 <a
-                  href={getWhatsAppUrl("portfolio")}
+                  href={getWhatsAppUrl(`Halo ASEVA AQUATICS, saya melihat studi kasus "${project.title}" (${project.dimensions}) di portofolio Anda dan tertarik mendiskusikan proyek serupa.`)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-outline w-full justify-center text-xs"

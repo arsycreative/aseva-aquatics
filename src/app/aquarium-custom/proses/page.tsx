@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "Proses Pembuatan Aquarium Custom — Dari Visi hingga Serah Terima",
@@ -36,64 +37,61 @@ export const metadata: Metadata = {
 const DETAILED_STEPS = [
   {
     number: "01",
-    title: "Visi & Konsultasi Ruang",
+    code: "FASE I / ORIENTASI",
+    title: "Visi & Audit Struktural Ruang",
     duration: "1–2 Pertemuan",
     activities: [
-      "Survei lokasi untuk mengukur dimensi ruang, orientasi visual, dan jalur plumbing",
-      "Diskusi mendalam tentang konsep estetika interior dan fungsi ekosistem yang diinginkan",
-      "Penilaian beban lantai struktural gedung (krusial untuk aquarium berkapasitas di atas 500L)",
-      "Presentasi portofolio atelier dan studi kasus serupa",
+      "Survei lokasi untuk mengukur dimensi ruang, orientasi pandang, dan jalur pemipaan gedung",
+      "Evaluasi titik beban lantai struktural sipil (wajib untuk kapasitas akuarium >1.000 Liter)",
+      "Penyelarasan konsep material kabinet bersama pemilik hunian atau desainer interior",
     ],
-    output: "Dokumen brief proyek, studi kelayakan, dan estimasi investasi awal",
+    output: "Dokumen Studi Kelayakan Sipil, Brief Konsep, & Estimasi Anggaran",
   },
   {
     number: "02",
-    title: "Perancangan & Engineering 3D",
+    code: "FASE II / REKAYASA CAD",
+    title: "Perancangan 3D & Spesifikasi Hidrolika",
     duration: "1–2 Minggu",
     activities: [
-      "Pemodelan teknis 3D dan koordinasi gambar kerja dengan arsitek / kontraktor MEP",
-      "Kalkulasi ketebalan kaca optik low-iron ultra-clear dan faktor keselamatan hidrolika",
-      "Spesifikasi sistem filtrasi sump biologis tersembunyi dan pompa isolasi getaran",
-      "Rancangan pencahayaan spektrum terprogram (tanning spektrum penuh)",
-      "Presentasi blueprint final untuk persetujuan klien",
+      "Pembuatan gambar kerja CAD 3D dan koordinasi jalur elektrikal/plumbing (MEP)",
+      "Kalkulasi ketebalan kaca Low-Iron (12mm–19mm / Laminated) dengan Safety Factor 3.8×",
+      "Perancangan kompartemen sump biologis kedap suara (<28 dB) & spektrum lampu tanning",
     ],
-    output: "Gambar kerja 3D final, Bill of Materials, dan jadwal fabrikasi terinci",
+    output: "Blueprint Gambar Kerja Final, Spesifikasi Material, & Jadwal Fabrikasi",
   },
   {
     number: "03",
-    title: "Fabrikasi di Workshop Atelier",
-    duration: "2–6 Minggu",
+    code: "FASE III / FABRIKASI",
+    title: "Konstruksi Kaca Optik di Workshop",
+    duration: "2–5 Minggu",
     activities: [
-      "Pemotongan dan bevel kaca kristal presisi tinggi menggunakan mesin CNC",
-      "Bonding presisi dengan silikon marine-grade Wacker kelas internasional",
-      "Fabrikasi rangka baja anti-karat dan kabinet interior custom sesuai moodboard arsitek",
-      "Uji hidrolika dan kebocoran tahap I di workshop selama minimum 48 jam",
-      "Perakitan sistem filtrasi sump, otomatisasi level air, dan panel listrik rapi",
+      "Pemotongan CNC dan diamond flat-polishing tepi kaca kristal Low-Iron",
+      "Injeksi silikon struktural Jerman bebas gelembung mikro (<0.5mm seam)",
+      "Perakitan sasis baja hollow berlapis epoxy anti-karat dan uji rendam tahap I (48 jam)",
     ],
-    output: "Unit akuarium tersertifikasi workshop, dokumentasi video uji hidrolika",
+    output: "Unit Tangki & Kabinet Tersertifikasi QC Workshop + Video Uji Tekanan",
   },
   {
     number: "04",
-    title: "Instalasi, Commissioning & Serah Terima",
+    code: "FASE IV / COMMISSIONING",
+    title: "Instalasi, Uji 72 Jam & Serah Terima",
     duration: "1–3 Hari",
     activities: [
-      "Pengiriman logistik berpelindung dan pengangkatan khusus ke lokasi lantai proyek",
-      "Integrasi kabel dan pipa tak kasat mata ke dalam dinding dan kabinet",
-      "Pengisian hidrolika dan uji kebocoran komprehensif di lokasi selama 72 jam",
-      "Commissioning siklus nitrogen biologis dan kalibrasi parameter air",
-      "Edukasi pemeliharaan kepada staf atau pemilik hunian",
-      "Penyerahan sertifikat garansi struktur 3 tahun resmi ASEVA",
+      "Instalasi presisi di lokasi dan integrasi pemipaan dry-wet tak kasat mata",
+      "Uji beban hidrostatik penuh dan kalibrasi kebisingan akustik selama 72 jam",
+      "Maturasi awal bakteri nitrifikasi biologis dan serah terima sertifikat garansi 3 tahun",
     ],
-    output: "Akuarium aktif beroperasi hening, garansi struktur 3 tahun aktif, manual book operasional",
+    output: "Ekosistem Akuarium Aktif (<28 dB), Manual Operasional, & Garansi Resmi 3 Tahun",
   },
 ];
 
 export default function ProsesPage() {
   return (
     <div className="bg-black text-white min-h-screen">
-      {/* Header */}
-      <section className="pt-36 pb-20 bg-black border-b border-white/[0.08]">
-        <div className="section-container">
+      {/* Header (Slate #090B10) */}
+      <section className="relative pt-36 pb-20 bg-[#090B10] border-b border-white/[0.08] overflow-hidden">
+        <div className="absolute inset-0 pattern-grid opacity-30 pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_80%)]" />
+        <div className="section-container relative z-10">
           <nav className="flex items-center gap-2 font-sans text-xs text-neutral-400 mb-8">
             <Link href="/" className="hover:text-white transition-colors">Beranda</Link>
             <span>/</span>
@@ -101,96 +99,125 @@ export default function ProsesPage() {
             <span>/</span>
             <span className="text-white">Proses</span>
           </nav>
-          <div className="max-w-2xl">
+          <ScrollReveal className="max-w-2xl">
             <span className="section-label block mb-4">METODOLOGI ARSITEKTUR</span>
             <h1 className="font-serif text-white mb-6 font-light">
               Proses 4 Tahap
-              <span className="block font-serif italic text-transparent bg-clip-text bg-gradient-to-r from-white via-champagne to-champagne-dim">
+              <span className="block font-serif italic text-transparent bg-clip-text bg-gradient-to-r from-white via-champagne-light to-champagne">
                 Menuju Mahakarya Akuarium
               </span>
             </h1>
-            <p className="font-sans text-sm md:text-base text-neutral-400 leading-relaxed font-light">
-              Tanpa kejutan biaya, tanpa improvisasi amatir di lapangan. Setiap tahap kami dokumentasikan secara terbuka sehingga Anda dan arsitek Anda selalu memegang kendali penuh atas kualitas.
+            <p className="font-sans text-sm md:text-base text-neutral-300 leading-relaxed font-light">
+              Tanpa improvisasi di lapangan dan tanpa biaya tersembunyi. Setiap tahapan didokumentasikan secara terukur agar selaras dengan jadwal proyek arsitektur Anda.
             </p>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
-      {/* Detailed Steps */}
-      <section className="section-padding bg-black">
+      {/* Telemetry Summary Strip (Monolith #030305) */}
+      <section className="py-10 bg-[#030305] border-b border-white/[0.08]">
         <div className="section-container">
-          <div className="space-y-10">
-            {DETAILED_STEPS.map((step) => (
-              <div
-                key={step.number}
-                className="grid grid-cols-1 lg:grid-cols-12 gap-8 bg-[#0A0A0A] p-8 lg:p-12 rounded-3xl border border-white/[0.08] shadow-[0_20px_50px_rgba(0,0,0,0.6)]"
-              >
-                {/* Step Number */}
-                <div className="lg:col-span-3 flex lg:flex-col justify-between items-start border-b lg:border-b-0 lg:border-r border-white/[0.08] pb-6 lg:pb-0 lg:pr-8">
-                  <div>
-                    <span className="font-mono text-xs text-neutral-400 uppercase tracking-widest block mb-2">TAHAP</span>
-                    <span className="font-serif text-5xl lg:text-7xl text-neutral-700 block font-light leading-none">
-                      {step.number}
-                    </span>
-                  </div>
-                  <span className="font-mono text-[11px] text-neutral-300 border border-white/10 px-3.5 py-1.5 rounded-full bg-white/[0.02]">
-                    {step.duration}
-                  </span>
-                </div>
-
-                {/* Content */}
-                <div className="lg:col-span-9">
-                  <h2 className="font-serif text-3xl text-white mb-8 font-light">
-                    {step.title}
-                  </h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {/* Activities */}
-                    <div>
-                      <p className="font-mono text-[10px] text-champagne tracking-widest uppercase mb-4 font-medium">
-                        KEGIATAN & RUANG LINGKUP
-                      </p>
-                      <ul className="space-y-3.5">
-                        {step.activities.map((activity, i) => (
-                          <li key={i} className="flex items-start gap-3">
-                            <span className="text-champagne mt-1 text-xs flex-shrink-0">✦</span>
-                            <p className="font-sans text-xs sm:text-sm text-neutral-400 leading-relaxed font-light">
-                              {activity}
-                            </p>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    {/* Output */}
-                    <div>
-                      <p className="font-mono text-[10px] text-champagne tracking-widest uppercase mb-4 font-medium">
-                        OUTPUT DOKUMEN & FISIK
-                      </p>
-                      <div className="p-6 rounded-2xl bg-[#111111] border border-white/[0.08]">
-                        <p className="font-sans text-sm text-white leading-relaxed font-light">
-                          {step.output}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-0 lg:divide-x lg:divide-white/[0.08]">
+            {[
+              { label: "FAKTOR KEAMANAN", val: "3.8× Hydrostatic" },
+              { label: "TOLERANSI SILIKON", val: "< 0.5mm Seam" },
+              { label: "UJI KEBOCORAN GANDA", val: "48 Jam + 72 Jam" },
+              { label: "GARANSI STRUKTUR", val: "3 Tahun Resmi" },
+            ].map((item) => (
+              <div key={item.label} className="lg:px-8 first:lg:pl-0 last:lg:pr-0">
+                <span className="block font-mono text-[10px] text-champagne-light tracking-widest uppercase mb-1">
+                  {item.label}
+                </span>
+                <span className="font-serif text-2xl text-white font-light">{item.val}</span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-24 bg-[#050505] border-t border-white/[0.08] text-center">
+      {/* Detailed Steps (Warm Charcoal #0A0A0E) */}
+      <section className="section-padding bg-[#0A0A0E]">
+        <div className="section-container">
+          <div className="space-y-8">
+            {DETAILED_STEPS.map((step, idx) => (
+              <ScrollReveal key={step.number} delay={idx * 0.08}>
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 bg-[#111218] p-8 lg:p-12 rounded-3xl border border-white/[0.08] hover:border-champagne/40 transition-all duration-500 shadow-[0_20px_50px_rgba(0,0,0,0.65)]">
+                  {/* Step Number */}
+                  <div className="lg:col-span-3 flex lg:flex-col justify-between items-start border-b lg:border-b-0 lg:border-r border-white/[0.08] pb-6 lg:pb-0 lg:pr-8">
+                    <div>
+                      <span className="font-mono text-[10px] text-champagne-light uppercase tracking-widest block mb-2">
+                        {step.code}
+                      </span>
+                      <span className="font-serif text-5xl lg:text-7xl text-white/20 block font-light leading-none">
+                        {step.number}
+                      </span>
+                    </div>
+                    <span className="font-mono text-[11px] text-white border border-champagne/30 px-3.5 py-1.5 rounded-full bg-champagne/10">
+                      Estimasi: {step.duration}
+                    </span>
+                  </div>
+
+                  {/* Content */}
+                  <div className="lg:col-span-9">
+                    <h2 className="font-serif text-2xl sm:text-3xl text-white mb-6 font-light">
+                      {step.title}
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+                      {/* Activities */}
+                      <div className="md:col-span-7">
+                        <p className="font-mono text-[10px] text-champagne-light tracking-widest uppercase mb-4 font-medium">
+                          PROTOKOL & RUANG LINGKUP
+                        </p>
+                        <ul className="space-y-3">
+                          {step.activities.map((activity, i) => (
+                            <li key={i} className="flex items-start gap-3">
+                              <span className="text-champagne-light mt-1 text-xs flex-shrink-0">✦</span>
+                              <p className="font-sans text-xs sm:text-sm text-neutral-300 leading-relaxed font-light">
+                                {activity}
+                              </p>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      {/* Output */}
+                      <div className="md:col-span-5">
+                        <p className="font-mono text-[10px] text-champagne-light tracking-widest uppercase mb-4 font-medium">
+                          DELIVERABLE TAHAP INI
+                        </p>
+                        <div className="p-6 rounded-2xl bg-black/50 border border-white/10">
+                          <p className="font-sans text-sm text-white leading-relaxed font-light">
+                            {step.output}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA (Smoked Lounge #08080B) */}
+      <section className="py-24 bg-[#08080B] border-t border-white/[0.08] text-center">
         <div className="section-container max-w-2xl mx-auto">
-          <h2 className="font-serif text-white mb-4 font-light text-3xl sm:text-5xl">
-            Siap Memulai <em className="italic text-champagne">Langkah Pertama?</em>
-          </h2>
-          <p className="font-sans text-sm text-neutral-400 max-w-md mx-auto mb-10 font-light">
-            Konsultasi visi ruang dan survei lokasi awal di Bandung Raya kami lakukan tanpa biaya komitmen.
-          </p>
-          <Link href="/konsultasi" className="btn-primary">
-            Jadwalkan Konsultasi Ruang
-          </Link>
+          <ScrollReveal>
+            <h2 className="font-serif text-white mb-4 font-light text-3xl sm:text-5xl">
+              Siap Memulai <em className="italic text-champagne">Tahap Pertama?</em>
+            </h2>
+            <p className="font-sans text-sm text-neutral-400 max-w-md mx-auto mb-10 font-light">
+              Konsultasi visi ruang dan survei kelayakan awal di wilayah Bandung Raya dilakukan tanpa biaya komitmen.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/konsultasi" className="btn-primary">
+                Jadwalkan Konsultasi Ruang
+              </Link>
+              <Link href="/aquarium-custom#kalkulator" className="btn-outline text-xs">
+                Buka Kalkulator Spesifikasi
+              </Link>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
     </div>

@@ -7,12 +7,12 @@ export function buildWhatsAppUrl(message: string): string {
 }
 
 export function getWhatsAppUrl(page?: string, code?: string): string {
-  let message = WHATSAPP_MESSAGES.default;
-  if (page === "arwana") message = WHATSAPP_MESSAGES.arwana(code);
-  if (page === "aquarium-custom") message = WHATSAPP_MESSAGES.aquariumCustom;
-  if (page === "maintenance") message = WHATSAPP_MESSAGES.maintenance;
-  if (page === "portfolio") message = WHATSAPP_MESSAGES.portfolio;
-  return buildWhatsAppUrl(message);
+  if (!page) return buildWhatsAppUrl(WHATSAPP_MESSAGES.default);
+  if (page === "arwana") return buildWhatsAppUrl(WHATSAPP_MESSAGES.arwana(code));
+  if (page === "aquarium-custom") return buildWhatsAppUrl(WHATSAPP_MESSAGES.aquariumCustom);
+  if (page === "maintenance") return buildWhatsAppUrl(WHATSAPP_MESSAGES.maintenance);
+  if (page === "portfolio") return buildWhatsAppUrl(WHATSAPP_MESSAGES.portfolio);
+  return buildWhatsAppUrl(page);
 }
 
 export function formatConsultationWhatsApp(data: {
