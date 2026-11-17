@@ -213,8 +213,8 @@ export default function ProsesPage() {
               <Link href="/konsultasi" className="btn-primary">
                 Jadwalkan Konsultasi Ruang
               </Link>
-              <Link href="/aquarium-custom#kalkulator" className="btn-outline text-xs">
-                Buka Kalkulator Spesifikasi
+              <Link href="/aquarium-custom/material-teknologi" className="btn-outline text-xs">
+                Spesifikasi Material & Kaca
               </Link>
             </div>
           </ScrollReveal>

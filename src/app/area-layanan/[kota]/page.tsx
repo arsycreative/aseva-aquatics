@@ -386,8 +386,8 @@ export default async function AreaLayananPage({ params }: Props) {
               Hubungi kami untuk menjadwalkan survei ruang atau melihat katalog spesimen Arwana Super Red yang siap dikirim ke {data.cityName}.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/aquarium-custom#kalkulator" className="btn-primary text-xs">
-                <span>Hitung Estimasi Aquarium</span>
+              <Link href="/konsultasi" className="btn-primary text-xs">
+                <span>Konsultasi Proyek Ruang</span>
                 <ArrowRight size={14} />
               </Link>
               <Link href="/arwana" className="btn-outline text-xs">

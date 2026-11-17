@@ -4,7 +4,6 @@ import Image from "next/image";
 import { MessageCircle } from "lucide-react";
 import { getWhatsAppUrl } from "@/lib/utils";
 import ScrollReveal from "@/components/ScrollReveal";
-import AquariumCalculatorClient from "@/components/AquariumCalculatorClient";
 
 export const metadata: Metadata = {
   title: "Desain & Pembuatan Aquarium Custom Kelas Atas Bandung & Jabodetabek",
@@ -65,22 +64,22 @@ const AQUARIUM_TYPES = [
   {
     title: "Aquarium Dinding (Built-In)",
     description: "Menyatu rata dengan bidang dinding interior tanpa satu pun kabel atau pipa kasat mata.",
-    image: "/images/projects/prj-001.jpg",
+    image: "/images/typology/built-in-wall.jpg",
   },
   {
     title: "Partisi Ruang Dua Sisi",
     description: "Membagi dua zona interior megah sekaligus menghadirkan panorama hidup dari kedua sisi ruang.",
-    image: "/images/projects/prj-002.jpg",
+    image: "/images/typology/room-divider.jpg",
   },
   {
     title: "Aquarium Kolom Struktural",
     description: "Mengubah tiang atau sudut struktural menjadi instalasi akuarium monolitik berdimensi dramatis.",
-    image: "/images/projects/prj-003.jpg",
+    image: "/images/typology/column-pillar.jpg",
   },
   {
     title: "Ikon Lobi Komersial",
     description: "Instalasi berskala monumental untuk lobi kantor pusat, galeri, maupun residensial megah.",
-    image: "/images/projects/prj-004.jpg",
+    image: "/images/typology/commercial-lobby.jpg",
   },
 ];
 
@@ -152,9 +151,9 @@ export default function AquariumCustomPage() {
               Dari denah CAD arsitektur hingga mahakarya kaca optik yang mengalirkan keheningan di ruang Anda. Dirancang dengan standar faktor keamanan 3.8× dan akustik di bawah 28 dB.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href="#kalkulator" className="btn-primary">
-                Hitung Spesifikasi Ruang
-              </a>
+              <Link href="/konsultasi" className="btn-primary">
+                Konsultasi Ruang
+              </Link>
               <Link href="/aquarium-custom/material-teknologi" className="btn-outline text-xs">
                 Spesifikasi Material & Kaca
               </Link>
@@ -199,15 +198,6 @@ export default function AquariumCustomPage() {
         </div>
       </section>
 
-      {/* Interactive Calculator Section (Slate #090B10) */}
-      <section id="kalkulator" className="section-padding bg-[#090B10] border-b border-white/[0.08] relative overflow-hidden">
-        <div className="absolute inset-0 pattern-dots opacity-30 pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_35%,transparent_80%)]" />
-        <div className="section-container relative z-10">
-          <ScrollReveal>
-            <AquariumCalculatorClient />
-          </ScrollReveal>
-        </div>
-      </section>
 
       {/* Aquarium Types (Pitch Black #000000) */}
       <section className="section-padding bg-black border-b border-white/[0.08]">
@@ -226,19 +216,22 @@ export default function AquariumCustomPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7">
             {AQUARIUM_TYPES.map((type, idx) => (
               <ScrollReveal key={type.title} delay={idx * 0.08}>
-                <div className="bg-[#0A0A0E] rounded-2xl border border-white/[0.08] hover:border-white/25 transition-all duration-500 group overflow-hidden shadow-[0_15px_40px_rgba(0,0,0,0.6)] h-full flex flex-col">
-                  <div className="relative h-48 overflow-hidden bg-black">
+                <div className="bg-[#0A0A0E] rounded-2xl border border-white/[0.08] hover:border-champagne/40 transition-all duration-500 group overflow-hidden shadow-[0_15px_40px_rgba(0,0,0,0.6)] h-full flex flex-col">
+                  <div className="relative h-56 overflow-hidden bg-black">
                     <Image
                       src={type.image}
                       alt={type.title}
                       fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-75 group-hover:opacity-95"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-85 group-hover:opacity-100"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0E] via-transparent to-transparent opacity-80" />
                   </div>
-                  <div className="p-6 flex-1">
-                    <h3 className="font-serif text-lg text-white mb-2.5 leading-tight font-light">{type.title}</h3>
-                    <p className="font-sans text-xs text-neutral-400 leading-relaxed font-light">{type.description}</p>
+                  <div className="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                      <h3 className="font-serif text-lg text-white mb-2 leading-tight font-light group-hover:text-champagne-light transition-colors">{type.title}</h3>
+                      <p className="font-sans text-xs text-neutral-400 leading-relaxed font-light">{type.description}</p>
+                    </div>
                   </div>
                 </div>
               </ScrollReveal>

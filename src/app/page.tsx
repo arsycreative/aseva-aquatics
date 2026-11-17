@@ -3,7 +3,7 @@ import HeroSection from "@/components/sections/HeroSection";
 import TwoDoorsSection from "@/components/sections/TwoDoorsSection";
 import PhilosophySection from "@/components/sections/PhilosophySection";
 import StatsSection from "@/components/sections/StatsSection";
-import ProcessSection from "@/components/sections/ProcessSection";
+import GallerySliderSection from "@/components/sections/GallerySliderSection";
 import FeaturedFishSection from "@/components/sections/FeaturedFishSection";
 import FullWidthBannerSection from "@/components/sections/FullWidthBannerSection";
 import PortfolioPreviewSection from "@/components/sections/PortfolioPreviewSection";
@@ -51,7 +51,7 @@ export default function HomePage() {
       <TwoDoorsSection />
       <PhilosophySection />
       <StatsSection />
-      <ProcessSection />
+      <GallerySliderSection />
       <FeaturedFishSection />
       <FullWidthBannerSection />
       <PortfolioPreviewSection />
